@@ -1,0 +1,6 @@
+\babel@toc {slovene}{}
+\contentsline {chapter}{Predgovor}{iii}% 
+\contentsline {chapter}{\numberline {1}Testiranje zmogljivosti Amazon EC2 platforme (P. Mati\IeC {\v c}i\IeC {\v c}, J. Pelicon, B. Rojc)}{1}% 
+\contentsline {section}{\numberline {1.1}Opis problema}{1}% 
+\contentsline {section}{\numberline {1.2}Tehni\IeC {\v c}na navodila za pisanje teksta}{1}% 
+\contentsline {section}{\numberline {1.3}Zaklju"cek}{3}% 
