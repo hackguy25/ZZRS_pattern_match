@@ -20,17 +20,42 @@ S tem problemom v mislih bomo stestirali oblačno platformo Amazon EC2.
 Ustvarili bomo enostavno storitev, ki bo uporabniku omogočala iskanje vzorcev v večjem naboru slik, shranjenih v oblaku.
 Poglobili se bomo v zahtevnost uporabe za programerja, fleksibilnost pri programiranju in morebitnem prenašanju storitve na druge platforme,
 	odzivnost in izkušnjo za uporabnika ter zmogljivost in skalabilnost virov na platformi.
+	
+	\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{Img/1_shema.pdf}
+    \caption{Shema aplikacije.}
+    \label{fig:1_osnovnaShema}
+\end{figure}
 
-\section{Izbira tehnologij}
+\section{Realizacija}
 
-\section{Definicija bremena storitve}
+\subsection{Način iskanja vzorca}
+\begin{itemize}
+\item Iskanje ene slikovne točke v množici slik ki bo ustrezala zahtevam.
+\item Iskanje vzorca podanega z masko v mnžici slik.
+\item Iskanje slike, ki vsebuje podan slikovni izsek.
+\end{itemize}
 
-\section{Definicija metrik in orodij za meritve}
+\subsection{Amazon AWS račun}
+
+\subsection{Aplikacija}
+Aplikacija bo narejena v jeziku Java. Na strani pošiljatelja bomo generirali zahteve in jih pošiljali na strežnik v obliki JSON. Strežnik bo lahko hkrati obdeloval več zahtev do mere ki mu bo omogočal dostop do slik.
+
+
+\section{Predvidevanje metrik}
+Kot glavno metriko bomo opazovali skupni čas zahteve in odgovora. Podrobneje ga bomo razdelili na čas potovanja zahteve od nas do strežnika, čas obdelave na strežniku in čas potovanja odgovora od strežnika do nas.
 
 \section{Rezultati meritev}
 
 \section{Plan dela}
+\begin{itemize}
+\item snovanje ogrodja storitve
+\item določitev bremen
+\item določitev metrik
+\item določitev orodij
+\end{itemize}
 
-Snovanje ogrodja storitve, določitev bremen, metrik, orodij, \ldots
+\section{Literatura}
 
 \inputencoding{cp1250}

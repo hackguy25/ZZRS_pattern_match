@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.2.28)  8 MAR 2019 17:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.2.28)  15 MAR 2019 18:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -798,37 +798,37 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: utf8.def 2018/10/05 v1.2f UTF-8 support for inputenc
 )
 Poglavje 1.
-<Img/1_shema.jpg, id=31, 347.04657pt x 334.24875pt>
-File: Img/1_shema.jpg Graphic file (type jpg)
-<use Img/1_shema.jpg>
-Package pdftex.def Info: Img/1_shema.jpg  used on input line 22.
-(pdftex.def)             Requested size: 260.28429pt x 250.68594pt.
 
-Underfull \vbox (badness 5119) has occurred while \output is active []
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Img/1_shema.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
+<Img/1_shema.pdf, id=31, 845.1575pt x 597.23125pt>
+File: Img/1_shema.pdf Graphic file (type pdf)
+<use Img/1_shema.pdf>
+Package pdftex.def Info: Img/1_shema.pdf  used on input line 26.
+(pdftex.def)             Requested size: 338.057pt x 238.88826pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [1
 
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 29.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 35.
 
 (/usr/share/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 29.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 50.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 35.
 
-(/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
 Make it at least 22.48724pt.
 We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
-[2 <./Img/1_shema.jpg>] (/usr/share/texmf-dist/tex/latex/base/cp1250.def
+[2 <./Img/1_shema.pdf>] (/usr/share/texmf-dist/tex/latex/base/cp1250.def
 File: cp1250.def 2018/08/11 v1.3c Input encoding file
 ))
 [3] [4
@@ -846,30 +846,29 @@ No file mro.ind.
 
 ] (./mro.aux (./preface.aux) (./poglavje_1.aux)) ) 
 Here is how much of TeX's memory you used:
- 25781 strings out of 492616
- 628160 string characters out of 6135177
- 820195 words of memory out of 5000000
- 29172 multiletter control sequences out of 15000+600000
- 21151 words of font info for 56 fonts, out of 8000000 for 9000
+ 25384 strings out of 492616
+ 624405 string characters out of 6135177
+ 804195 words of memory out of 5000000
+ 28781 multiletter control sequences out of 15000+600000
+ 20081 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,12n,96p,724b,1906s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,11n,96p,724b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/
 enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/sh
-are/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/
-fonts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf-dist/fonts/type1/pub
-lic/cm-super/sfbx2488.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sf
-rm0700.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></us
-r/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-d
-ist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf-dist/fonts/type1
-/public/cm-super/sfrm2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-supe
-r/sfsl1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb>
-</usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on mro.pdf (11 pages, 255665 bytes).
+sfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx100
+0.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/sha
+re/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/f
+onts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf-dist/fonts/type1/publ
+ic/cm-super/sfbx2488.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfr
+m1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr
+/share/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf-di
+st/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf-dist/fonts/type1/
+public/cm-super/sfsl1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
+/sfti1000.pfb>
+Output written on mro.pdf (11 pages, 180642 bytes).
 PDF statistics:
- 101 PDF objects out of 1000 (max. 8388607)
- 72 compressed objects within 1 object stream
+ 103 PDF objects out of 1000 (max. 8388607)
+ 76 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

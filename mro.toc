@@ -2,5 +2,11 @@
 \contentsline {chapter}{Predgovor}{iii}% 
 \contentsline {chapter}{\numberline {1}Testiranje zmogljivosti Amazon EC2 platforme (P. Mati\IeC {\v c}i\IeC {\v c}, J. Pelicon, B. Rojc)}{1}% 
 \contentsline {section}{\numberline {1.1}Opis problema}{1}% 
-\contentsline {section}{\numberline {1.2}Tehni\IeC {\v c}na navodila za pisanje teksta}{1}% 
-\contentsline {section}{\numberline {1.3}Zaklju"cek}{3}% 
+\contentsline {section}{\numberline {1.2}Realizacija}{2}% 
+\contentsline {subsection}{\numberline {1.2.1}Na\IeC {\v c}in iskanja vzorca}{2}% 
+\contentsline {subsection}{\numberline {1.2.2}Amazon AWS ra\IeC {\v c}un}{2}% 
+\contentsline {subsection}{\numberline {1.2.3}Aplikacija}{2}% 
+\contentsline {section}{\numberline {1.3}Predvidevanje metrik}{2}% 
+\contentsline {section}{\numberline {1.4}Rezultati meritev}{3}% 
+\contentsline {section}{\numberline {1.5}Plan dela}{3}% 
+\contentsline {section}{\numberline {1.6}Literatura}{3}% 
