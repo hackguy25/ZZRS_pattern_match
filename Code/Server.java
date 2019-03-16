@@ -2,12 +2,19 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+
 public class Server {
 
 	protected int server_port = 443;
 	protected List<Socket> clients = new ArrayList<Socket>();
 	
 	public static void main(String[] args) throws Exception {
+		new ImageProcessing();
 		new Server();
 	}
 
@@ -104,3 +111,35 @@ class ServerConnector extends Thread {
 		}
 	}
 }
+
+class ImageProcessing{
+
+	BufferedImage image;
+	int width;
+	int height;
+	
+	public ImageProcessing(){
+      try {
+         File input = new File("test.jpg");
+         image = ImageIO.read(input);
+         width = image.getWidth();
+         height = image.getHeight();
+         
+         int count = 0;
+         
+         for(int k=0; k<height; k++) {    
+            System.out.print("\n(R:G:B) Line " + k +": ");
+			for(int i=0; i<width; i++) {
+               Color c = new Color(image.getRGB(i, k));
+               System.out.print(c.getRed() +":"+ c.getGreen() +":"+ c.getBlue() +" ");
+            }
+         }
+		 
+		 System.out.println();
+
+      } catch (Exception e) {
+		  
+	  }
+   }
+}
+
