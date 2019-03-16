@@ -3,7 +3,8 @@ import java.net.*;
 
 public class User extends Thread
 {
-	protected int serverPort = 443;
+	protected int server_port = 443;
+	protected String server_ip = "127.0.0.1";
 
 	public static void main(String[] args) throws Exception {
 		new User();
@@ -15,37 +16,38 @@ public class User extends Thread
 		DataOutputStream out = null;
 		
 		try {
-			System.out.println("[system] connecting to chat server ...");
-			socket = new Socket("localhost", serverPort); //SSL port=443
+			System.out.println("[system] connecting to " + server_ip + ":" + server_port + "...");
+			
+			socket = new Socket(server_ip, server_port); 
+			in = new DataInputStream(socket.getInputStream()); 
+			out = new DataOutputStream(socket.getOutputStream());
 
-			in = new DataInputStream(socket.getInputStream()); // create input stream for listening for incoming messages
-			out = new DataOutputStream(socket.getOutputStream()); // create output stream for sending messages
-
-			UserMessageReceiver message_receiver = new UserMessageReceiver(in); // create a separate thread for listening to messages from the chat server
-			message_receiver.start(); // run the new thread
+			UserMessageReceiver message_receiver = new UserMessageReceiver(in);
+			message_receiver.start();
+			
+			System.out.println("[system] connected to " + server_ip + ":" + server_port);
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 			System.exit(1);
 		}
-		
-		BufferedReader std_in = new BufferedReader(new InputStreamReader(System.in));
-		String userInput;
-		String message;
+
+		String request;		
+		BufferedReader user_input = new BufferedReader(new InputStreamReader(System.in));
 			
-		while ((userInput = std_in.readLine()) != null) { // read a line from the console 
-			this.sendMessage(userInput, out); // send the message to the chat server	
+		while ((request = user_input.readLine()) != null) {
+			this.sendMessage(request, out);
 		}
 
 		out.close();
 		in.close();
-		std_in.close();
+		user_input.close();
 		socket.close();
 	}
 
-	private void sendMessage(String message, DataOutputStream out) {
+	private void sendMessage(String request, DataOutputStream out) {
 		try {
-			out.writeUTF(message); // send the message to the chat server
-			out.flush(); // ensure the message has been sent
+			out.writeUTF(request); 
+			out.flush();
 		} catch (IOException e) {
 			System.err.println("[system] could not send message");
 			e.printStackTrace(System.err);
@@ -55,6 +57,7 @@ public class User extends Thread
 
 class UserMessageReceiver extends Thread {
 	private DataInputStream in;
+	private String response;
 
 	public UserMessageReceiver(DataInputStream in) {
 		this.in = in;
@@ -62,9 +65,12 @@ class UserMessageReceiver extends Thread {
 
 	public void run() {
 		try {
-			String message;
-			while ((message = this.in.readUTF()) != null) { 
-				System.out.println("[RKchat] " + message); 
+			while ((response = this.in.readUTF()) != null) { 
+			
+				// REZULTAT ISKANJA
+
+				System.out.println("[server] " + response); 
+				System.out.print("[user] ");
 			}
 		} catch (Exception e) {
 			System.err.println("[system] could not read message");
