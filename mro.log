@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.2.28)  15 MAR 2019 18:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.2.28)  17 MAR 2019 09:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -821,6 +821,11 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 35.
+<Img/1_AWS_images.png, id=39, 1267.44484pt x 611.63242pt>
+File: Img/1_AWS_images.png Graphic file (type png)
+<use Img/1_AWS_images.png>
+Package pdftex.def Info: Img/1_AWS_images.png  used on input line 44.
+(pdftex.def)             Requested size: 316.86043pt x 152.90773pt.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -828,13 +833,13 @@ Make it at least 22.48724pt.
 We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
-[2 <./Img/1_shema.pdf>] (/usr/share/texmf-dist/tex/latex/base/cp1250.def
+[2 <./Img/1_shema.pdf>]
+Underfull \vbox (badness 1117) has occurred while \output is active []
+
+ [3 <./Img/1_AWS_images.png (PNG copy)>] (/usr/share/texmf-dist/tex/latex/base/
+cp1250.def
 File: cp1250.def 2018/08/11 v1.3c Input encoding file
-))
-[3] [4
-
-
-] (./mro.bbl
+)) [4] (./mro.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 4--6
 []\T1/cmr/m/n/10 ``Digitalocean: Sim-ple cloud com-pu-ting for de-ve-lo-pers.''
  ht-
@@ -844,31 +849,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--6
 No file mro.ind.
 [5
 
+
+
 ] (./mro.aux (./preface.aux) (./poglavje_1.aux)) ) 
 Here is how much of TeX's memory you used:
- 25384 strings out of 492616
- 624405 string characters out of 6135177
- 804195 words of memory out of 5000000
- 28781 multiletter control sequences out of 15000+600000
+ 25391 strings out of 492616
+ 624542 string characters out of 6135177
+ 805195 words of memory out of 5000000
+ 28786 multiletter control sequences out of 15000+600000
  20081 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,11n,96p,724b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,12n,96p,1090b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/
 enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx100
-0.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/sha
-re/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/f
-onts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf-dist/fonts/type1/publ
-ic/cm-super/sfbx2488.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfr
-m1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr
-/share/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf-di
-st/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf-dist/fonts/type1/
-public/cm-super/sfsl1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
-/sfti1000.pfb>
-Output written on mro.pdf (11 pages, 180642 bytes).
+sfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/shar
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/f
+onts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf-dist/fonts/type1/publ
+ic/cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfb
+x1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr
+/share/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf-di
+st/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fonts/type1/
+public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
+/sfrm1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb><
+/usr/share/texmf-dist/fonts/type1/public/cm-super/sfsl1000.pfb></usr/share/texm
+f-dist/fonts/type1/public/cm-super/sfti1000.pfb>
+Output written on mro.pdf (11 pages, 441702 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
+ 116 PDF objects out of 1000 (max. 8388607)
+ 85 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 
