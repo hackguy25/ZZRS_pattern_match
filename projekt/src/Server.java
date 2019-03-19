@@ -3,18 +3,12 @@ import java.net.*;
 import java.util.*;
 import org.json.*;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
-
 public class Server {
 
 	protected int server_port = 4434;
 	protected List<Socket> clients = new ArrayList<Socket>();
 	
 	public static void main(String[] args) throws Exception {
-		new ImageProcessing();
 		new Server();
 	}
 
@@ -88,60 +82,21 @@ class ServerConnector extends Thread {
 			
 			try {
 				request = in.readUTF();
-				System.out.println("[user] " + request);
 				
 				if (request.length() == 0) // invalid message
 					continue;
 				
-				JSONObject req = new JSONObject(request);
-				JSONObject res = new JSONObject();
-				
-				res.put("reqType", req.getString("reqType"));
-				 
-				// VRNI REZULTAT ISKANJA
+				JSONObject res = RequestHandler.handleRequest(new JSONObject(request), new ImageProcessing());
 
 				out.writeUTF(res.toString());
 				out.flush();
 				System.out.println("[server] " + res.toString());
 								
 			} catch (Exception e) {
-				System.err.println("[system] user " + this.socket.getInetAddress().getHostName() + ":" + this.socket.getPort() + " disconnected");	
-				//System.err.println("[system] there was a problem with user request on port " + this.socket.getPort());
-				//e.printStackTrace(System.err);
+				System.err.println("[system] user " + this.socket.getInetAddress().getHostName() + ":" + this.socket.getPort() + " disconnected");
 				return;
 			}
 		}
 	}
-}
-
-class ImageProcessing{
-
-	BufferedImage image;
-	int width;
-	int height;
-	
-	public ImageProcessing(){
-      try {
-         File input = new File("test.jpg");
-         image = ImageIO.read(input);
-         width = image.getWidth();
-         height = image.getHeight();
-         
-         int count = 0;
-         
-         for(int k=0; k<height; k++) {    
-            System.out.print("\n(R:G:B) Line " + k +": ");
-			for(int i=0; i<width; i++) {
-               Color c = new Color(image.getRGB(i, k));
-               System.out.print(c.getRed() +":"+ c.getGreen() +":"+ c.getBlue() +" ");
-            }
-         }
-		 
-		 System.out.println();
-
-      } catch (Exception e) {
-		  
-	  }
-   }
 }
 
