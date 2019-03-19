@@ -7,7 +7,6 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 
 public class Server {
 
