@@ -9,10 +9,11 @@ public class Server {
 	protected List<Socket> clients = new ArrayList<Socket>();
 	
 	public static void main(String[] args) throws Exception {
-		new Server();
+		ImageLoader il = new ImageLoader();
+		new Server(il);
 	}
 
-	public Server() {
+	public Server(ImageLoader il) {
 		ServerSocket server_socket = null;
 		Socket client_socket = null;
 
@@ -32,7 +33,7 @@ public class Server {
 				synchronized(this) {
 					clients.add(client_socket);
 				}
-				ServerConnector conn = new ServerConnector(this, client_socket);
+				ServerConnector conn = new ServerConnector(this, client_socket, il);
 				conn.start();
 			}
 		} catch (Exception e) {
@@ -55,10 +56,12 @@ public class Server {
 class ServerConnector extends Thread {
 	private Server server;
 	private Socket socket;
+	private ImageLoader il;
 	
-	public ServerConnector(Server server, Socket socket) {
+	public ServerConnector(Server server, Socket socket, ImageLoader il) {
 		this.server = server;
 		this.socket = socket;
+		this.il = il;
 	}
 
 	public void run() {
@@ -86,7 +89,7 @@ class ServerConnector extends Thread {
 				if (request.length() == 0) // invalid message
 					continue;
 				
-				JSONObject res = RequestHandler.handleRequest(new JSONObject(request), new ImageProcessing());
+				JSONObject res = RequestHandler.handleRequest(new JSONObject(request), new ImageProcessing(), il);
 
 				out.writeUTF(res.toString());
 				out.flush();

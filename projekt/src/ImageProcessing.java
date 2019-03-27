@@ -1,9 +1,6 @@
 import org.json.JSONObject;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 class ImageProcessing{
 
@@ -35,21 +32,32 @@ class ImageProcessing{
 	  }
    }*/
 
-	public JSONObject processPixelSearch(long pixel) {
+	public JSONObject processPixelSearch(long pixel, ImageLoader il) {
         JSONObject location = new JSONObject();
         JSONObject ret = new JSONObject();
 
         //TODO pixel search
-        location.put("x", 10);
-        location.put("y", 5);
+        for(int i = 0; i < ImageLoader.NUM_LOADED_IMAGES; i++) {
+            BufferedImage img = il.getImage(i);
+            for(int y = 0; y < img.getHeight(); y++) {
+                for(int x = 0; x < img.getWidth(); x++) {
+                    if(img.getRGB(x, y) == pixel) {
+                        location.put("x", x);
+                        location.put("y", y);
+                        ret.put("imageId", i + 1);
+                        ret.put("location", location);
+                        return ret;
+                    }
+                }
+            }
+        }
 
-        ret.put("imageId", 2);
-        ret.put("location", location);
+        ret.put("err", "No image found");
 
         return ret;
     }
 
-    public JSONObject processPatternSearch(byte[] mask) {
+    public JSONObject processPatternSearch(byte[] mask, ImageLoader il) {
         JSONObject location = new JSONObject();
         JSONObject ret = new JSONObject();
 
@@ -63,7 +71,7 @@ class ImageProcessing{
         return ret;
     }
 
-    public JSONObject processImageSearch(byte[] image) {
+    public JSONObject processImageSearch(byte[] image, ImageLoader il) {
         JSONObject location = new JSONObject();
         JSONObject ret = new JSONObject();
 

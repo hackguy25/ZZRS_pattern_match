@@ -70,18 +70,18 @@ public class RequestHandler {
         return Base64.getDecoder().decode(s);
     }
 
-    public static JSONObject handleRequest(JSONObject req, ImageProcessing ip) {
+    public static JSONObject handleRequest(JSONObject req, ImageProcessing ip, ImageLoader il) {
         JSONObject res;
 
         switch (ReqType.strToType(req.getString("reqType"))) {
             case PIXEL_SEARCH:
-                res = ip.processPixelSearch(req.getLong("pixelValue"));
+                res = ip.processPixelSearch(req.getLong("pixelValue"), il);
                 break;
             case PATTERN_SEARCH:
-                res = ip.processPatternSearch(b64ToByteArr(req.getString("mask")));
+                res = ip.processPatternSearch(b64ToByteArr(req.getString("mask")), il);
                 break;
             case IMG_SEARCH:
-                res = ip.processImageSearch(b64ToByteArr(req.getString("mask")));
+                res = ip.processImageSearch(b64ToByteArr(req.getString("mask")), il);
                 break;
             default :
                 res = new JSONObject();

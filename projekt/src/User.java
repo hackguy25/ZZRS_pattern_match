@@ -17,8 +17,8 @@ public class User extends Thread {
     private void generateRequests(DataOutputStream out) {
         try {
             //TODO make requests for other types
-            for(int i = 0; i < 5; i++) {
-                JSONObject req = RequestHandler.createPixelSearchRequest(0xFFAB1690, nexReqId++);
+            for(int i = 0; i < 1; i++) {
+                JSONObject req = RequestHandler.createPixelSearchRequest(0xFF002375, nexReqId++);
                 out.writeUTF(req.toString());
                 out.flush();
             }
