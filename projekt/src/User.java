@@ -5,7 +5,7 @@ import org.json.*;
 
 public class User extends Thread {
     protected int server_port = 4434;
-    protected String server_ip = "127.0.0.1";
+    protected String server_ip = "34.244.68.191";
 
     private static int nexReqId = 1;
     private static int receivedRequests = 0;
@@ -48,7 +48,8 @@ public class User extends Thread {
 
             generateRequests(out);
 
-            while(receivedRequests < nexReqId - 1);
+            while(receivedRequests < nexReqId - 1)
+                Thread.sleep(500);
 
         } catch (Exception e) {
             e.printStackTrace(System.err);

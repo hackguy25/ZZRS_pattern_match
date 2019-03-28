@@ -7,7 +7,7 @@ public class ImageLoader {
 
     public static final int NUM_LOADED_IMAGES = 30;
     public static final int NUM_IMAGES = 238;
-    public static final boolean CACHING_ENABLED = true;
+    public static final boolean CACHING_ENABLED = false;
 
     public ImageLoader() {
         if (CACHING_ENABLED) loadImages();
