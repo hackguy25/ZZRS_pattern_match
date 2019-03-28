@@ -12,20 +12,41 @@
 
 \section{Opis problema}
 
-Z dneva v dan proizvedemo čedalje več slik.
-Predstavljajo znaten delež podatkov, shranjenih v raznih storitvah v oblaku.
-Ampak ko želimo najti določen predmet ali osebo, ki smo jo slikali, je ročno brskanje po digitalnih zbirkah zamudno.
+%Z dneva v dan proizvedemo čedalje več slik.
+%Predstavljajo znaten delež podatkov, shranjenih v raznih storitvah v oblaku.
+%Ampak ko želimo najti določen predmet ali osebo, ki smo jo slikali, je ročno brskanje po digitalnih zbirkah zamudno.
+%
+%S tem problemom v mislih bomo stestirali oblačno platformo Amazon EC2.
+%Ustvarili bomo enostavno storitev, ki bo uporabniku omogočala iskanje vzorcev v večjem naboru slik, shranjenih v oblaku.
+%Poglobili se bomo v zahtevnost uporabe za programerja, fleksibilnost pri programiranju in morebitnem prenašanju storitve na druge platforme,
+%	odzivnost in izkušnjo za uporabnika ter zmogljivost in skalabilnost virov na platformi.
 
-S tem problemom v mislih bomo stestirali oblačno platformo Amazon EC2.
+Med programerji je veliko takšnih, ki sanjajo o tem, bi bili naslednji Bill Gates, Mark Zuckerberg ali Steve Jobs.
+Imajo idejo, za katero verjamejo, da bo zavzela svet in jim prinesla miljone ter večno slavo.
+Ampak potrebujejo platformo, na kateri bo njihova storitev tekla.
+En sam prenosnik ne more vendar streči tisočem uporabnikom s celega sveta hkrati.
+Platforma mora biti cenovno dostopna, hkrati pa tudi poljubno razširljiva, da, ko se zgodi neizogiben naval uporabnikov, lahko programer enostavno in hitro aktivira dodatno procesno moč.
+
+Tu vstopi Amazonov Elastic Cloud. \cite{1_aws_ec_site} % https://aws.amazon.com/
+Obljublja dostopne cene, fleksibilno alokacijo računskih virov in za nadobudnega podjetnika najpomembneje možnost uporabe določenih storitev brezplačno.
+Med temi storitvami je na voljo tudi najem tako imenovanih ``mikro instanc''. \cite{1_aws_free} % https://aws.amazon.com/free/
+To so virtualni spletni strežniki z enim procesnim jedrom in 1 GB pomnilnika.
+Predstavljajo minimalno konfiguracijo, ki lahko gosti poljubno spletno storitev.
+Hkrati pa predstavlja procesno ozko grlo, katerega omejitve moramo upoštevati pri tvorbi storitve.
+
+S tem v mislih želimo stestirati platformo Amazon EC2.
 Ustvarili bomo enostavno storitev, ki bo uporabniku omogočala iskanje vzorcev v večjem naboru slik, shranjenih v oblaku.
-Poglobili se bomo v zahtevnost uporabe za programerja, fleksibilnost pri programiranju in morebitnem prenašanju storitve na druge platforme,
-	odzivnost in izkušnjo za uporabnika ter zmogljivost in skalabilnost virov na platformi.
+Predstavljala bo generično spletno aplikacijo, ki potrebuje ravno dovolj računske moči, da se bodo pojavile slabosti mikro instanc, v obliki upočasnjenega ali onemogočenega delovanja na strani uporabnika.
+Osnova storitve je iskanje vzorca v naboru slik.
+Uporabnik od storitve zahteva podatek o tem, v katerih slikah se ta vzorec nahaja, pričakuje pa hiter odgovor, ne več kot nekaj sekund zamika.
+Taka storitev nam bo omogočala relativno enostavno merjenje odzivnosti platforme, modularnost nalaganja kode in morebitno razširljivost v primeru večjega števila hkratnih uporabnikov.
+
 	
-	\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.4]{Img/1_shema.pdf}
-    \caption{Shema aplikacije.}
-    \label{fig:1_osnovnaShema}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{Img/1_shema.pdf}
+\caption{Shema aplikacije.}
+\label{fig:1_osnovnaShema}
 \end{figure}
 
 \section{Realizacija}
