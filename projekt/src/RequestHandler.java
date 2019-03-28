@@ -32,6 +32,7 @@ public class RequestHandler {
         ret.put("reqId", reqId);
         ret.put("reqType", ReqType.PIXEL_SEARCH.toString());
         ret.put("pixelValue", pixel);
+        ret.put("req_start", System.currentTimeMillis());
         return ret;
     }
 
@@ -73,6 +74,8 @@ public class RequestHandler {
     public static JSONObject handleRequest(JSONObject req, ImageProcessing ip, ImageLoader il) {
         JSONObject res;
 
+        long imageProcTime =  System.currentTimeMillis();
+
         switch (ReqType.strToType(req.getString("reqType"))) {
             case PIXEL_SEARCH:
                 res = ip.processPixelSearch(req.getLong("pixelValue"), il);
@@ -87,7 +90,10 @@ public class RequestHandler {
                 res = new JSONObject();
                 res.put("err", "Invalid request type");
         }
+        imageProcTime = System.currentTimeMillis() - imageProcTime - res.getLong("image_fetch_time");
         res.put("reqId", req.getInt("reqId"));
+        res.put("req_start", req.getLong("req_start"));
+        res.put("proc_time", imageProcTime);
         return res;
     }
 

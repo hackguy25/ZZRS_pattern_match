@@ -36,9 +36,12 @@ class ImageProcessing{
         JSONObject location = new JSONObject();
         JSONObject ret = new JSONObject();
 
-        //TODO pixel search
+        long sumImageFetchTime = 0;
+
         for(int i = 0; i < ImageLoader.NUM_LOADED_IMAGES; i++) {
+            long imageFetchTime = System.currentTimeMillis();
             BufferedImage img = il.getImage(i);
+            sumImageFetchTime = System.currentTimeMillis() - imageFetchTime;
             for(int y = 0; y < img.getHeight(); y++) {
                 for(int x = 0; x < img.getWidth(); x++) {
                     if(img.getRGB(x, y) == pixel) {
@@ -46,6 +49,7 @@ class ImageProcessing{
                         location.put("y", y);
                         ret.put("imageId", i + 1);
                         ret.put("location", location);
+                        ret.put("image_fetch_time", sumImageFetchTime);
                         return ret;
                     }
                 }

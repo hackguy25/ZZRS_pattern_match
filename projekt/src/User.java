@@ -16,9 +16,8 @@ public class User extends Thread {
 
     private void generateRequests(DataOutputStream out) {
         try {
-            //TODO make requests for other types
-            for(int i = 0; i < 1; i++) {
-                JSONObject req = RequestHandler.createPixelSearchRequest(0xFF002375, nexReqId++);
+            for(int i = 0; i < 5; i++) {
+                JSONObject req = RequestHandler.createPixelSearchRequest(0xFFFA3881, nexReqId++);
                 out.writeUTF(req.toString());
                 out.flush();
             }
@@ -79,12 +78,15 @@ public class User extends Thread {
 
                     receivedRequests++;
 
+                    long reqTime = System.currentTimeMillis() - res.getLong("req_start");
+
                     if (res.has("err")) {
                         System.out.println("[" + res.getInt("reqId") + "] " + res.getString("err"));
                     } else {
                         System.out.print("[" + res.getInt("reqId") + "] Found in image " + res.getInt("imageId") + " at ");
                         JSONObject location = res.getJSONObject("location");
-                        System.out.println("x: " + location.getInt("x") + ", y: " + location.getInt("y"));
+                        System.out.print("x: " + location.getInt("x") + ", y: " + location.getInt("y"));
+                        System.out.println(" Total time: " + reqTime + "ms processing time: " + res.getLong("proc_time") + "ms image loading time: " + res.getLong("image_fetch_time") + "ms");
                     }
                 }
             } catch (Exception e) {

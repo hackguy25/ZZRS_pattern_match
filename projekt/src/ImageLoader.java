@@ -7,9 +7,10 @@ public class ImageLoader {
 
     public static final int NUM_LOADED_IMAGES = 30;
     public static final int NUM_IMAGES = 238;
+    public static final boolean CACHING_ENABLED = true;
 
     public ImageLoader() {
-        loadImages();
+        if (CACHING_ENABLED) loadImages();
     }
 
     private volatile BufferedImage[] images = new BufferedImage[NUM_LOADED_IMAGES];
@@ -27,7 +28,7 @@ public class ImageLoader {
     }
 
     public BufferedImage getImage(int id) {
-        if(id < 30) return images[id];
+        if(CACHING_ENABLED && id < 30) return images[id];
         try {
             return ImageIO.read(new File("./res/" + Integer.toString(id + 1) + ".jpg"));
         } catch (IOException e) {
