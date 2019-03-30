@@ -99,15 +99,27 @@ Kot glavno metriko bomo opazovali skupni čas zahteve in odgovora.
 Podrobneje ga bomo razdelili na čas potovanja zahteve od nas do strežnika ($t_2 - t_1$), čas obdelave na strežniku ($t_3 - t_2$) in čas potovanja odgovora od strežnika do nas ($t_4 - t_3$) (časi označeni na sliki \ref{fig:1_osnovnaShema}).
 Zanima nas, kako se sistem odziva na zahteve ob različnih urah in kako se časi odgovorov podaljšajo glede na število hkratnih uporabnikov.
 
-\section{Rezultati meritev}
+\section{Rezultati meritev} % TODO
+
+Poskusno smo testirali iskanje specifičnega piksla.
+Ko en uporabnik naenkrat dostopa do storitve, je odzivni čas med 6 in 7 sekund, od tega je čas obdelave zahteve približno 5,5 do 6 sekund.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{Img/1_preliminary_test.png}
+    \caption{Rezultati poskusnega testiranja}
+    \label{fig:1_preliminary_test}
+\end{figure}
 
 \section{Plan dela}
 
 \begin{itemize}
 \item implementacija iskalnih algoritmov (1 / 3 narejenih)
 \item določitev bremen - čas meritev, število hkratnih uporabnikov, ... ?
-\item določitev metrik 
+\item natančnejša določitev metrik 
 \item določitev orodij - avtomatizacija merjenja, zbiranje rezultatov
+\item premislek o skalabilnosti
+\item pravilno dodajanje literature
 \end{itemize}
 
 %\section{Literatura}
