@@ -2,31 +2,43 @@
 
 Datoteka za dumpanje informacij o nalogi.
 
-## Predlog "fizične" strukture (Blaž)
+## Za naredit do 15. 4.
 
-Shema: https://docs.google.com/drawings/d/1NxHEyr6ILuLKZGfZOJZOe72QnYa3tz8xQYlqSyKkOrU
+### Za popravit
 
-### Front-end
-#### enostavna HTML stran
-- naslov
-- kratek opis uporabe
-- polje za vnos vzorca (npr. color picker, file upload, ...)
-- gumb "Pošlji" (skripta, ki v JSON obliki pošlje serverju zahtevo)
-- polje z rezultati
+ref: https://photos.app.goo.gl/AymBzg7LygFMqAsP9
 
-### Top-level back-end
-#### server, ki sprejme zahtevo, jo razpošlje processing node-om, zbere rezultate in jih vrne uporabniku
-- osnova: https://hub.docker.com/_/openjdk?tab=description
-- Java/OpenJDK server
+- slovnične/tipkarske napake
+- v vsakem razdelku kratek opis razdelka
+- 1.2.1
+  - "Aplikacija" => "Opazovano okolje"
+  - slika 1.1 ni referencirana
+  - "shema aplikacije" => "shema opazovane storitve"
+- 1.2.2
+  - naštevanje tipov iskanj z \begin{itemize}, \item ..., \end{itemize}
+  - pri vsakem iskanju format zahteve (JSON code template?)
+- 1.2.3
+  - pojem "slika" (disk image) uporabljen nejasno
+- 1.3
+  - časi v odstavku se ne ujemajo s časi na shemi 1.1 => za popravit
+  - sinhronizacija ur?
+- 1.4
+  - kaj je "odzivni čas" in "čas obdelave"?
+  - kdaj se je merilo, koliko meritev, povprečje časov, varianca med časi, ...
+  - bolj natančna določitev časov
 
-### Processing node
-#### server, ki hrani del slik, sprejema navodila top-level serverja, izvaja iskanje nad njimi
-- ista osnova kot top-level
-- osnova skalabilnosti
-- za začetek dovolj 1
+### Za dodat
 
-## Predlog strukture zahtevkov (Blaž)
-
-Zahtevek uporabnika: [string tip, [?? vzorec, ?? maska]]
-- za začetek dovolj 1 piksel: ["pixel", [int r, int g, int b]]
-Rezultati: [[ime slike, y, x], ...]
+- merimo tako na clientu kot na serverju
+- sinhronizacija ur, RTT client -> server -> client
+- merjenje _vseh_ časov med oddajo zahteve in prejetjem odziva (glej shemo na sliki strani 5)
+- ko se meri več datotek:
+  - pri vsaki meritvi: koliko datotek smo preiskali, preden smo našli vzorec?
+  - pri rezultatih: povprečno število datotek, dostopanih med iskanjem
+- simulacija "naključnih" zahtev
+  - interval zaupanja: sprejemljiv piksel je n vrednosti stran od iskanega
+    - npr. (105, 24, 21) je 7 vrednosti stran od (104, 21, 18)
+- vpliv HDD
+  - meritev časa, ki ga porabi server, da naloži sliko v RAM
+  - odstranitev diska: 1 slika, predpomnjena v RAM-u, koliko hitreje?
+- testiranje, testiranje, testiranje!!!!
