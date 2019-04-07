@@ -9,16 +9,16 @@ Datoteka za dumpanje informacij o nalogi.
 ref: https://photos.app.goo.gl/AymBzg7LygFMqAsP9
 
 - slovnične/tipkarske napake
-- v vsakem razdelku kratek opis razdelka
+- v vsakem razdelku kratek opis razdelka => DONE
 - 1.2.1
-  - "Aplikacija" => "Opazovano okolje"
-  - slika 1.1 ni referencirana
-  - "shema aplikacije" => "shema opazovane storitve"
+  - "Aplikacija" => "Opazovano okolje" => DONE
+  - slika 1.1 ni referencirana => DONE
+  - "shema aplikacije" => "shema opazovane storitve" => DONE
 - 1.2.2
-  - naštevanje tipov iskanj z \begin{itemize}, \item ..., \end{itemize}
+  - naštevanje tipov iskanj z \begin{itemize}, \item ..., \end{itemize} => DONE
   - pri vsakem iskanju format zahteve (JSON code template?)
 - 1.2.3
-  - pojem "slika" (disk image) uporabljen nejasno
+  - pojem "slika" (disk image) uporabljen nejasno => DONE
 - 1.3
   - časi v odstavku se ne ujemajo s časi na shemi 1.1 => za popravit
   - sinhronizacija ur?
