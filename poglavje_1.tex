@@ -18,10 +18,10 @@ Ampak potrebujejo platformo, na kateri bo njihova storitev tekla.
 En sam prenosnik ne more vendar streči tisočem uporabnikom s celega sveta hkrati.
 Platforma mora biti cenovno dostopna, hkrati pa tudi poljubno razširljiva, da, ko se zgodi neizogiben naval uporabnikov, lahko programer enostavno in hitro aktivira dodatno procesno moč.
 
-Tu vstopi Amazonov Elastic Cloud. %\cite{1_aws_ec_site} % https://aws.amazon.com/
+Tu vstopi Amazonov Elastic Cloud.~\cite{aws_amazon_ec2} 
 Obljublja dostopne cene, fleksibilno alokacijo računskih virov in za nadobudnega podjetnika najpomembneje možnost uporabe določenih storitev brezplačno.
-Med temi storitvami je na voljo tudi najem tako imenovanih ``mikro instanc''. %\cite{1_aws_free} % https://aws.amazon.com/free/
-To so virtualni spletni strežniki z enim procesnim jedrom in 1 GB pomnilnika.
+Med temi storitvami je na voljo tudi najem tako imenovanih ``mikro instanc''.~\cite{aws_amazon_free} 
+To so virtualni spletni strežniki z enim procesnim jedrom in 1 GB pomnilnika.~\cite{aws_amazon_instances}
 Predstavljajo minimalno konfiguracijo, ki lahko gosti poljubno spletno storitev.
 Hkrati pa predstavlja procesno ozko grlo, katerega omejitve moramo upoštevati pri tvorbi storitve.
 
@@ -78,7 +78,7 @@ Preišče slike in ko najde prvo ujemanje, rezultat vrne uporabniku.
 
 \subsection{Amazon Web Services (AWS)}
 
-Za delo z Amazon Web Services si moramo ustvariti račun v njihovem sistemu. Po uspešni registraciji si lahko ustvarimo svojo instanco EC2 storitve, ki nam jo Amazon ponuja zastonj za eno leto, pri čemer lahko na mesec porabimo največ 750 ur delovanja ponujenih instanc. Obsežnejša navodila so na voljo tudi na Amazonovi spletni strani \cite{1_aws_ec2_tutorial}, mi pa to naredimo tako, da se postavimo v AWS Management Console, kjer lahko izberemo opcijo \emph{Launch a virtual machine with EC2}. Takoj nam konzola ponudi izbiro \emph{slike navideznega diska} - vnaprej priravljenega nabora datotek, ki ga lahko neposredno zaženemo na instanci.\cite{1_aws_ami} Izbor možnih slik diska je prikazan na sliki \ref{fig:1_AWS_images}. Za naš projekt izberemo sliko Amazon Linux 2 AMI c.
+Za delo z Amazon Web Services~\cite{aws_amazon} si moramo ustvariti račun v njihovem sistemu. Po uspešni registraciji si lahko ustvarimo svojo instanco EC2 storitve, ki nam jo Amazon ponuja zastonj za eno leto, pri čemer lahko na mesec porabimo največ 750 ur delovanja ponujenih instanc. Obsežnejša navodila so na voljo tudi na Amazonovi spletni strani~\cite{aws_amazon_tutorial}, mi pa to naredimo tako, da se postavimo v AWS Management Console~\cite{aws_amazon_console}, kjer lahko izberemo opcijo \emph{Launch a virtual machine with EC2}. Takoj nam konzola ponudi izbiro \emph{slike navideznega diska} - vnaprej priravljenega nabora datotek, ki ga lahko neposredno zaženemo na instanci.~\cite{aws_amazon_ami} Izbor možnih slik diska je prikazan na sliki \ref{fig:1_AWS_images}. Za naš projekt izberemo sliko Amazon Linux 2 AMI c.
 
 \begin{figure}[H]
     \centering
@@ -87,7 +87,7 @@ Za delo z Amazon Web Services si moramo ustvariti račun v njihovem sistemu. Po 
     \label{fig:1_AWS_images}
 \end{figure}
 
-V naslednjem koraku izberemo tip instance slike, to je Amazonov način izbire paketov, ki vključujejo različne funkcionalnosti. V našem primeru ker izbiramo brezplačno različico, nam ponujajo tip t2.micro, ki vsebuje 1 jedro, 1GB pomnilnika, samo začasno hranjenje podatkov na disku in nižjo hitrost povezave. Za tem lahko nadaljujemo z nastavljanjem različnih konfiguracij naše virtualke ali pa preprosto kliknemo Review and Launch, ki nam ponudi še en pregled čez izbrane nastavitve in zažene virtualko. Po zagonu virtualke nam sistem ponudi opcijo generiranja para ključev za varno SSH povezavo do nje. Ko zaključimo z ustvarjanjem, se premaknemo v EC2 management console kjer kliknemo na \emph{instances}. Od tam lahko opazujemo status naše storitve in pridobimo tudi naslov, na katerem se nahaja. Za povezavo uporabimo javni naslov storitve, uporabnika $ec2-suser$ za varnost pa uporabimo $.pem$ datoteko, ki smo jo v prejšnjem koraku prenesli. Ko se uspešno povežemo na storitev, lahko pričnemo z razvojem naše aplikacije.
+V naslednjem koraku izberemo tip instance slike, to je Amazonov način izbire paketov, ki vključujejo različne funkcionalnosti. V našem primeru ker izbiramo brezplačno različico, nam ponujajo tip t2.micro, ki vsebuje 1 jedro, 1GB pomnilnika, samo začasno hranjenje podatkov na disku in nižjo hitrost povezave. Za tem lahko nadaljujemo z nastavljanjem različnih konfiguracij naše virtualke ali pa preprosto kliknemo Review and Launch, ki nam ponudi še en pregled čez izbrane nastavitve in zažene virtualko. Po zagonu virtualke nam sistem ponudi opcijo generiranja para ključev za varno SSH povezavo do nje. Ko zaključimo z ustvarjanjem, se premaknemo v EC2 management console kjer kliknemo na \emph{instances}. Od tam lahko opazujemo status naše storitve in pridobimo tudi naslov, na katerem se nahaja. Za povezavo uporabimo javni naslov storitve, uporabnika $ec2-suser$ za varnost pa uporabimo $.pem$ datoteko (Privacy Enhanced Mail Security Certificate), ki smo jo v prejšnjem koraku prenesli. Ko se uspešno povežemo na storitev, lahko pričnemo z razvojem naše aplikacije.
 
 \subsection{Aplikacija}
 
