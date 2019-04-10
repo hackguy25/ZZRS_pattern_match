@@ -97,6 +97,7 @@ class ServerConnector extends Thread {
 								
 			} catch (Exception e) {
 				System.err.println("[system] user " + this.socket.getInetAddress().getHostName() + ":" + this.socket.getPort() + " disconnected");
+				System.err.println(e.toString());
 				return;
 			}
 		}

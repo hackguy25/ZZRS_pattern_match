@@ -9,6 +9,7 @@ public class RequestHandler {
 
     public enum ReqType {
         PIXEL_SEARCH,
+        PIXEL_NEAR,
         PATTERN_SEARCH,
         IMG_SEARCH;
 
@@ -32,6 +33,16 @@ public class RequestHandler {
         ret.put("reqId", reqId);
         ret.put("reqType", ReqType.PIXEL_SEARCH.toString());
         ret.put("pixelValue", pixel);
+        ret.put("req_start", System.currentTimeMillis());
+        return ret;
+    }
+
+    public static JSONObject createPixelNearRequest(long pixel, long maxDist, int reqId) {
+        JSONObject ret = new JSONObject();
+        ret.put("reqId", reqId);
+        ret.put("reqType", ReqType.PIXEL_NEAR.toString());
+        ret.put("pixelValue", pixel);
+        ret.put("maxDistance", maxDist);
         ret.put("req_start", System.currentTimeMillis());
         return ret;
     }
@@ -80,6 +91,9 @@ public class RequestHandler {
             case PIXEL_SEARCH:
                 res = ip.processPixelSearch(req.getLong("pixelValue"), il);
                 break;
+            case PIXEL_NEAR:
+                res = ip.processPixelNear(req.getLong("pixelValue"), req.getLong("maxDistance"),il);
+                break;
             case PATTERN_SEARCH:
                 res = ip.processPatternSearch(b64ToByteArr(req.getString("mask")), il);
                 break;
@@ -90,7 +104,7 @@ public class RequestHandler {
                 res = new JSONObject();
                 res.put("err", "Invalid request type");
         }
-        imageProcTime = System.currentTimeMillis() - imageProcTime - res.getLong("image_fetch_time");
+        imageProcTime = System.currentTimeMillis() - imageProcTime; // - res.getLong("image_fetch_time");
         res.put("reqId", req.getInt("reqId"));
         res.put("req_start", req.getLong("req_start"));
         res.put("proc_time", imageProcTime);

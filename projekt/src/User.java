@@ -5,7 +5,7 @@ import org.json.*;
 
 public class User extends Thread {
     protected int server_port = 4434;
-    protected String server_ip = "34.244.68.191";
+    protected String server_ip = "localhost"; //"34.244.68.191";
 
     private static int nexReqId = 1;
     private static int receivedRequests = 0;
@@ -27,6 +27,20 @@ public class User extends Thread {
         }
     }
 
+    private void generateRandomNearRequests(DataOutputStream out) {
+        try {
+            for(int i = 0; i < 30; i++) {
+                int randomColor = 0xff000000 + (int) (Math.random() * Math.pow(2, 24));
+                // distance -> hit rate probability: 49 -> 1%, 86 -> 5%, 108 -> 10%
+                JSONObject req = RequestHandler.createPixelNearRequest(randomColor, 86, nexReqId++);
+                out.writeUTF(req.toString());
+                out.flush();
+            }
+        } catch (IOException e) {
+            System.err.println("[system] could not send message");
+            e.printStackTrace();
+        }
+    }
 
     public User() throws Exception {
         Socket socket = null;
@@ -46,7 +60,7 @@ public class User extends Thread {
             System.out.println("[system] connected to " + server_ip + ":" + server_port);
 
 
-            generateRequests(out);
+            generateRandomNearRequests(out);
 
             while(receivedRequests < nexReqId - 1)
                 Thread.sleep(500);
