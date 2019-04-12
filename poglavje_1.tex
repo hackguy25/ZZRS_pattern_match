@@ -100,8 +100,8 @@ Aplikacija je napisana v programskem jeziku Java. Sestavljata jo odjemalska in s
 \section{Predvidevanje metrik}
 
 Kot glavno metriko bomo opazovali skupni čas zahteve in odgovora.
-Podrobneje ga bomo razdelili na čas potovanja zahteve od nas do strežnika ($t_2 - t_1$), čas obdelave na strežniku ($t_3 - t_2$) in čas potovanja odgovora od strežnika do nas ($t_4 - t_3$) (časi označeni na sliki \ref{fig:1_osnovnaShema}).
-Zanima nas, kako se sistem odziva na zahteve ob različnih urah in kako se časi odgovorov podaljšajo glede na število hkratnih uporabnikov.
+Podrobneje ga bomo razdelili na čas potovanja zahteve od nas do strežnika ($t_2 - t_1$), čas dostopa do baze ($t_4 - t_3$), celoten čas obdelave na strežniku ($t_5 - t_2$), čas potovanja odgovora od strežnika do nas ($t_6 - t_5$) ter celoten čas, od začetka pošiljanja zahteve, do prejetja rezultatov ($t_6 - t_1$) (časi označeni na sliki \ref{fig:1_osnovnaShema}).
+Zanima nas, kako se sistem odziva na zahteve ob različnih urah. Za potrebe meritev bomo odziv sistema merili ob treh različih časih v dnevu. Želimo izvedeti tudi, kako se časi odgovorov podaljšajo glede na število hkratnih uporabnikov.
 
 \section{Rezultati meritev} % TODO
 
@@ -126,9 +126,9 @@ Ko en uporabnik naenkrat dostopa do storitve, je odzivni čas med 6 in 7 sekund,
 \item pravilno dodajanje literature
 \end{itemize}
 
-%\section{Literatura}
+\section{Literatura}
 
-%\bibliographystyle{ieeetr}
-%\bibliography{poglavje_1}
+\bibliographystyle{ieeetr}
+\bibliography{poglavje_1}
 
 \inputencoding{cp1250}
