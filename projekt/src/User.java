@@ -42,6 +42,18 @@ public class User extends Thread {
         }
     }
 
+    private void generateClipSearchRequest(DataOutputStream out) {
+        try {
+            JSONObject req = RequestHandler.createImageSearchRequest(new File("clip1.jpg"), nexReqId++);
+            // System.out.println(req.toString());
+            out.writeUTF(req.toString());
+            out.flush();
+        } catch (IOException e) {
+            System.err.println("[system] could not send message");
+            e.printStackTrace();
+        }
+    }
+
     public User() throws Exception {
         Socket socket = null;
         DataInputStream in = null;
@@ -60,7 +72,8 @@ public class User extends Thread {
             System.out.println("[system] connected to " + server_ip + ":" + server_port);
 
 
-            generateRandomNearRequests(out);
+            // generateRandomNearRequests(out);
+            generateClipSearchRequest(out);
 
             while(receivedRequests < nexReqId - 1)
                 Thread.sleep(500);
