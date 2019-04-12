@@ -58,7 +58,7 @@ Razlikujejo se v tipu vzorca, ki ga uporabnik želi najti v sliki.
 Storitev nudi tri tipe iskanj:
 \begin{itemize}
 \item iskanje specifične barve piksla,
-\item iskanje vzorca s prosojnostno masko,
+\item iskanje piksla, podobnega specifični barvi
 \item iskanje slikovnega izseka
 \end{itemize}
 
@@ -66,10 +66,14 @@ Storitev nudi tri tipe iskanj:
 
 Storitev prejme podatek o iskani barvi piksla, preišče vsako sliko in vrne prvo pojavitev iskanega piksla.
 
-\subsubsection{Iskanje vzorca s prosojnostno masko}
+\subsubsection{Iskanje piksla, podobnega specifični barvi}
 
-Storitev prejme slikovni izsek in pripadajočo prosojnostno masko.
-Med slikami najde lokacijo, ki se z izsekom najbolje ujema, in jo vrne uporabniku.
+Poleg iskane barve storitev prejme še največje dovoljeno odstopanje.
+Preišče vsako sliko in vrne prvi piksel, katerega barva se od iskane po komponentah razlikuje za največ toliko, kot določa odstopanje.
+Razlika se izračuna tako:
+\begin{multline}
+Razlika(RGB_{piksel}, RGB_{iskan}) = \\ = |R_{piksel} - R_{iskan}| + |G_{piksel} - G_{iskan}| + |B_{piksel} - B_{iskan}|
+\end{multline}
 
 \subsubsection{Iskanje slikovnega izseka}
 
