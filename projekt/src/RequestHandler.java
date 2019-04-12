@@ -1,5 +1,8 @@
 import org.json.JSONObject;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,7 +13,6 @@ public class RequestHandler {
     public enum ReqType {
         PIXEL_SEARCH,
         PIXEL_NEAR,
-        PATTERN_SEARCH,
         IMG_SEARCH;
 
         @Override
@@ -47,20 +49,12 @@ public class RequestHandler {
         return ret;
     }
 
-    public static JSONObject createPatternSearchRequest(File maskFile, int reqId) {
-        JSONObject ret = new JSONObject();
-        ret.put("reqId", reqId);
-        ret.put("reqType", ReqType.PATTERN_SEARCH.toString());
-        ret.put("mask", imgToB64(maskFile));
-        return ret;
-    }
-
-
     public static JSONObject createImageSearchRequest(File image, int reqId) {
         JSONObject ret = new JSONObject();
         ret.put("reqId", reqId);
         ret.put("reqType", ReqType.IMG_SEARCH.toString());
         ret.put("image", imgToB64(image));
+        ret.put("req_start", System.currentTimeMillis());
         return ret;
     }
 
@@ -82,6 +76,18 @@ public class RequestHandler {
         return Base64.getDecoder().decode(s);
     }
 
+    private static BufferedImage b64ToBufferedImg(String s) {
+
+        ByteArrayInputStream imgStream = new ByteArrayInputStream(b64ToByteArr(s));
+        try {
+            return ImageIO.read(imgStream);
+        } catch (IOException e) {
+            System.err.println("Cannot read image from base64 string");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static JSONObject handleRequest(JSONObject req, ImageProcessing ip, ImageLoader il) {
         JSONObject res;
 
@@ -94,11 +100,8 @@ public class RequestHandler {
             case PIXEL_NEAR:
                 res = ip.processPixelNear(req.getLong("pixelValue"), req.getLong("maxDistance"),il);
                 break;
-            case PATTERN_SEARCH:
-                res = ip.processPatternSearch(b64ToByteArr(req.getString("mask")), il);
-                break;
             case IMG_SEARCH:
-                res = ip.processImageSearch(b64ToByteArr(req.getString("mask")), il);
+                res = ip.processImageSearch(b64ToBufferedImg(req.getString("image")), il);
                 break;
             default :
                 res = new JSONObject();
