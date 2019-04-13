@@ -13,7 +13,7 @@ class ImageProcessing{
         for(int i = 0; i < ImageLoader.NUM_LOADED_IMAGES; i++) {
             long imageFetchTime = System.currentTimeMillis();
             BufferedImage img = il.getImage(i);
-            sumImageFetchTime = System.currentTimeMillis() - imageFetchTime;
+            sumImageFetchTime += System.currentTimeMillis() - imageFetchTime;
             for(int y = 0; y < img.getHeight(); y++) {
                 for(int x = 0; x < img.getWidth(); x++) {
                     if(img.getRGB(x, y) == pixel) {
@@ -29,6 +29,7 @@ class ImageProcessing{
         }
 
         ret.put("err", "No image found");
+        ret.put("image_fetch_time", sumImageFetchTime);
 
         return ret;
     }
@@ -59,7 +60,7 @@ class ImageProcessing{
         for(int i = 0; i < ImageLoader.NUM_LOADED_IMAGES; i++) {
             long imageFetchTime = System.currentTimeMillis();
             BufferedImage img = il.getImage(i);
-            sumImageFetchTime = System.currentTimeMillis() - imageFetchTime;
+            sumImageFetchTime += System.currentTimeMillis() - imageFetchTime;
             for(int y = 0; y < img.getHeight(); y++) {
                 for(int x = 0; x < img.getWidth(); x++) {
                     if(pixelManhattanDistance(img.getRGB(x, y), pixel) <= dist) {
@@ -75,6 +76,7 @@ class ImageProcessing{
         }
 
         ret.put("err", "No suitable pixels found");
+        ret.put("image_fetch_time", sumImageFetchTime);
 
         return ret;
     }
@@ -89,7 +91,7 @@ class ImageProcessing{
         for(int i = 0; i < ImageLoader.NUM_LOADED_IMAGES; i++) {
             long imageFetchTime = System.currentTimeMillis();
             BufferedImage img = il.getImage(i);
-            sumImageFetchTime = System.currentTimeMillis() - imageFetchTime;
+            sumImageFetchTime += System.currentTimeMillis() - imageFetchTime;
             for(int y = 0; y < img.getHeight() - pattern.getHeight() + 1; y++) {
                 for(int x = 0; x < img.getWidth() - pattern.getWidth() + 1; x++) {
                     boolean breakout = false;
@@ -117,6 +119,7 @@ class ImageProcessing{
         }
 
         ret.put("err", "No suitable pixels found");
+        ret.put("image_fetch_time", sumImageFetchTime);
 
         return ret;
     }
