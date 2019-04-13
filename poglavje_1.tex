@@ -18,10 +18,10 @@ Ampak potrebujejo platformo, na kateri bo njihova storitev tekla.
 En sam prenosnik ne more vendar streči tisočem uporabnikom s celega sveta hkrati.
 Platforma mora biti cenovno dostopna, hkrati pa tudi poljubno razširljiva, da, ko se zgodi neizogiben naval uporabnikov, lahko programer enostavno in hitro aktivira dodatno procesno moč.
 
-Tu vstopi Amazonov Elastic Cloud.~\cite{aws_amazon_ec2} 
+Tu vstopi Amazonov Elastic Cloud.~\cite{1_aws_amazon_ec2} 
 Obljublja dostopne cene, fleksibilno alokacijo računskih virov in za nadobudnega podjetnika najpomembneje možnost uporabe določenih storitev brezplačno.
-Med temi storitvami je na voljo tudi najem tako imenovanih ``mikro instanc''.~\cite{aws_amazon_free} 
-To so virtualni spletni strežniki z enim procesnim jedrom in 1 GB pomnilnika.~\cite{aws_amazon_instances}
+Med temi storitvami je na voljo tudi najem tako imenovanih ``mikro instanc''.~\cite{1_aws_amazon_free} 
+To so virtualni spletni strežniki z enim procesnim jedrom in 1 GB pomnilnika.~\cite{1_aws_amazon_instances}
 Predstavljajo minimalno konfiguracijo, ki lahko gosti poljubno spletno storitev.
 Hkrati pa predstavlja procesno ozko grlo, katerega omejitve moramo upoštevati pri tvorbi storitve.
 
@@ -82,7 +82,7 @@ Preišče slike in ko najde prvo ujemanje, rezultat vrne uporabniku.
 
 \subsection{Amazon Web Services (AWS)}
 
-Za delo z Amazon Web Services~\cite{aws_amazon} si moramo ustvariti račun v njihovem sistemu. Po uspešni registraciji si lahko ustvarimo svojo instanco EC2 storitve, ki nam jo Amazon ponuja zastonj za eno leto, pri čemer lahko na mesec porabimo največ 750 ur delovanja ponujenih instanc. Obsežnejša navodila so na voljo tudi na Amazonovi spletni strani~\cite{aws_amazon_tutorial}, mi pa to naredimo tako, da se postavimo v AWS Management Console~\cite{aws_amazon_console}, kjer lahko izberemo opcijo \emph{Launch a virtual machine with EC2}. Takoj nam konzola ponudi izbiro \emph{slike navideznega diska} - vnaprej priravljenega nabora datotek, ki ga lahko neposredno zaženemo na instanci.~\cite{aws_amazon_ami} Izbor možnih slik diska je prikazan na sliki \ref{fig:1_AWS_images}. Za naš projekt izberemo sliko Amazon Linux 2 AMI c.
+Za delo z Amazon Web Services~\cite{1_aws_amazon} si moramo ustvariti račun v njihovem sistemu. Po uspešni registraciji si lahko ustvarimo svojo instanco EC2 storitve, ki nam jo Amazon ponuja zastonj za eno leto, pri čemer lahko na mesec porabimo največ 750 ur delovanja ponujenih instanc. Obsežnejša navodila so na voljo tudi na Amazonovi spletni strani~\cite{1_aws_amazon_tutorial}, mi pa to naredimo tako, da se postavimo v AWS Management Console~\cite{1_aws_amazon_console}, kjer lahko izberemo opcijo \emph{Launch a virtual machine with EC2}. Takoj nam konzola ponudi izbiro \emph{slike navideznega diska} - vnaprej priravljenega nabora datotek, ki ga lahko neposredno zaženemo na instanci.~\cite{1_aws_amazon_ami} Izbor možnih slik diska je prikazan na sliki \ref{fig:1_AWS_images}. Za naš projekt izberemo sliko Amazon Linux 2 AMI c.
 
 \begin{figure}[H]
     \centering
@@ -97,10 +97,12 @@ V naslednjem koraku izberemo tip instance slike, to je Amazonov način izbire pa
 
 Aplikacija je napisana v programskem jeziku Java. Sestavljata jo odjemalska in strežniška komponenta, ki uporabljata skupne enumeratorje za določanje tipa zahteve. Zahteve sestavlja odjemalec in jih pošlje strežniku, ki to zahtevo obdela - začne iskanje v slikah in pripravi prvi najden rezultat. Povezava med strežnikom in odjemalcem je trajna, dokler je eden od njiju ne prekine, kar nam omogoči, da pri meritvah ne upoštevamo časa vzpostavitve povezave. Podatki se prenašajo v obliki JSON, ki vsebuje sekvenčno številko zahteve, tip zahteve in morebitne dodatne podatke, ki so potrebni za obdelavo. Strežnik ob prejemu podatkov začne z delom na ustrezni zahtevi ter nato pošlje odgovor klientu z številko zahteve in rezultatom. Strežniški del je napisan tako, da lahko paralelno obdeluje več zahtev.
 
-\section{Predvidevanje metrik}
+\section{Uporabljene metrike}
 
 Kot glavno metriko bomo opazovali skupni čas zahteve in odgovora.
-Podrobneje ga bomo razdelili na čas potovanja zahteve od nas do strežnika ($t_2 - t_1$), čas dostopa do baze ($t_4 - t_3$), celoten čas obdelave na strežniku ($t_5 - t_2$), čas potovanja odgovora od strežnika do nas ($t_6 - t_5$) ter celoten čas, od začetka pošiljanja zahteve, do prejetja rezultatov ($t_6 - t_1$) (časi označeni na sliki \ref{fig:1_osnovnaShema}).
+
+Podrobneje ga bomo razdelili na čas dostopa do datotečnega sistema (zbirke slik v mapi na datotečnem sistemu, recimo ji baza slik) ($t_{baza} = t_4 - t_3$) in celoten čas obdelave na strežniku ($t_{strežnik} = t_5 - t_2$). Hkrati merimo celoten čas trajanja zahteve ($t_{zahteva} = t_6 - t_1$) (časi označeni na sliki \ref{fig:1_osnovnaShema}). Z izmerjenimi časi lahko izračunamo tudi druge kot sta čas procesiranja na strežniku ($t_{procesiranje} = t_{strežnik} - t_{baza}$) in čas paketa na mreži ($t_{mreža} = t_{zahteva} - t_{strežnik}$). S tem smo se znebili problema sinhronizacije ur med odjemalcem in strežnikom. Če bi želeli meriti tudi čas potovanja paketa od odjemalca na strežni in čas potovanja paketa od strežnika na odjemalec, pa bi potrebovali tudi sinhronizacijo ur, ker pa naš cilj ni meriti čase potovanja paketov, saj je to namreč lastnost omrežja in ne same platforme, bomo zadovoljni s skupnim časom paketa na mreži.
+
 Zanima nas, kako se sistem odziva na zahteve ob različnih urah. Za potrebe meritev bomo odziv sistema merili ob treh različih časih v dnevu. Želimo izvedeti tudi, kako se časi odgovorov podaljšajo glede na število hkratnih uporabnikov.
 
 \section{Rezultati meritev} % TODO
@@ -124,10 +126,5 @@ Ko en uporabnik naenkrat dostopa do storitve, je odzivni čas med 6 in 7 sekund,
 \item premislek o skalabilnosti
 \item pravilno dodajanje literature
 \end{itemize}
-
-\section{Literatura}
-
-\bibliographystyle{ieeetr}
-\bibliography{poglavje_1}
 
 \inputencoding{cp1250}

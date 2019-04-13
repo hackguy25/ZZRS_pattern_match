@@ -1,8 +1,48 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: mro.aux
+This is BibTeX, Version 0.99d (TeX Live 2018/Arch Linux)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: mro.aux
 A level-1 auxiliary file: preface.aux
-A level-1 auxiliary file: poglavje_vzorcno.aux
+A level-1 auxiliary file: poglavje_1.aux
 The style file: ieeetr.bst
 Database file #1: mro.bib
-Warning--entry type for "1_dOcean" isn't style-file defined
---line 2 of file mro.bib
-(There was 1 warning)
+You've used 7 entries,
+            1876 wiz_defined-function locations,
+            500 strings with 4078 characters,
+and the built_in function-call counts, 834 in all, are:
+= -- 91
+> -- 7
+< -- 0
++ -- 7
+- -- 0
+* -- 30
+:= -- 95
+add.period$ -- 14
+call.type$ -- 7
+change.case$ -- 7
+chr.to.int$ -- 0
+cite$ -- 7
+duplicate$ -- 28
+empty$ -- 127
+format.name$ -- 0
+if$ -- 232
+int.to.chr$ -- 0
+int.to.str$ -- 7
+missing$ -- 0
+newline$ -- 31
+num.names$ -- 0
+pop$ -- 49
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 21
+stack$ -- 0
+substring$ -- 0
+swap$ -- 0
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 0
+width$ -- 8
+write$ -- 65

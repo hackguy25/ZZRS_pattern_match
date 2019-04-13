@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.3.28)  28 MAR 2019 13:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.3.30)  13 APR 2019 15:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -798,39 +798,22 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: utf8.def 2018/10/05 v1.2f UTF-8 support for inputenc
 )
 Poglavje 1.
-
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Img/1_shema.pdf): PDF inclusion: foun
-d PDF version <1.7>, but at most version <1.5> allowed
-<Img/1_shema.pdf, id=31, 850.17625pt x 601.24625pt>
-File: Img/1_shema.pdf Graphic file (type pdf)
-<use Img/1_shema.pdf>
-Package pdftex.def Info: Img/1_shema.pdf  used on input line 26.
-(pdftex.def)             Requested size: 340.06447pt x 240.49423pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [1
+[1
 
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 35.
 
-(/usr/share/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 35.
+pdfTeX warning: /usr/bin/pdflatex (file ./Img/1_shema.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
+<Img/1_shema.pdf, id=38, 850.17625pt x 601.24625pt>
+File: Img/1_shema.pdf Graphic file (type pdf)
+<use Img/1_shema.pdf>
+Package pdftex.def Info: Img/1_shema.pdf  used on input line 49.
+(pdftex.def)             Requested size: 340.06447pt x 240.49423pt.
+
+Underfull \vbox (badness 2269) has occurred while \output is active []
 
 
-LaTeX Warning: Citation `1_aws_ec2_tutorial' on page 2 undefined on input line 
-41.
-
-<Img/1_AWS_images.png, id=39, 1267.44484pt x 611.63242pt>
-File: Img/1_AWS_images.png Graphic file (type png)
-<use Img/1_AWS_images.png>
-Package pdftex.def Info: Img/1_AWS_images.png  used on input line 44.
-(pdftex.def)             Requested size: 316.86043pt x 152.90773pt.
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
 Make it at least 22.48724pt.
@@ -838,54 +821,98 @@ We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
 [2 <./Img/1_shema.pdf>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 60.
+ (/usr/share/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 60.
+<Img/1_AWS_images.png, id=55, 1267.44484pt x 611.63242pt>
+File: Img/1_AWS_images.png Graphic file (type png)
+<use Img/1_AWS_images.png>
+Package pdftex.def Info: Img/1_AWS_images.png  used on input line 89.
+(pdftex.def)             Requested size: 316.86043pt x 152.90773pt.
+
+[3]
 Underfull \vbox (badness 3657) has occurred while \output is active []
 
- [3 <./Img/1_AWS_images.png (PNG copy)>] (/usr/share/texmf-dist/tex/latex/base/
-cp1250.def
+ [4 <./Img/1_AWS_images.png (PNG copy)>]
+
+LaTeX Warning: Command \v invalid in math mode on input line 104.
+
+Missing character: There is no º in font cmr7!
+
+LaTeX Warning: Command \v invalid in math mode on input line 104.
+
+Missing character: There is no º in font cmr7!
+
+LaTeX Warning: Command \v invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \v invalid in math mode on input line 104.
+
+Missing character: There is no º in font cmr7!
+Missing character: There is no º in font cmr7!
+<Img/1_preliminary_test.png, id=66, 1009.7725pt x 216.81pt>
+File: Img/1_preliminary_test.png Graphic file (type png)
+<use Img/1_preliminary_test.png>
+Package pdftex.def Info: Img/1_preliminary_test.png  used on input line 115.
+(pdftex.def)             Requested size: 302.93408pt x 65.04349pt.
+(/usr/share/texmf-dist/tex/latex/base/cp1250.def
 File: cp1250.def 2018/08/11 v1.3c Input encoding file
-)) [4] (./mro.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 4--6
-[]\T1/cmr/m/n/10 ``Digitalocean: Sim-ple cloud com-pu-ting for de-ve-lo-pers.''
- ht-
+)) [5 <./Img/1_preliminary_test.png>] [6
+
+
+] (./mro.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 12--15
+[]\T1/cmr/m/n/10 ``Amazon ec2 t2 in-stan-ces.'' https://aws.amazon.com/ec2/inst
+ance-
+ []
+
+
+Underfull \hbox (badness 5667) in paragraph at lines 21--25
+[]\T1/cmr/m/n/10 ``Launch a li-nux vir-tual ma-chine.'' https://aws.amazon.com/
+getting-
+ []
+
+
+Overfull \hbox (102.79465pt too wide) in paragraph at lines 31--34
+[]\T1/cmr/m/n/10 ``Aws ma-na-ge-ment con-sole.'' ht-tps://docs.aws.amazon.com/A
+WSEC2/latest/UserGuide/AMIs.html,
  []
 
 )
 No file mro.ind.
-[5
+[7
 
-
-
-] (./mro.aux (./preface.aux) (./poglavje_1.aux))
-
-LaTeX Warning: There were undefined references.
-
- ) 
+] (./mro.aux (./preface.aux) (./poglavje_1.aux)) ) 
 Here is how much of TeX's memory you used:
- 25391 strings out of 492616
- 624542 string characters out of 6135177
- 805195 words of memory out of 5000000
- 28786 multiletter control sequences out of 15000+600000
+ 25402 strings out of 492616
+ 624824 string characters out of 6135177
+ 806195 words of memory out of 5000000
+ 28796 multiletter control sequences out of 15000+600000
  20081 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,12n,96p,1090b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/sh
-are/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-dist/
-fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/pub
-lic/cm-super/sfbx2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sf
-bx2488.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></us
-r/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-d
-ist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf-dist/fonts/type1
-/public/cm-super/sfrm2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-supe
-r/sfsl1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb>
-
-Output written on mro.pdf (11 pages, 443441 bytes).
+ 62i,12n,96p,1139b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/
+enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/sha
+re/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/publ
+ic/cm-super/sfbx1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfb
+x1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr
+/share/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf-di
+st/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf-dist/fonts/type1/
+public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
+/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb><
+/usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texm
+f-dist/fonts/type1/public/cm-super/sfsl1000.pfb></usr/share/texmf-dist/fonts/ty
+pe1/public/cm-super/sfti1000.pfb>
+Output written on mro.pdf (13 pages, 481536 bytes).
 PDF statistics:
- 118 PDF objects out of 1000 (max. 8388607)
- 87 compressed objects within 1 object stream
+ 132 PDF objects out of 1000 (max. 8388607)
+ 96 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

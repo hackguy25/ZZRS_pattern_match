@@ -1,11 +1,35 @@
 \begin{thebibliography}{1}
 
-\bibitem{1_dOcean}
-``Digitalocean: Simple cloud computing for developers.''
-  https://www.digitalocean.com/, Marec 2017.
+\bibitem{1_aws_amazon_ec2}
+``Amazon elastic compute cloud.'' https://aws.amazon.com/ec2/, 2019.
+\newblock [Online; dostopano 8-April-2019].
 
-\bibitem{1_greenwade93}
-G.~D. Greenwade, ``The {C}omprehensive {T}ex {A}rchive {N}etwork ({CTAN}),''
-  {\em TUGBoat}, vol.~14, no.~3, pp.~342--351, 1993.
+\bibitem{1_aws_amazon_free}
+``Aws free tier.'' https://aws.amazon.com/free/, 2019.
+\newblock [Online; dostopano 8-April-2019].
+
+\bibitem{1_aws_amazon_instances}
+``Amazon ec2 t2 instances.'' https://aws.amazon.com/ec2/instance-types/t2/,
+  2019.
+\newblock [Online; dostopano 8-April-2019].
+
+\bibitem{1_aws_amazon}
+``Amazon web services.'' https://aws.amazon.com/, 2019.
+\newblock [Online; dostopano 8-April-2019].
+
+\bibitem{1_aws_amazon_tutorial}
+``Launch a linux virtual machine.''
+  https://aws.amazon.com/getting-started/tutorials/launch-a-virtual-machine/?trk=gs\_card,
+  2019.
+\newblock [Online; dostopano 8-April-2019].
+
+\bibitem{1_aws_amazon_console}
+``Aws management console.'' https://aws.amazon.com/console/, 2019.
+\newblock [Online; dostopano 8-April-2019].
+
+\bibitem{1_aws_amazon_ami}
+``Aws management console.''
+  https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html, 2019.
+\newblock [Online; dostopano 8-April-2019].
 
 \end{thebibliography}
