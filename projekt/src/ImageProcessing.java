@@ -29,6 +29,7 @@ class ImageProcessing{
         }
 
         ret.put("err", "No image found");
+        ret.put("image_fetch_time", sumImageFetchTime);
 
         return ret;
     }
@@ -75,6 +76,7 @@ class ImageProcessing{
         }
 
         ret.put("err", "No suitable pixels found");
+        ret.put("image_fetch_time", sumImageFetchTime);
 
         return ret;
     }
@@ -117,6 +119,7 @@ class ImageProcessing{
         }
 
         ret.put("err", "No suitable pixels found");
+        ret.put("image_fetch_time", sumImageFetchTime);
 
         return ret;
     }
