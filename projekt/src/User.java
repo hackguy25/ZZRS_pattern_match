@@ -5,7 +5,7 @@ import org.json.*;
 
 public class User extends Thread {
     protected int server_port = 4434;
-    protected String server_ip = "localhost"; //"34.244.68.191";
+    protected String server_ip = "ec2-34-253-11-195.eu-west-1.compute.amazonaws.com";
 
     private static int nexReqId = 1;
     private static int receivedRequests = 0;
@@ -20,12 +20,30 @@ public class User extends Thread {
         new User(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2]);
     }
 
-    private void generatePixelSearchRequests(DataOutputStream out, int n) {
+    private void generatePixelSearchRequests(DataInputStream in, DataOutputStream out, JSONArray results, int n) {
         try {
             for(int i = 0; i < n; i++) {
+
+                // create request
                 JSONObject req = RequestHandler.createPixelSearchRequest(0xFFFA3881, nexReqId++);
                 out.writeUTF(req.toString());
                 out.flush();
+
+                // receive result
+                JSONObject response = new JSONObject(in.readUTF());
+                long reqTime = System.currentTimeMillis() - response.getLong("req_start");
+                response.put("reqTime", reqTime);
+                results.put(response);
+
+                if (response.has("err")) {
+                    System.out.print("[" + response.getInt("reqId") + "] " + response.getString("err"));
+                } else {
+                    System.out.print("[" + response.getInt("reqId") + "] Found in image " + response.getInt("imageId") + " at ");
+                    JSONObject location = response.getJSONObject("location");
+                    System.out.print("x: " + location.getInt("x") + ", y: " + location.getInt("y"));
+                }
+                System.out.println("; Total time: " + reqTime + "ms processing time: " + response.getLong("proc_time") + "ms image loading time: " + response.getLong("image_fetch_time") + "ms");
+
             }
         } catch (IOException e) {
             System.err.println("[system] could not send message");
@@ -33,14 +51,32 @@ public class User extends Thread {
         }
     }
 
-    private void generateRandomNearRequests(DataOutputStream out, int n) {
+    private void generateRandomNearRequests(DataInputStream in, DataOutputStream out, JSONArray results, int n) {
         try {
             for(int i = 0; i < n; i++) {
+
+                // create request
                 int randomColor = 0xff000000 + (int) (Math.random() * Math.pow(2, 24));
                 // distance -> hit rate probability: 49 -> 1%, 86 -> 5%, 108 -> 10%
                 JSONObject req = RequestHandler.createPixelNearRequest(randomColor, 86, nexReqId++);
                 out.writeUTF(req.toString());
                 out.flush();
+
+                // receive result
+                JSONObject response = new JSONObject(in.readUTF());
+                long reqTime = System.currentTimeMillis() - response.getLong("req_start");
+                response.put("reqTime", reqTime);
+                results.put(response);
+
+                if (response.has("err")) {
+                    System.out.print("[" + response.getInt("reqId") + "] " + response.getString("err"));
+                } else {
+                    System.out.print("[" + response.getInt("reqId") + "] Found in image " + response.getInt("imageId") + " at ");
+                    JSONObject location = response.getJSONObject("location");
+                    System.out.print("x: " + location.getInt("x") + ", y: " + location.getInt("y"));
+                }
+                System.out.println("; Total time: " + reqTime + "ms processing time: " + response.getLong("proc_time") + "ms image loading time: " + response.getLong("image_fetch_time") + "ms");
+
             }
         } catch (IOException e) {
             System.err.println("[system] could not send message");
@@ -48,13 +84,31 @@ public class User extends Thread {
         }
     }
 
-    private void generateClipSearchRequests(DataOutputStream out, int n) {
+    private void generateClipSearchRequests(DataInputStream in, DataOutputStream out, JSONArray results, int n) {
         try {
             for(int i = 0; i < n; i++) {
+
+                // create request
                 JSONObject req = RequestHandler.createImageSearchRequest(new File("clip1.jpg"), nexReqId++);
                 // System.out.println(req.toString());
                 out.writeUTF(req.toString());
                 out.flush();
+
+                // receive result
+                JSONObject response = new JSONObject(in.readUTF());
+                long reqTime = System.currentTimeMillis() - response.getLong("req_start");
+                response.put("reqTime", reqTime);
+                results.put(response);
+
+                if (response.has("err")) {
+                    System.out.print("[" + response.getInt("reqId") + "] " + response.getString("err"));
+                } else {
+                    System.out.print("[" + response.getInt("reqId") + "] Found in image " + response.getInt("imageId") + " at ");
+                    JSONObject location = response.getJSONObject("location");
+                    System.out.print("x: " + location.getInt("x") + ", y: " + location.getInt("y"));
+                }
+                System.out.println("; Total time: " + reqTime + "ms processing time: " + response.getLong("proc_time") + "ms image loading time: " + response.getLong("image_fetch_time") + "ms");
+
             }
         } catch (IOException e) {
             System.err.println("[system] could not send message");
@@ -66,7 +120,8 @@ public class User extends Thread {
         Socket socket = null;
         DataInputStream in = null;
         DataOutputStream out = null;
-        UserMessageReceiver message_receiver = null;
+//        UserMessageReceiver message_receiver = null;
+        JSONArray results = new JSONArray();
 
         try {
             System.out.println("[system] connecting to " + server_ip + ":" + server_port + "...");
@@ -75,20 +130,20 @@ public class User extends Thread {
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
 
-            message_receiver = new UserMessageReceiver(in);
-            message_receiver.start();
+//            message_receiver = new UserMessageReceiver(in);
+//            message_receiver.start();
 
             System.out.println("[system] connected to " + server_ip + ":" + server_port);
 
             switch (req_type) {
                 case 0:
-                    generatePixelSearchRequests(out, num_reqs);
+                    generatePixelSearchRequests(in, out, results, num_reqs);
                     break;
                 case 1:
-                    generateRandomNearRequests(out, num_reqs);
+                    generateRandomNearRequests(in, out, results, num_reqs);
                     break;
                 case 2:
-                    generateClipSearchRequests(out, num_reqs);
+                    generateClipSearchRequests(in, out, results, num_reqs);
                     break;
                 default:
                     System.err.println("Neveljaven tip zahteve: " + req_type);
@@ -99,8 +154,8 @@ public class User extends Thread {
                     System.exit(-1);
             }
 
-            while(receivedRequests < nexReqId - 1)
-                Thread.sleep(500);
+//            while(receivedRequests < nexReqId - 1)
+//                Thread.sleep(500);
 
         } catch (Exception e) {
             e.printStackTrace(System.err);
@@ -109,7 +164,8 @@ public class User extends Thread {
 
         try {
             FileWriter results_out = new FileWriter(results_f);
-            results_out.write(message_receiver.getResults().toString());
+            // results_out.write(message_receiver.getResults().toString());
+            results_out.write(results.toString());
             results_out.flush();
             results_out.close();
 
@@ -123,48 +179,48 @@ public class User extends Thread {
         socket.close();
     }
 
-    class UserMessageReceiver extends Thread {
-        private DataInputStream in;
-        private String response;
-        private JSONArray results;
-
-        public UserMessageReceiver(DataInputStream in) {
-            this.in = in;
-            this.results = new JSONArray();
-        }
-
-        public void run() {
-            try {
-                while ((response = this.in.readUTF()) != null) {
-
-                    JSONObject res = new JSONObject(response);
-                    // REZULTAT ISKANJA
-
-                    receivedRequests++;
-
-                    long reqTime = System.currentTimeMillis() - res.getLong("req_start");
-                    res.put("reqTime", reqTime);
-
-                    results.put(res);
-
-                    if (res.has("err")) {
-                        System.out.print("[" + res.getInt("reqId") + "] " + res.getString("err"));
-                    } else {
-                        System.out.print("[" + res.getInt("reqId") + "] Found in image " + res.getInt("imageId") + " at ");
-                        JSONObject location = res.getJSONObject("location");
-                        System.out.print("x: " + location.getInt("x") + ", y: " + location.getInt("y"));
-                    }
-                    System.out.println("; Total time: " + reqTime + "ms processing time: " + res.getLong("proc_time") + "ms image loading time: " + res.getLong("image_fetch_time") + "ms");
-                }
-            } catch (Exception e) {
-                if(e instanceof SocketException) {
-                    return;
-                }
-                System.err.println("[system] could not read message");
-                e.printStackTrace(System.err);
-            }
-        }
-
-        public JSONArray getResults() { return results; }
-    }
+//    class UserMessageReceiver extends Thread {
+//        private DataInputStream in;
+//        private String response;
+//        private JSONArray results;
+//
+//        public UserMessageReceiver(DataInputStream in) {
+//            this.in = in;
+//            this.results = new JSONArray();
+//        }
+//
+//        public void run() {
+//            try {
+//                while ((response = this.in.readUTF()) != null) {
+//
+//                    JSONObject res = new JSONObject(response);
+//                    // REZULTAT ISKANJA
+//
+//                    receivedRequests++;
+//
+//                    long reqTime = System.currentTimeMillis() - res.getLong("req_start");
+//                    res.put("reqTime", reqTime);
+//
+//                    results.put(res);
+//
+//                    if (res.has("err")) {
+//                        System.out.print("[" + res.getInt("reqId") + "] " + res.getString("err"));
+//                    } else {
+//                        System.out.print("[" + res.getInt("reqId") + "] Found in image " + res.getInt("imageId") + " at ");
+//                        JSONObject location = res.getJSONObject("location");
+//                        System.out.print("x: " + location.getInt("x") + ", y: " + location.getInt("y"));
+//                    }
+//                    System.out.println("; Total time: " + reqTime + "ms processing time: " + res.getLong("proc_time") + "ms image loading time: " + res.getLong("image_fetch_time") + "ms");
+//                }
+//            } catch (Exception e) {
+//                if(e instanceof SocketException) {
+//                    return;
+//                }
+//                System.err.println("[system] could not read message");
+//                e.printStackTrace(System.err);
+//            }
+//        }
+//
+//        public JSONArray getResults() { return results; }
+//    }
 }

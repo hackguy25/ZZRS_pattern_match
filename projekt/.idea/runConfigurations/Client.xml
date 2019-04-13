@@ -2,7 +2,7 @@
   <configuration default="false" name="Client" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="User" />
     <module name="projekt" />
-    <option name="PROGRAM_PARAMETERS" value="1 10 test.out" />
+    <option name="PROGRAM_PARAMETERS" value="1 100 test.out" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
