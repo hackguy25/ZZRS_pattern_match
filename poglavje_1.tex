@@ -136,24 +136,68 @@ Zanima nas, kako se sistem odziva na zahteve ob različnih urah. Za potrebe meri
 
 \section{Rezultati meritev} % TODO
 
-Poskusno smo testirali iskanje specifičnega piksla.
-Ko en uporabnik naenkrat dostopa do storitve, je odzivni čas med 6 in 7 sekund, od tega je čas obdelave zahteve približno 5,5 do 6 sekund.
+V soboto, 13. aprila 2019 ob 18.10 smo poskusno testirali iskanje piksla v okolici barve.
+Strežniku je bilo zaporedno poslanih 100 zahtev, vsaka je vsebovala naključno izbrano barvo, strežnik pa je iskal piksel z odstopanjem, manjšim ali enakim 86.
+
+V 91 primerih je bil ustrezen piksel najden.
+Iskanje se je pri prvi sliki ustavilo v 45 primerih, pri drugi v 21, pri tretji v 10, pri osmi v 7, pri 12. v 5, pri 15. v enem in pri 17. v dveh.
+V ostalih 9. primerih ustrezen piksel ni bil najden.
+
+Celotni časi zahtev ($t_{zahteva}$) so po velikosti urejeni prikazani v diagramu \ref{fig:1_poskusno_total_times}.
+Najhitrejši odziv je znašal 104 milisekunde, najdaljši pa 7378 milisekund.
+V povprečju je čas odziva znašal 1461 milisekund.
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.3]{Img/1_preliminary_test.png}
-    \caption{Rezultati poskusnega testiranja}
-    \label{fig:1_preliminary_test}
+\centering
+\includegraphics[scale=0.8]{Img/1_poskusno_total_times.pdf}
+\caption{Diagram celotnih časov zahtev, urejenih naraščajoče po velikosti.}
+\label{fig:1_poskusno_total_times}
+\end{figure}
+
+Časi paketa na mreži ($t_{mreza}$) so po velikosti urejeni prikazani v diagramu \ref{fig:1_poskusno_transfer_times}.
+Najhitrejši čas obhoda je znašal 60 milisekund, najdaljši pa 234 milisekund.
+V povprečju je čas paketa na mreži znašal 65 milisekund, v 90 izmed 100 primerov ni presegel 66 milisekund.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{Img/1_poskusno_transfer_times.pdf}
+\caption{Diagram časov obhoda paketa, urejenih naraščajoče po velikosti.}
+\label{fig:1_poskusno_transfer_times}
+\end{figure}
+
+V splošnem nas zanima, kolikšen del procesiranja zavzame nalaganje slik z diska v pomnilnik ($\frac{t_{baza}}{t_{streznik}}$) in koliko časa v povprečju zavzame nalaganje ene slike v pomnilnik ($\frac{t_{baza}}{N_{nalozenih}}$).
+
+Odstotki časa, ki ga storitev porabi za nalaganje slik v pomnilnik, so po velikosti urejeni prikazani v diagramu \ref{fig:1_poskusno_loading_time_percentage}.
+Zavzemajo vrednosti med 23 in 100 odstotkov, v povprečju 49 odstotkov.
+Ves čas procesiranja se je za nalaganje slik porabil v kar 25 od 100 primerih.
+To pomeni, da se je naložila le prva slika, primeren piksel pa je bil najden skoraj takoj.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{Img/1_poskusno_loading_time_percentage.pdf}
+\caption{Diagram odstotkov časa, porabljenega za nalaganje slik z diska v pomnilnik, urejenih naraščajoče po velikosti.}
+\label{fig:1_poskusno_loading_time_percentage}
+\end{figure}
+
+Povprečne vrednosti časa nalaganja 1 slike so prikazani v diagramu \ref{fig:1_poskusno_pic_loading_time}.
+Zavzemajo vrednosti med 40 in 224 milisekund, 59 milisekund.
+V 99 izmed 100 primerov ni presegel 88 milisekund.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{Img/1_poskusno_pic_loading_time.pdf}
+\caption{Diagram povprečnih časov nalaganja ene slike z diska v pomnilnik, v vrstnem redu zahtev.}
+\label{fig:1_poskusno_pic_loading_time}
 \end{figure}
 
 \section{Plan dela}
 
 \begin{itemize}
+\item testiranje ostalih dveh iskanj
 \item določitev bremen - čas meritev, število hkratnih uporabnikov, ... ?
 \item natančnejša določitev metrik 
 \item določitev orodij - avtomatizacija merjenja, zbiranje rezultatov
 \item premislek o skalabilnosti
-\item pravilno dodajanje literature
 \end{itemize}
 
 \inputencoding{cp1250}
