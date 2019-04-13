@@ -95,7 +95,36 @@ V naslednjem koraku izberemo tip instance slike, to je Amazonov način izbire pa
 
 \subsection{Aplikacija}
 
-Aplikacija je napisana v programskem jeziku Java. Sestavljata jo odjemalska in strežniška komponenta, ki uporabljata skupne enumeratorje za določanje tipa zahteve. Zahteve sestavlja odjemalec in jih pošlje strežniku, ki to zahtevo obdela - začne iskanje v slikah in pripravi prvi najden rezultat. Povezava med strežnikom in odjemalcem je trajna, dokler je eden od njiju ne prekine, kar nam omogoči, da pri meritvah ne upoštevamo časa vzpostavitve povezave. Podatki se prenašajo v obliki JSON, ki vsebuje sekvenčno številko zahteve, tip zahteve in morebitne dodatne podatke, ki so potrebni za obdelavo. Strežnik ob prejemu podatkov začne z delom na ustrezni zahtevi ter nato pošlje odgovor klientu z številko zahteve in rezultatom. Strežniški del je napisan tako, da lahko paralelno obdeluje več zahtev.
+Aplikacija je napisana v programskem jeziku Java. Sestavljata jo odjemalska in strežniška komponenta, ki uporabljata skupne enumeratorje za določanje tipa zahteve. Zahteve sestavlja odjemalec in jih pošlje strežniku, ki to zahtevo obdela - začne iskanje v slikah in pripravi prvi najden rezultat. Povezava med strežnikom in odjemalcem je trajna, dokler je eden od njiju ne prekine, kar nam omogoči, da pri meritvah ne upoštevamo časa vzpostavitve povezave. Podatki se prenašajo v obliki JSON, ki vsebuje sekvenčno številko zahteve, tip zahteve in morebitne dodatne podatke, ki so potrebni za obdelavo. Spodaj je primer JSON formata, ki predstavlja zahtevo, ki jo odjemalec pošlje strežniku, 
+
+\begin{lstlisting}
+{
+	"reqId": 1,
+	"reqType": "PIXEL_NEAR",
+	"pixelValue": "0xFFFA3881",
+	"maxDistance": 86,
+	"image": "",
+	"req_start": 1555162220550,
+	"err": ""
+}
+\end{lstlisting}
+
+Strežnik ob prejemu podatkov začne z delom na ustrezni zahtevi ter nato pošlje odgovor klientu z številko zahteve in rezultatom. Odgovor vsebuje tudi čas proceiranja in branja slik. Strežniški del je napisan tako, da lahko paralelno obdeluje več zahtev. Spodaj je primer odgovora na zahtevo, ki ga strežnik vrne odjemalcu.
+
+\begin{lstlisting}
+{
+	"reqId": 1,
+	"imageId": 4,
+	"location": {
+		"x": 124,
+		"y": 87	
+	},
+	"proc_time": 4528,
+	"req_start": 1555162220550,
+	"image_fetch_time": 78,
+	"err": ""
+}
+\end{lstlisting}
 
 \section{Uporabljene metrike}
 
