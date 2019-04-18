@@ -2,6 +2,45 @@
 
 Datoteka za dumpanje informacij o nalogi.
 
+## Za naredit do 29. 4. (do 22. poslat vmesno poročilo!)
+
+### Za popravit
+
+(glej slike Discord)
+
+- slovnične/tipkarske napake (glej slike)
+- navajanje v stilu " [x]." -> " \cite{vir}."
+- 1.2.1
+  - redesign slike 1.1
+    - odjemalci na levi, storitev na desni
+    - vse povezave enosmerne, bolj pregledne
+- 1.2.2
+  - ločila na koncu alinej
+  - dodati to, da ne preišče *vseh* slik, temveč le toliko, dokler ne najde ujemanja
+  - k računanju razlike komentar, kakšna odstopanja se uporablja
+  - k slikovnemu izseku dodat, da se ujemanje gleda glede na odstopanje
+- 1.2.3
+  - podrobnejši opis situacije hranjenja datotek (začasno/trajno, EBS)
+  - opis situacije glede hitrosti interneta na free instancah (kje je omejitev, kako vidimo na AWS)
+- 1.2.4
+  - dodaj, da je interpretiranje Jave potencialno ozko grlo
+  - vse izpise kode referencirat, tko ku slike
+- 1.4
+  - zakaj odstopanje 86?
+  - pri vseh grafih: oznake na obeh oseh, kadar je prikazan čas s sheme, nujno dodat
+  - zmanjšaj grafe za 15%, da boljše zapolnijo strani
+  - pri vsakem testiranju: iz katere lokacije, hitrost interneta pri odjemalcu, ping, traceroute
+  - bolje opiši pojem "nalaganje" slike
+
+### Za dodat
+
+- 1.3
+  - opis baze slik
+    - kakšne slike (velikost, vsebina, format, loh kak primer)
+    - koliko slik
+- 1.4
+  - absolutni časi nalaganja slik
+
 ## Za naredit do 15. 4.
 
 ### Za popravit
