@@ -5,36 +5,36 @@ A level-1 auxiliary file: preface.aux
 A level-1 auxiliary file: poglavje_1.aux
 The style file: ieeetr.bst
 Database file #1: mro.bib
-You've used 7 entries,
+You've used 8 entries,
             1876 wiz_defined-function locations,
-            500 strings with 4078 characters,
-and the built_in function-call counts, 834 in all, are:
-= -- 91
-> -- 7
+            504 strings with 4232 characters,
+and the built_in function-call counts, 950 in all, are:
+= -- 104
+> -- 8
 < -- 0
-+ -- 7
++ -- 8
 - -- 0
-* -- 30
-:= -- 95
-add.period$ -- 14
-call.type$ -- 7
-change.case$ -- 7
+* -- 34
+:= -- 107
+add.period$ -- 16
+call.type$ -- 8
+change.case$ -- 8
 chr.to.int$ -- 0
-cite$ -- 7
-duplicate$ -- 28
-empty$ -- 127
+cite$ -- 8
+duplicate$ -- 32
+empty$ -- 145
 format.name$ -- 0
-if$ -- 232
+if$ -- 265
 int.to.chr$ -- 0
-int.to.str$ -- 7
+int.to.str$ -- 8
 missing$ -- 0
-newline$ -- 31
+newline$ -- 35
 num.names$ -- 0
-pop$ -- 49
+pop$ -- 56
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 21
+skip$ -- 24
 stack$ -- 0
 substring$ -- 0
 swap$ -- 0
@@ -44,5 +44,5 @@ top$ -- 0
 type$ -- 0
 warning$ -- 0
 while$ -- 0
-width$ -- 8
-write$ -- 65
+width$ -- 9
+write$ -- 74

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.3.30)  13 APR 2019 15:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.3.30)  20 APR 2019 12:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -805,14 +805,17 @@ Poglavje 1.
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Img/1_shema.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<Img/1_shema.pdf, id=38, 850.17625pt x 601.24625pt>
+<Img/1_shema.pdf, id=38, 847.165pt x 599.23875pt>
 File: Img/1_shema.pdf Graphic file (type pdf)
 <use Img/1_shema.pdf>
-Package pdftex.def Info: Img/1_shema.pdf  used on input line 49.
-(pdftex.def)             Requested size: 340.06447pt x 240.49423pt.
-
-Underfull \vbox (badness 2269) has occurred while \output is active []
-
+Package pdftex.def Info: Img/1_shema.pdf  used on input line 48.
+(pdftex.def)             Requested size: 338.85999pt x 239.69125pt.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 59.
+(/usr/share/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 59.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -821,49 +824,316 @@ We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
 [2 <./Img/1_shema.pdf>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 60.
- (/usr/share/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 60.
 <Img/1_AWS_images.png, id=55, 1267.44484pt x 611.63242pt>
 File: Img/1_AWS_images.png Graphic file (type png)
 <use Img/1_AWS_images.png>
-Package pdftex.def Info: Img/1_AWS_images.png  used on input line 89.
+Package pdftex.def Info: Img/1_AWS_images.png  used on input line 88.
 (pdftex.def)             Requested size: 316.86043pt x 152.90773pt.
 
-[3]
-Underfull \vbox (badness 3657) has occurred while \output is active []
+Underfull \vbox (badness 2443) has occurred while \output is active []
 
- [4 <./Img/1_AWS_images.png (PNG copy)>]
+ [3]
+[4 <./Img/1_AWS_images.png (PNG copy)>]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 99.
 
-LaTeX Warning: Command \v invalid in math mode on input line 104.
+(/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
 
-Missing character: There is no º in font cmr7!
-
-LaTeX Warning: Command \v invalid in math mode on input line 104.
-
-Missing character: There is no º in font cmr7!
-
-LaTeX Warning: Command \v invalid in math mode on input line 104.
+Package xcolor Warning: Incompatible color definition on input line 101.
 
 
-LaTeX Warning: Command \v invalid in math mode on input line 104.
+Package xcolor Warning: Incompatible color definition on input line 101.
 
-Missing character: There is no º in font cmr7!
-Missing character: There is no º in font cmr7!
-<Img/1_preliminary_test.png, id=66, 1009.7725pt x 216.81pt>
-File: Img/1_preliminary_test.png Graphic file (type png)
-<use Img/1_preliminary_test.png>
-Package pdftex.def Info: Img/1_preliminary_test.png  used on input line 115.
-(pdftex.def)             Requested size: 302.93408pt x 65.04349pt.
+
+Package xcolor Warning: Incompatible color definition on input line 101.
+
+
+Package xcolor Warning: Incompatible color definition on input line 101.
+
+
+Package xcolor Warning: Incompatible color definition on input line 102.
+
+
+Package xcolor Warning: Incompatible color definition on input line 102.
+
+
+Package xcolor Warning: Incompatible color definition on input line 102.
+
+
+Package xcolor Warning: Incompatible color definition on input line 102.
+
+
+Package xcolor Warning: Incompatible color definition on input line 102.
+
+
+Package xcolor Warning: Incompatible color definition on input line 102.
+
+
+Package xcolor Warning: Incompatible color definition on input line 102.
+
+
+Package xcolor Warning: Incompatible color definition on input line 103.
+
+
+Package xcolor Warning: Incompatible color definition on input line 103.
+
+
+Package xcolor Warning: Incompatible color definition on input line 103.
+
+
+Package xcolor Warning: Incompatible color definition on input line 103.
+
+
+Package xcolor Warning: Incompatible color definition on input line 103.
+
+
+Package xcolor Warning: Incompatible color definition on input line 103.
+
+
+Package xcolor Warning: Incompatible color definition on input line 103.
+
+
+Package xcolor Warning: Incompatible color definition on input line 103.
+
+
+Package xcolor Warning: Incompatible color definition on input line 104.
+
+
+Package xcolor Warning: Incompatible color definition on input line 104.
+
+
+Package xcolor Warning: Incompatible color definition on input line 104.
+
+
+Package xcolor Warning: Incompatible color definition on input line 104.
+
+
+Package xcolor Warning: Incompatible color definition on input line 105.
+
+
+Package xcolor Warning: Incompatible color definition on input line 105.
+
+
+Package xcolor Warning: Incompatible color definition on input line 105.
+
+
+Package xcolor Warning: Incompatible color definition on input line 105.
+
+
+Package xcolor Warning: Incompatible color definition on input line 105.
+
+
+Package xcolor Warning: Incompatible color definition on input line 105.
+
+
+Package xcolor Warning: Incompatible color definition on input line 106.
+
+
+Package xcolor Warning: Incompatible color definition on input line 106.
+
+
+Package xcolor Warning: Incompatible color definition on input line 106.
+
+
+Package xcolor Warning: Incompatible color definition on input line 106.
+
+
+Package xcolor Warning: Incompatible color definition on input line 107.
+
+
+Package xcolor Warning: Incompatible color definition on input line 107.
+
+
+Package xcolor Warning: Incompatible color definition on input line 107.
+
+
+Package xcolor Warning: Incompatible color definition on input line 107.
+
+
+Package xcolor Warning: Incompatible color definition on input line 107.
+
+
+Package xcolor Warning: Incompatible color definition on input line 107.
+
+
+Package xcolor Warning: Incompatible color definition on input line 115.
+
+
+Package xcolor Warning: Incompatible color definition on input line 115.
+
+
+Package xcolor Warning: Incompatible color definition on input line 115.
+
+
+Package xcolor Warning: Incompatible color definition on input line 115.
+
+
+Package xcolor Warning: Incompatible color definition on input line 116.
+
+
+Package xcolor Warning: Incompatible color definition on input line 116.
+
+
+Package xcolor Warning: Incompatible color definition on input line 116.
+
+
+Package xcolor Warning: Incompatible color definition on input line 116.
+
+
+Package xcolor Warning: Incompatible color definition on input line 117.
+
+
+Package xcolor Warning: Incompatible color definition on input line 117.
+
+
+Package xcolor Warning: Incompatible color definition on input line 117.
+
+
+Package xcolor Warning: Incompatible color definition on input line 117.
+
+
+Package xcolor Warning: Incompatible color definition on input line 118.
+
+
+Package xcolor Warning: Incompatible color definition on input line 118.
+
+
+Package xcolor Warning: Incompatible color definition on input line 118.
+
+
+Package xcolor Warning: Incompatible color definition on input line 118.
+
+
+Package xcolor Warning: Incompatible color definition on input line 119.
+
+
+Package xcolor Warning: Incompatible color definition on input line 119.
+
+
+Package xcolor Warning: Incompatible color definition on input line 119.
+
+
+Package xcolor Warning: Incompatible color definition on input line 119.
+
+
+Package xcolor Warning: Incompatible color definition on input line 121.
+
+
+Package xcolor Warning: Incompatible color definition on input line 121.
+
+
+Package xcolor Warning: Incompatible color definition on input line 121.
+
+
+Package xcolor Warning: Incompatible color definition on input line 121.
+
+
+Package xcolor Warning: Incompatible color definition on input line 122.
+
+
+Package xcolor Warning: Incompatible color definition on input line 122.
+
+
+Package xcolor Warning: Incompatible color definition on input line 122.
+
+
+Package xcolor Warning: Incompatible color definition on input line 122.
+
+
+Package xcolor Warning: Incompatible color definition on input line 123.
+
+
+Package xcolor Warning: Incompatible color definition on input line 123.
+
+
+Package xcolor Warning: Incompatible color definition on input line 123.
+
+
+Package xcolor Warning: Incompatible color definition on input line 123.
+
+
+Package xcolor Warning: Incompatible color definition on input line 124.
+
+
+Package xcolor Warning: Incompatible color definition on input line 124.
+
+
+Package xcolor Warning: Incompatible color definition on input line 124.
+
+
+Package xcolor Warning: Incompatible color definition on input line 124.
+
+
+Package xcolor Warning: Incompatible color definition on input line 124.
+
+
+Package xcolor Warning: Incompatible color definition on input line 124.
+
+[5]
+<Img/1_poskusno_total_times.pdf, id=71, 462.52798pt x 346.89601pt>
+File: Img/1_poskusno_total_times.pdf Graphic file (type pdf)
+<use Img/1_poskusno_total_times.pdf>
+Package pdftex.def Info: Img/1_poskusno_total_times.pdf  used on input line 151
+.
+(pdftex.def)             Requested size: 370.02287pt x 277.51718pt.
+
+Overfull \hbox (25.02287pt too wide) in paragraph at lines 151--154
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
+<Img/1_poskusno_transfer_times.pdf, id=75, 462.52798pt x 346.89601pt>
+File: Img/1_poskusno_transfer_times.pdf Graphic file (type pdf)
+<use Img/1_poskusno_transfer_times.pdf>
+Package pdftex.def Info: Img/1_poskusno_transfer_times.pdf  used on input line 
+162.
+(pdftex.def)             Requested size: 370.02287pt x 277.51718pt.
+
+Overfull \hbox (25.02287pt too wide) in paragraph at lines 162--165
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7 <./Img/1_poskusno_total_times.pdf>]
+<Img/1_poskusno_loading_time_percentage.pdf, id=94, 462.52798pt x 346.89601pt>
+File: Img/1_poskusno_loading_time_percentage.pdf Graphic file (type pdf)
+<use Img/1_poskusno_loading_time_percentage.pdf>
+Package pdftex.def Info: Img/1_poskusno_loading_time_percentage.pdf  used on in
+put line 176.
+(pdftex.def)             Requested size: 370.02287pt x 277.51718pt.
+
+Overfull \hbox (25.02287pt too wide) in paragraph at lines 176--179
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8 <./Img/1_poskusno_transfer_times.pdf>]
+<Img/1_poskusno_pic_loading_time.pdf, id=112, 462.52798pt x 346.89601pt>
+File: Img/1_poskusno_pic_loading_time.pdf Graphic file (type pdf)
+<use Img/1_poskusno_pic_loading_time.pdf>
+Package pdftex.def Info: Img/1_poskusno_pic_loading_time.pdf  used on input lin
+e 187.
+(pdftex.def)             Requested size: 370.02287pt x 277.51718pt.
+
+Overfull \hbox (25.02287pt too wide) in paragraph at lines 187--190
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9 <./Img/1_poskusno_loading_time_percentage.pdf>]
 (/usr/share/texmf-dist/tex/latex/base/cp1250.def
 File: cp1250.def 2018/08/11 v1.3c Input encoding file
-)) [5 <./Img/1_preliminary_test.png>] [6
-
-
-] (./mro.bbl
+)) [10 <./Img/1_poskusno_pic_loading_time.pdf>] (./mro.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 12--15
 []\T1/cmr/m/n/10 ``Amazon ec2 t2 in-stan-ces.'' https://aws.amazon.com/ec2/inst
 ance-
@@ -881,38 +1151,53 @@ Overfull \hbox (102.79465pt too wide) in paragraph at lines 31--34
 WSEC2/latest/UserGuide/AMIs.html,
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--39
+[]\T1/cmr/m/n/10 ``Amazon ela-stic block store (ama-zon ebs).'' ht-
+ []
+
+
+Overfull \hbox (3.48557pt too wide) in paragraph at lines 36--39
+\T1/cmr/m/n/10 tps://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html
+,
+ []
+
 )
 No file mro.ind.
-[7
+[11
+
+
 
 ] (./mro.aux (./preface.aux) (./poglavje_1.aux)) ) 
 Here is how much of TeX's memory you used:
- 25402 strings out of 492616
- 624824 string characters out of 6135177
- 806195 words of memory out of 5000000
- 28796 multiletter control sequences out of 15000+600000
- 20081 words of font info for 54 fonts, out of 8000000 for 9000
+ 25761 strings out of 492616
+ 628837 string characters out of 6135177
+ 817195 words of memory out of 5000000
+ 29147 multiletter control sequences out of 15000+600000
+ 21159 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,12n,96p,1139b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,11n,96p,1344b,1185s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/
 enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
-7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/sha
-re/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/publ
-ic/cm-super/sfbx1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfb
-x1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr
-/share/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf-di
-st/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf-dist/fonts/type1/
-public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
-/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb><
-/usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texm
-f-dist/fonts/type1/public/cm-super/sfsl1000.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/cm-super/sfti1000.pfb>
-Output written on mro.pdf (13 pages, 481536 bytes).
+5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/sha
+re/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfb
+x1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr
+/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-di
+st/fonts/type1/public/cm-super/sfbx2074.pfb></usr/share/texmf-dist/fonts/type1/
+public/cm-super/sfbx2488.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
+/sfrm1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><
+/usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texm
+f-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf-dist/fonts/ty
+pe1/public/cm-super/sfsl1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-s
+uper/sfti1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0900.p
+fb>
+Output written on mro.pdf (17 pages, 844304 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
- 96 compressed objects within 1 object stream
+ 207 PDF objects out of 1000 (max. 8388607)
+ 137 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 28 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 43 words of extra memory for PDF output out of 10000 (max. 10000000)
 

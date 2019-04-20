@@ -32,4 +32,9 @@
   https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html, 2019.
 \newblock [Online; dostopano 8-April-2019].
 
+\bibitem{1_aws_amazon_ebs}
+``Amazon elastic block store (amazon ebs).''
+  https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html, 2019.
+\newblock [Online; dostopano 20-April-2019].
+
 \end{thebibliography}

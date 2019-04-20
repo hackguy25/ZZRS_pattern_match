@@ -16,31 +16,30 @@ Med programerji je veliko takšnih, ki sanjajo o tem, da bi bili naslednji Bill 
 Imajo idejo, za katero verjamejo, da bo zavzela svet in jim prinesla miljone ter večno slavo.
 Ampak potrebujejo platformo, na kateri bo njihova storitev tekla.
 En sam prenosnik ne more vendar streči tisočem uporabnikom s celega sveta hkrati.
-Platforma mora biti cenovno dostopna, hkrati pa tudi poljubno razširljiva, da, ko se zgodi neizogiben naval uporabnikov, lahko programer enostavno in hitro aktivira dodatno procesno moč.
+Platforma mora biti cenovno dostopna, hkrati pa tudi poljubno razširljiva, da v primeru, ko se zgodi neizogiben povečan obisk uporabnikov, lahko programer enostavno in hitro aktivira dodatno procesno moč.
 
-Tu vstopi Amazonov Elastic Cloud.~\cite{1_aws_amazon_ec2} 
-Obljublja dostopne cene, fleksibilno alokacijo računskih virov in za nadobudnega podjetnika najpomembneje možnost uporabe določenih storitev brezplačno.
-Med temi storitvami je na voljo tudi najem tako imenovanih ``mikro instanc''.~\cite{1_aws_amazon_free} 
-To so virtualni spletni strežniki z enim procesnim jedrom in 1 GB pomnilnika.~\cite{1_aws_amazon_instances}
-Predstavljajo minimalno konfiguracijo, ki lahko gosti poljubno spletno storitev.
-Hkrati pa predstavlja procesno ozko grlo, katerega omejitve moramo upoštevati pri tvorbi storitve.
+Tu nastopi Amazonov Elastic Cloud~\cite{1_aws_amazon_ec2}.
+Obljublja dostopne cene, fleksibilno alokacijo računskih virov in za nadobudnega podjetnika najpomembnejša možnost uporabe določenih storitev brezplačno.
+Med temi storitvami je na voljo tudi najem tako imenovanih ``mikro instanc''~\cite{1_aws_amazon_free}. 
+To so virtualni spletni strežniki z enim procesnim jedrom in 1 GB pomnilnika~\cite{1_aws_amazon_instances}.
+Predstavljajo minimalno konfiguracijo, ki lahko gosti poljubno spletno storitev, hkrati pa predstavlja tudi procesno ozko grlo, katerega omejitve moramo upoštevati pri tvorbi storitve.
 
 S tem v mislih želimo stestirati platformo Amazon EC2.
 Ustvarili bomo enostavno storitev, ki bo uporabniku omogočala iskanje vzorcev v večjem naboru slik, shranjenih v oblaku.
-Predstavljala bo generično spletno aplikacijo, ki potrebuje ravno dovolj računske moči, da se bodo pojavile slabosti mikro instanc, v obliki upočasnjenega ali onemogočenega delovanja na strani uporabnika.
+Predstavljala bo generično spletno aplikacijo, ki potrebuje ravno dovolj računske moči, da se bodo pojavile slabosti mikro instanc v obliki upočasnjenega ali onemogočenega delovanja na strani uporabnika.
 Osnova storitve je iskanje vzorca v naboru slik.
-Uporabnik od storitve zahteva podatek o tem, v katerih slikah se ta vzorec nahaja, pričakuje pa hiter odgovor, z ne več kot nekaj sekund zamika.
+Uporabnik od storitve zahteva podatek o tem, v katerih slikah se ta vzorec nahaja, pričakuje pa hiter odgovor, z ne več kot nekaj sekundami zamika.
 Taka storitev nam bo omogočala relativno enostavno merjenje odzivnosti platforme, modularnost nalaganja kode in morebitno razširljivost v primeru večjega števila hkratnih uporabnikov.
 
 \section{Realizacija}
 
-Storitev je sestavljena iz dveh delov, strežnika na storitvi EC2 in odjemalca na lokalnem računalniku.
+Storitev je sestavljena iz dveh delov, in siscer strežnika na strani storitve EC2 in odjemalca na lokalnem računalniku.
 Opazujemo odzivnost strežnika, tako z meritvami na strežniku samem, kot pri odjemalcu.
 
 \subsection{Opazovano okolje}
 
 Aplikacija je realizirana kot spletna storitev, t.j. strežnik, dostopen na spletu, ki se odziva na zahteve uporabnikov.
-Zasnovana je po shemi v sliki \ref{fig:1_osnovnaShema}.
+Zasnovana je po shemi na sliki \ref{fig:1_osnovnaShema}.
 Uporabnik strežniku pošlje zahtevo v obliki JSON niza, ki vsebuje zaporedno številko zahteve, podatek o tipu zahteve in potrebne parametre.
 Strežnik zahtevo primerno obdela in vrne rezultat v obliki JSON niza, katerega oblika je odvisna od tipa zahteve.
 
@@ -58,18 +57,18 @@ Razlikujejo se v tipu vzorca, ki ga uporabnik želi najti v sliki.
 Storitev nudi tri tipe iskanj:
 \begin{itemize}
 \item iskanje specifične barve piksla,
-\item iskanje piksla, podobnega specifični barvi
-\item iskanje slikovnega izseka
+\item iskanje piksla, podobnega specifični barvi,
+\item iskanje slikovnega izseka.
 \end{itemize}
 
 \subsubsection{Iskanje specifične barve piksla}
 
-Storitev prejme podatek o iskani barvi piksla, preišče vsako sliko in vrne prvo pojavitev iskanega piksla.
+Storitev prejme podatek o iskani barvi piksla, preišče vse slike v oblačni podatkovni bazi, dokler ne najde prvega ujemanja pojavitev iskanega piksla.
 
 \subsubsection{Iskanje piksla, podobnega specifični barvi}
 
-Poleg iskane barve storitev prejme še največje dovoljeno odstopanje.
-Preišče vsako sliko in vrne prvi piksel, katerega barva se od iskane po komponentah razlikuje za največ toliko, kot določa odstopanje.
+Poleg iskane barve storitev prejme od odjemalca še največje dovoljeno odstopanje.
+Preišče vse slike dokler ne najde prvega piksla, katerega barva se od iskane po komponentah razlikuje za največ toliko, kot določa odstopanje.
 Razlika se izračuna tako:
 \begin{multline}
 Razlika(RGB_{piksel}, RGB_{iskan}) = \\ = |R_{piksel} - R_{iskan}| + |G_{piksel} - G_{iskan}| + |B_{piksel} - B_{iskan}|
@@ -78,11 +77,11 @@ Razlika(RGB_{piksel}, RGB_{iskan}) = \\ = |R_{piksel} - R_{iskan}| + |G_{piksel}
 \subsubsection{Iskanje slikovnega izseka}
 
 Storitev prejme slikovni izsek.
-Preišče slike in ko najde prvo ujemanje, rezultat vrne uporabniku.
+Preišče vse slike dokler ne najde prvega ujemanja podanega izseka z izsekom na neki sliki.
 
 \subsection{Amazon Web Services (AWS)}
 
-Za delo z Amazon Web Services~\cite{1_aws_amazon} si moramo ustvariti račun v njihovem sistemu. Po uspešni registraciji si lahko ustvarimo svojo instanco EC2 storitve, ki nam jo Amazon ponuja zastonj za eno leto, pri čemer lahko na mesec porabimo največ 750 ur delovanja ponujenih instanc. Obsežnejša navodila so na voljo tudi na Amazonovi spletni strani~\cite{1_aws_amazon_tutorial}, mi pa to naredimo tako, da se postavimo v AWS Management Console~\cite{1_aws_amazon_console}, kjer lahko izberemo opcijo \emph{Launch a virtual machine with EC2}. Takoj nam konzola ponudi izbiro \emph{slike navideznega diska} - vnaprej priravljenega nabora datotek, ki ga lahko neposredno zaženemo na instanci.~\cite{1_aws_amazon_ami} Izbor možnih slik diska je prikazan na sliki \ref{fig:1_AWS_images}. Za naš projekt izberemo sliko Amazon Linux 2 AMI c.
+Za delo z Amazon Web Services~\cite{1_aws_amazon} si moramo ustvariti račun v njihovem sistemu. Po uspešni registraciji si lahko ustvarimo svojo instanco EC2 storitve, ki nam jo Amazon ponuja zastonj za eno leto, pri čemer lahko na mesec porabimo največ 750 ur delovanja ponujenih instanc. Obsežnejša navodila so na voljo tudi na Amazonovi spletni strani~\cite{1_aws_amazon_tutorial}, mi pa to naredimo tako, da se postavimo v AWS Management Console~\cite{1_aws_amazon_console}, kjer lahko izberemo opcijo \emph{Launch a virtual machine with EC2}. Takoj nam konzola ponudi izbiro \emph{slike navideznega diska} - vnaprej priravljenega nabora datotek, ki ga lahko neposredno zaženemo na instanci~\cite{1_aws_amazon_ami}. Izbor možnih slik diska je prikazan na sliki \ref{fig:1_AWS_images}. Za naš projekt izberemo sliko Amazon Linux 2 AMI c.
 
 \begin{figure}[H]
     \centering
@@ -91,13 +90,13 @@ Za delo z Amazon Web Services~\cite{1_aws_amazon} si moramo ustvariti račun v n
     \label{fig:1_AWS_images}
 \end{figure}
 
-V naslednjem koraku izberemo tip instance slike, to je Amazonov način izbire paketov, ki vključujejo različne funkcionalnosti. V našem primeru ker izbiramo brezplačno različico, nam ponujajo tip t2.micro, ki vsebuje 1 jedro, 1GB pomnilnika, samo začasno hranjenje podatkov na disku in nižjo hitrost povezave. Za tem lahko nadaljujemo z nastavljanjem različnih konfiguracij naše virtualke ali pa preprosto kliknemo Review and Launch, ki nam ponudi še en pregled čez izbrane nastavitve in zažene virtualko. Po zagonu virtualke nam sistem ponudi opcijo generiranja para ključev za varno SSH povezavo do nje. Ko zaključimo z ustvarjanjem, se premaknemo v EC2 management console kjer kliknemo na \emph{instances}. Od tam lahko opazujemo status naše storitve in pridobimo tudi naslov, na katerem se nahaja. Za povezavo uporabimo javni naslov storitve, uporabnika $ec2-suser$ za varnost pa uporabimo $.pem$ datoteko (Privacy Enhanced Mail Security Certificate), ki smo jo v prejšnjem koraku prenesli. Ko se uspešno povežemo na storitev, lahko pričnemo z razvojem naše aplikacije.
+V naslednjem koraku izberemo tip instance slike, to je Amazonov način izbire paketov, ki vključujejo različne funkcionalnosti. Ker v našem primeru izbiramo brezplačno različico, nam ponujajo tip t2.micro, ki vsebuje 1 jedro, 1GB pomnilnika, nizko prioriteto hitrosti povezave do same instance strežnika (umetno omejena hitrost s spremenljivo največjo hitrostjo) in hrambo podatkov na platformi Elastic Block Storage, ki nam ponuja zastonjsko hranjenje podatkov na mrežno povezani shrambi.~\cite{1_aws_amazon_ebs} Za tem lahko nadaljujemo z nastavljanjem različnih konfiguracij naše virtualke ali pa preprosto kliknemo Review and Launch, ki nam ponudi še en pregled izbranih nastavitev in zažene virtualko. Po zagonu virtualke nam sistem ponudi opcijo generiranja para ključev za varno SSH povezavo do nje. Ko zaključimo z ustvarjanjem, se premaknemo v EC2 management console kjer kliknemo na \emph{instances}. Od tam lahko opazujemo status naše storitve in pridobimo tudi naslov, na katerem se nahaja. Za povezavo uporabimo javni naslov storitve, uporabnika $ec2-user$, za varnost pa uporabimo $.pem$ datoteko (Privacy Enhanced Mail Security Certificate), ki smo jo v prejšnjem koraku prenesli. Ko se uspešno povežemo na storitev, lahko pričnemo z razvojem naše aplikacije.
 
 \subsection{Aplikacija}
 
-Aplikacija je napisana v programskem jeziku Java. Sestavljata jo odjemalska in strežniška komponenta, ki uporabljata skupne enumeratorje za določanje tipa zahteve. Zahteve sestavlja odjemalec in jih pošlje strežniku, ki to zahtevo obdela - začne iskanje v slikah in pripravi prvi najden rezultat. Povezava med strežnikom in odjemalcem je trajna, dokler je eden od njiju ne prekine, kar nam omogoči, da pri meritvah ne upoštevamo časa vzpostavitve povezave. Podatki se prenašajo v obliki JSON, ki vsebuje sekvenčno številko zahteve, tip zahteve in morebitne dodatne podatke, ki so potrebni za obdelavo. Spodaj je primer JSON formata, ki predstavlja zahtevo, ki jo odjemalec pošlje strežniku, 
+Aplikacija je napisana v programskem jeziku Java, ki je interpretirana preko sprotnega prevajalnika, kar se lahko potencialno izkaže kot ozko grlo. Sestavljata jo odjemalska in strežniška komponenta, ki uporabljata skupne enumeratorje za določanje tipa zahteve. Zahteve sestavlja odjemalec in jih pošlja strežniku, ki te zahteve obdela - začne iskanje v slikah in pripravi prvi najden rezultat. Povezava med strežnikom in odjemalcem je trajna, dokler je eden od njiju ne prekine, kar nam omogoči, da pri meritvah ne upoštevamo časa vzpostavitve povezave. Podatki se prenašajo v obliki JSON, ki vsebuje sekvenčno številko zahteve, tip zahteve in morebitne dodatne podatke, ki so potrebni za obdelavo. V izpisu \ref{lst:JSON_req} je predstavljen primer zahteve v obliki dokumenta JSON, ki jo odjemalec pošlje strežniku.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Primer JSON zahteve},label={lst:JSON_req}]
 {
 	"reqId": 1,
 	"reqType": "PIXEL_NEAR",
@@ -109,9 +108,9 @@ Aplikacija je napisana v programskem jeziku Java. Sestavljata jo odjemalska in s
 }
 \end{lstlisting}
 
-Strežnik ob prejemu podatkov začne z delom na ustrezni zahtevi ter nato pošlje odgovor klientu z številko zahteve in rezultatom. Odgovor vsebuje tudi čas proceiranja in branja slik. Strežniški del je napisan tako, da lahko paralelno obdeluje več zahtev. Spodaj je primer odgovora na zahtevo, ki ga strežnik vrne odjemalcu.
+Strežnik ob prejemu podatkov začne z delom na ustrezni zahtevi ter nato pošlje odgovor klientu s številko zahteve in rezultatom. Odgovor vsebuje tudi čas proceiranja in branja slik. Strežniški del je napisan tako, da lahko paralelno obdeluje več zahtev. V izpisu  \ref{lst:JSON_res} je predstavljen primer odgovora na zahtevo, ki ga strežnik vrne odjemalcu.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Primer JSON zahteve},label={lst:JSON_res}]
 {
 	"reqId": 1,
 	"imageId": 4,
@@ -132,7 +131,7 @@ Kot glavno metriko bomo opazovali skupni čas zahteve in odgovora.
 
 Podrobneje ga bomo razdelili na čas dostopa do datotečnega sistema (zbirke slik v mapi na datotečnem sistemu, recimo ji baza slik) ($t_{baza} = t_4 - t_3$) in celoten čas obdelave na strežniku ($t_{streznik} = t_5 - t_2$). Hkrati merimo celoten čas trajanja zahteve ($t_{zahteva} = t_6 - t_1$) (časi označeni na sliki \ref{fig:1_osnovnaShema}). Z izmerjenimi časi lahko izračunamo tudi druge kot sta čas procesiranja na strežniku ($t_{procesiranje} = t_{streznik} - t_{baza}$) in čas paketa na mreži ($t_{mreza} = t_{zahteva} - t_{streznik}$). S tem smo se znebili problema sinhronizacije ur med odjemalcem in strežnikom. Če bi želeli meriti tudi čas potovanja paketa od odjemalca na strežni in čas potovanja paketa od strežnika na odjemalec, pa bi potrebovali tudi sinhronizacijo ur, ker pa naš cilj ni meriti čase potovanja paketov, saj je to namreč lastnost omrežja in ne same platforme, bomo zadovoljni s skupnim časom paketa na mreži.
 
-Zanima nas, kako se sistem odziva na zahteve ob različnih urah. Za potrebe meritev bomo odziv sistema merili ob treh različih časih v dnevu. Želimo izvedeti tudi, kako se časi odgovorov podaljšajo glede na število hkratnih uporabnikov.
+Zanima nas, kako se storitev odziva na zahteve ob različnih urah. Za potrebe meritev bomo odziv sistema merili ob treh različih časih v dnevu. Želimo izvedeti tudi, kako se časi odgovorov podaljšajo glede na število hkratnih uporabnikov.
 
 \section{Rezultati meritev} % TODO
 

@@ -4,12 +4,12 @@
 \contentsline {section}{\numberline {1.1}Opis problema}{1}% 
 \contentsline {section}{\numberline {1.2}Realizacija}{2}% 
 \contentsline {subsection}{\numberline {1.2.1}Opazovano okolje}{2}% 
-\contentsline {subsection}{\numberline {1.2.2}Tipi zahtev}{3}% 
+\contentsline {subsection}{\numberline {1.2.2}Tipi zahtev}{2}% 
 \contentsline {subsubsection}{Iskanje specifi\IeC {\v c}ne barve piksla}{3}% 
 \contentsline {subsubsection}{Iskanje piksla, podobnega specifi\IeC {\v c}ni barvi}{3}% 
 \contentsline {subsubsection}{Iskanje slikovnega izseka}{3}% 
 \contentsline {subsection}{\numberline {1.2.3}Amazon Web Services (AWS)}{3}% 
 \contentsline {subsection}{\numberline {1.2.4}Aplikacija}{4}% 
 \contentsline {section}{\numberline {1.3}Uporabljene metrike}{5}% 
-\contentsline {section}{\numberline {1.4}Rezultati meritev}{5}% 
-\contentsline {section}{\numberline {1.5}Plan dela}{5}% 
+\contentsline {section}{\numberline {1.4}Rezultati meritev}{6}% 
+\contentsline {section}{\numberline {1.5}Plan dela}{10}% 
