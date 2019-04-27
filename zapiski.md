@@ -8,38 +8,38 @@ Datoteka za dumpanje informacij o nalogi.
 
 (glej slike Discord)
 
-- slovnične/tipkarske napake (glej slike)
-- navajanje v stilu " [x]." -> " \cite{vir}."
+- slovnične/tipkarske napake (glej slike) => DONE
+- navajanje v stilu " [x]." -> " \cite{vir}." => DONE
 - 1.2.1
-  - redesign slike 1.1
+  - redesign slike 1.1 => DONE
     - odjemalci na levi, storitev na desni
     - vse povezave enosmerne, bolj pregledne
 - 1.2.2
-  - ločila na koncu alinej
-  - dodati to, da ne preišče *vseh* slik, temveč le toliko, dokler ne najde ujemanja
-  - k računanju razlike komentar, kakšna odstopanja se uporablja
-  - k slikovnemu izseku dodat, da se ujemanje gleda glede na odstopanje
+  - ločila na koncu alinej => DONE
+  - dodati to, da ne preišče *vseh* slik, temveč le toliko, dokler ne najde ujemanja => DONE
+  - k računanju razlike komentar, kakšna odstopanja se uporablja => DONE
+  - k slikovnemu izseku dodat, da se ujemanje gleda glede na odstopanje => DONE
 - 1.2.3
-  - podrobnejši opis situacije hranjenja datotek (začasno/trajno, EBS)
-  - opis situacije glede hitrosti interneta na free instancah (kje je omejitev, kako vidimo na AWS)
+  - podrobnejši opis situacije hranjenja datotek (začasno/trajno, EBS) => DONE
+  - opis situacije glede hitrosti interneta na free instancah (kje je omejitev, kako vidimo na AWS) => DONE
 - 1.2.4
-  - dodaj, da je interpretiranje Jave potencialno ozko grlo
-  - vse izpise kode referencirat, tko ku slike
+  - dodaj, da je interpretiranje Jave potencialno ozko grlo => DONE
+  - vse izpise kode referencirat, tko ku slike => DONE
 - 1.4
-  - zakaj odstopanje 86?
-  - pri vseh grafih: oznake na obeh oseh, kadar je prikazan čas s sheme, nujno dodat
-  - zmanjšaj grafe za 15%, da boljše zapolnijo strani
-  - pri vsakem testiranju: iz katere lokacije, hitrost interneta pri odjemalcu, ping, traceroute
-  - bolje opiši pojem "nalaganje" slike
+  - zakaj odstopanje 86? => DONE
+  - pri vseh grafih: oznake na obeh oseh, kadar je prikazan čas s sheme, nujno dodat => DONE
+  - zmanjšaj grafe za 15%, da boljše zapolnijo strani => DONE
+  - pri vsakem testiranju: iz katere lokacije, hitrost interneta pri odjemalcu, ping, traceroute => DONE
+  - bolje opiši pojem "nalaganje" slike => DONE
 
 ### Za dodat
 
 - 1.3
-  - opis baze slik
+  - opis baze slik => DONE
     - kakšne slike (velikost, vsebina, format, loh kak primer)
     - koliko slik
 - 1.4
-  - absolutni časi nalaganja slik
+  - absolutni časi nalaganja slik => DONE
 
 ## Za naredit do 15. 4.
 

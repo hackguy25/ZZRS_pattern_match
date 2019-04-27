@@ -5,7 +5,7 @@ import org.json.*;
 
 public class User extends Thread {
     protected int server_port = 4434;
-    protected String server_ip = "ec2-34-253-11-195.eu-west-1.compute.amazonaws.com";
+    protected String server_ip = "ec2-52-212-203-50.eu-west-1.compute.amazonaws.com";
 
     private static int nexReqId = 1;
     private static int receivedRequests = 0;
@@ -57,8 +57,8 @@ public class User extends Thread {
 
                 // create request
                 int randomColor = 0xff000000 + (int) (Math.random() * Math.pow(2, 24));
-                // distance -> hit rate probability: 49 -> 1%, 86 -> 5%, 108 -> 10%
-                JSONObject req = RequestHandler.createPixelNearRequest(randomColor, 86, nexReqId++);
+                // distance -> hit rate probability: 50 -> 1%, 85 -> 5%, 107 -> 10%
+                JSONObject req = RequestHandler.createPixelNearRequest(randomColor, 50, nexReqId++);
                 out.writeUTF(req.toString());
                 out.flush();
 

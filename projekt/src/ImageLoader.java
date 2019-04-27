@@ -5,8 +5,8 @@ import java.io.IOException;
 
 public class ImageLoader {
 
-    public static final int NUM_LOADED_IMAGES = 20;
-    public static final int NUM_IMAGES = 238;
+    public static final int NUM_LOADED_IMAGES = 540;
+    // public static final int NUM_IMAGES = 238;
     public static final boolean CACHING_ENABLED = false;
 
     public ImageLoader() {
