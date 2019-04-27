@@ -79,6 +79,10 @@ Razlika(RGB_{piksel}, RGB_{iskan}) = \\ = |R_{piksel} - R_{iskan}| + |G_{piksel}
 Storitev prejme slikovni izsek.
 Preišče vse slike dokler ne najde prvega ujemanja podanega izseka z izsekom na neki sliki.
 
+\subsection{Slikovni material}
+
+Za potrebe zgoraj naštetih metod in njihovega testiranja, smo na strežnik naložili 540 slik z JPEG kompresijo, ki smo jim zmanjšali ločljivost na 300 slikovnih pik po širini in 400 slikovnih pik po dolžini za hitrejše procesiranje. Hkrati nam to zagotavlja, da je časovna zahtevnost primerjave približno enaka za ves slikovni material. Prav tako je bil cilj zbrati slike s čim večjo vsebinsko raznolikostjo, saj je to pomembno pri iskanju barve piksla in iskanju piksla podobnega specifični barvi.
+
 \subsection{Amazon Web Services (AWS)}
 
 Za delo z Amazon Web Services~\cite{1_aws_amazon} si moramo ustvariti račun v njihovem sistemu. Po uspešni registraciji si lahko ustvarimo svojo instanco EC2 storitve, ki nam jo Amazon ponuja zastonj za eno leto, pri čemer lahko na mesec porabimo največ 750 ur delovanja ponujenih instanc. Obsežnejša navodila so na voljo tudi na Amazonovi spletni strani~\cite{1_aws_amazon_tutorial}, mi pa to naredimo tako, da se postavimo v AWS Management Console~\cite{1_aws_amazon_console}, kjer lahko izberemo opcijo \emph{Launch a virtual machine with EC2}. Takoj nam konzola ponudi izbiro \emph{slike navideznega diska} - vnaprej priravljenega nabora datotek, ki ga lahko neposredno zaženemo na instanci~\cite{1_aws_amazon_ami}. Izbor možnih slik diska je prikazan na sliki \ref{fig:1_AWS_images}. Za naš projekt izberemo sliko Amazon Linux 2 AMI c.
