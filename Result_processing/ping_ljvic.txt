@@ -1,0 +1,36 @@
+Pinging ec2-52-212-203-50.eu-west-1.compute.amazonaws.com [52.212.203.50] with 32 bytes of data:
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=58ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=58ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=58ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=58ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=60ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=58ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=58ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=58ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=62ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=58ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=58ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=58ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=58ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=58ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=59ms TTL=42
+Reply from 52.212.203.50: bytes=32 time=58ms TTL=42
+
+Ping statistics for 52.212.203.50:
+    Packets: Sent = 30, Received = 30, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 58ms, Maximum = 62ms, Average = 58ms 
