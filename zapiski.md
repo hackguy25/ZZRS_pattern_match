@@ -2,6 +2,28 @@
 
 Datoteka za dumpanje informacij o nalogi.
 
+## Za naredit do 6. 5.
+
+V ponedeljek, 6. 5. si bomo med skupinami izmenjali poročila, da damo in dobimo feedback.
+Poročilo more zato bit nujno oddano enkrat do nedelje dopoldan, da profesor pregleda.
+
+Trenutna ocena je 8, strukturno in slovnično je pretty much OK.
+ref: https://photos.app.goo.gl/95Y4aeHgKFUK6Dv56
+
+### Za popravit
+
+- slovnične/tipkarske napake (glej slike)
+- slike/grafi morajo stilsko spadati k tekstu - oznake naj bodo v podobni pisavi, kot je dokument
+- kjer v tekstu piše "listing" / "v listingu"... => "izpis" / "v izpisu" (konsistentno v celem dokumentu)
+
+### Za dodat
+
+- čim več izmed naštetih testiranj v 1.5, ni nujno vse
+- nujno dodat:
+  - **bremenski test** - povečanje bremena - v našem primeru to pomeni zagon več odjemalcev hkrati in spremljanje Tpaketa
+  - **stresni test** - zmanjšanje resursov - na nek način umetno zmanjšati zmogljivost storitve in spremljat rezultate
+  - zaključek - kaj smo ugotovili, vsaj približno
+
 ## Za naredit do 29. 4. (do 22. poslat vmesno poročilo!)
 
 ### Za popravit
