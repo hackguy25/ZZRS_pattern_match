@@ -11,6 +11,12 @@ with open(in_fname, "r") as f:
 
 # časi zahtev
 times = [i["reqTime"] for i in results]
+
+with open("1_" + out_prefix + "_total_times_unordered.dat", "w") as f:
+    for i in range(len(times)):
+        f.write(str(i+1) + " " + str(times[i]) + "\n")
+
+# časi zahtev urejeni
 times.sort()
 
 with open("1_" + out_prefix + "_total_times.dat", "w") as f:

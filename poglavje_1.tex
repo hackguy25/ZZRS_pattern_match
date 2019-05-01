@@ -65,24 +65,23 @@ Storitev nudi tri tipe iskanj:
 
 Storitev prejme podatek o iskani barvi piksla.
 Zaporedoma preiskuje slike v oblačni podatkovni bazi.
-Takoj ko najde prvo pojavitev iskanega piksla, iskanje ustavi in vrne podatek o tej pojavitvi - zaporedna številka slike in koordinati x ter y najdenega piksla.
+Takoj ko najde prvo pojavitev iskanega piksla, iskanje ustavi in vrne podatek o tej pojavitvi - zaporedna številka slike in koordinati $x$ ter $y$ najdenega piksla.
 Če ne najde nobene pojavitve, preišče vse slike v podatkovni bazi in vrne sporočilo, da piksel ni bil najden.
 
 \subsubsection{Iskanje piksla, podobnega specifični barvi}
 
 Poleg iskane barve storitev prejme od odjemalca še največje dovoljeno odstopanje.
 Zaporedoma preiskuje slike v podatkovni bazi, dokler ne najde prvega piksla, katerega barva se od iskane po komponentah razlikuje za največ toliko, kot določa odstopanje.
-Razlika se izračuna po enačbi \ref{1_eq_odstopanje}:
-
+Razlika se izračuna po enačbi
 \begin{multline} \label{1_eq_odstopanje}
-Razlika(RGB_{piksel}, RGB_{iskan}) = \\ = |R_{piksel} - R_{iskan}| + |G_{piksel} - G_{iskan}| + |B_{piksel} - B_{iskan}|
+Razlika(RGB_{piksel}, RGB_{iskan}) = \\ = |R_{piksel} - R_{iskan}| + |G_{piksel} - G_{iskan}| + |B_{piksel} - B_{iskan}|.
 \end{multline}
 
 Če je iskana barva naključno izbrana, potem lahko za dano odstopanje izračunamo približno verjetnost, da bomo dobili ujemanje z naključnim pikslom.
 Za vsako barvo in odstopanje $n$ obstanja največ $\frac{1}{3}(n^3 + 6n^2 + 14n + 3)$ barv, ki se od iskane barve po komponentah razlikujejo za $n$.
 Vsak barvni kanal lahko zavzema vrednosti od 0 do 255, torej je za izbiro barve na voljo $2^{24} = 16777216$ vrednosti.
 Verjetnost aproksimiramo kot $\frac{n^3 + 6n^2 + 14n + 3}{3 \cdot 16777216}$.
-Nekaj verjetnosti zadetka in ustreznih odstopanj: \\ % fix za preveč nabtio postavitev
+Nekaj verjetnosti zadetka in ustreznih odstopanj: \\ % fix za preveč nabito postavitev
 
 \begin{tabular}{c|c c c c c c c c}
 verjetnost & 0.05\% & 0.1\% & 0.2\% & 0.5\% & 1\% & 2\% & 5\% & 10\% \\
@@ -91,11 +90,12 @@ odstopanje & 18 & 23 & 29 & 39 & 50 & 63 & 85 & 107
 \end{tabular}
 \\
 
-Ampak piksli v slikah niso naključni, boljšo oceno dobimo, če privzamemo, da je barva cele slike \emph{približno} enaka - če ne najdemo ustreznega piksla na začetku slike, potem je velika verjetnost, da ga tudi v preostanku slike ne bomo.
-Tako lahko izračunamo, koliko slik bo v povprečju pregledanih s pomočjo matematičnega upanja po formuli \ref{1_eq_upanje}:
+Ampak piksli v slikah niso naključni.
+Boljšo oceno dobimo, če privzamemo, da je barva cele slike \emph{približno} enaka - če ne najdemo ustreznega piksla na začetku slike, potem je velika verjetnost, da ga tudi v preostanku slike ne bomo.
+Tako lahko izračunamo, koliko slik bo v povprečju pregledanih s pomočjo matematičnega upanja po formuli
 
 \begin{equation} \label{1_eq_upanje}
-E(p) = \sum_{i = 1}^{\text{število slik}} i \cdot (1 - p)^{i - 1} \cdot p = \frac{1}{p}
+E(p) = \sum_{i = 1}^{\text{število slik}} i \cdot (1 - p)^{i - 1} \cdot p = \frac{1}{p} .
 \end{equation}
 
 To pomeni, da bomo pri verjetnost 1\% v povprečju pregledali približno 100 slik pri vsaki zahtevi.
@@ -106,7 +106,7 @@ Izkaže se, da je ta ocena kar dobra v primeru te storitve.
 Storitev prejme slikovni izsek.
 Zaporedoma preiskuje slike v podatkovni bazi, dokler ne najde prvega ujemanja podanega izseka z izsekom na neki sliki.
 Izseka se ujemata, če je barva vsakega piksla danega izseka za največ 7 oddaljena od barve ustreznega piksla na sliki.
-Razlika barv se računa tako kot pri podobni barvi piksla po enačbi \ref{1_eq_odstopanje}.
+Razlika barv se računa tako kot pri podobni barvi piksla (enačba \ref{1_eq_odstopanje}).
 Odstopanje je tu potrebno le zato, ker pri shranjevanju izsekov pride do artifaktov stiskanja~\cite{1_wiki_compression}.
 
 \subsection{Slikovni material}
@@ -140,7 +140,7 @@ V naslednjem koraku izberemo tip instance slike, to je Amazonov način izbire pa
 
 Aplikacija je napisana v programskem jeziku Java, ki je interpretirana preko sprotnega prevajalnika, kar se lahko potencialno izkaže kot ozko grlo. Sestavljata jo odjemalska in strežniška komponenta, ki uporabljata skupne enumeratorje za določanje tipa zahteve. Zahteve sestavlja odjemalec in jih pošlja strežniku, ki te zahteve obdela - začne iskanje v slikah in pripravi prvi najden rezultat. Povezava med strežnikom in odjemalcem je trajna, dokler je eden od njiju ne prekine, kar nam omogoči, da pri meritvah ne upoštevamo časa vzpostavitve povezave. Podatki se prenašajo v obliki JSON, ki vsebuje sekvenčno številko zahteve, tip zahteve in morebitne dodatne podatke, ki so potrebni za obdelavo. V izpisu \ref{lst:JSON_req} je predstavljen primer zahteve v obliki dokumenta JSON, ki jo odjemalec pošlje strežniku.
 
-\begin{lstlisting}[caption={Primer JSON zahteve},label={lst:JSON_req}]
+\begin{lstlisting}[caption={Primer JSON zahteve.},label={lst:JSON_req}]
 {
 	"reqId": 1,
 	"reqType": "PIXEL_NEAR",
@@ -154,7 +154,7 @@ Aplikacija je napisana v programskem jeziku Java, ki je interpretirana preko spr
 
 Strežnik ob prejemu podatkov začne z delom na ustrezni zahtevi ter nato pošlje odgovor klientu s številko zahteve in rezultatom. Odgovor vsebuje tudi čas proceiranja in branja slik. Strežniški del je napisan tako, da lahko paralelno obdeluje več zahtev. V izpisu  \ref{lst:JSON_res} je predstavljen primer odgovora na zahtevo, ki ga strežnik vrne odjemalcu.
 
-\begin{lstlisting}[caption={Primer JSON zahteve},label={lst:JSON_res}]
+\begin{lstlisting}[caption={Primer JSON odgovora.},label={lst:JSON_res}]
 {
 	"reqId": 1,
 	"imageId": 4,
@@ -177,24 +177,12 @@ Podrobneje ga bomo razdelili na čas dostopa do datotečnega sistema (zbirke sli
 
 Zanima nas, kako se storitev odziva na zahteve ob različnih urah. Za potrebe meritev bomo odziv sistema merili ob treh različih časih v dnevu. Želimo izvedeti tudi, kako se časi odgovorov podaljšajo glede na število hkratnih uporabnikov.
 
-\section{Rezultati meritev} % TODO
+\section{Meritve}
 
-Zaradi odločitve,  da bomo testirali tudi z različnih lokacij smo se najprej odločili, da preverimo kakšne zakasnitve (ping) ima posamezen član na različnih lokacijah do strežnika. Rezultati po 30 ponovitvah so prikazani v tabeli \ref{1_tab_ping}. Te razlike v časih pripisujemo predvsem temu dejstvu, da ima vsaka od teh lokacij drugega ponudnika omrežnih storitev in zato naši paketi prepotujejo različne poti in opravijo v povprečju 7 skokov, dokler ne pridejo do skupne točke, ki pa je že v lasti podjetja Amazon Technologies Inc.~\cite{1_ip_location}. Te razlike so pomembne, samo pri merjenju časa, ko se paket nahaja na mreži in niso odvisne od zmogljivosti same storitve.
+Zmogljivost storitve smo merili večkrat.
+Testirali smo hitrost iskanja podobne barve, opazovali smo razlike v hitrosti odziva iz različnih lokacij in ob različnih časih.
 
-\begin{table}[ht]
- \caption{Rezultat orodja \texttt{ping}}
- \label{1_tab_ping}
- \centering
-\begin{tabular}{ |p{3cm}||p{2cm}|p{2cm}|p{2cm}| }
- \hline
- Lokacija&Min [ms]&Max [ms]&Povprečje[ms]\\
- \hline
- Ljubljana Vič   & 58    &62&   58\\
- Postojna &   41  & 41   &41\\
- Vrtojba &42 & 43&  42\\
- \hline
-\end{tabular}
-\end{table}
+\subsection{Poskusno testiranje}
 
 V soboto, 27. aprila 2019 ob 20.37 smo poskusno testirali iskanje piksla v okolici barve.
 Strežniku je bilo zaporedno poslanih 500 zahtev, vsaka je vsebovala naključno izbrano barvo, strežnik pa je iskal piksel z odstopanjem, manjšim ali enakim 50.
@@ -202,11 +190,11 @@ Odstopanje je bilo izbrano tako, da so bili zadetki čim bolj enakomerno razpore
 
 Zahteve je generiral osebni računalnik, nahajajoč se na Viču v Ljubljani.
 Prek brezžičnega omrežja je bil priklopljen na kabelski internet ponudnika A1, ki za zakupljen paket \emph{A1 Kombo L} oglašuje hitrost povezave 40 megabitov na sekundo k uporabniku in 10 megabitov na sekundo od uporabnika.
-Test na strani Speedtest by Ookla te vrednosti potrdi (rezultat testa: \url{https://www.speedtest.net/result/8218379266}).
+Test na strani \emph{Speedtest by Ookla} te vrednosti potrdi (rezultat testa: \url{https://www.speedtest.net/result/8218379266}).
 Čas obhoda paketa od odjemalca do storitve in nazaj je povprečju znašal 62 milisekund.
-Rezultat orodja \texttt{tracert} se nahaja v Listingu \ref{1_lst_tracert}.
+Rezultat orodja \texttt{tracert} se nahaja v izpisu \ref{1_lst_tracert}.
 
-\begin{lstlisting}[caption={Rezultat orodja \texttt{tracert}},label={1_lst_tracert}]
+\begin{lstlisting}[caption={Rezultat orodja \texttt{tracert}.},label={1_lst_tracert}]
 Tracing route to ec2-52-212-203-50.eu-west-1.compute.amazonaws.com [52.212.203.50]
 over a maximum of 30 hops:
 
@@ -241,15 +229,31 @@ over a maximum of 30 hops:
 Trace complete.
 \end{lstlisting}
 
-Celotni časi zahtev ($t_{zahteva}$) so po velikosti urejeni prikazani v diagramu \ref{fig:1_poskusno_total_times}.
-Najhitrejši odziv je znašal 63 milisekunde, najdaljši pa 6778 milisekund.
-V povprečju je čas odziva znašal 587 milisekund.
+Celotni časi zahtev ($t_{zahteva}$) so prikazani na sliki \ref{fig:1_poskusno_total_times_unordered}.
 
 \begin{figure}[H]
 	\centering
 	\scriptsize
-	\begin{tikzpicture}
-		\begin{axis}[xlabel={Število zahtev}, ylabel={$t_{zahteva}$ [ms, naraščajoče]}]
+	\begin{tikzpicture}[scale=1.1]
+		\begin{axis}[xlabel={Zaporedna številka zahteve}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$t_{zahteva}$ [ms]}, ytick={0,1000,...,7000}, minor ytick={0,200,...,7000}, grid=major]
+			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_total_times_unordered.dat};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Diagram celotnih časov zahtev.}
+	\label{fig:1_poskusno_total_times_unordered}
+\end{figure}
+
+Najhitrejši odziv je znašal 63 milisekunde, najdaljši pa 6778 milisekund.
+V povprečju je čas odziva znašal 587 milisekund.
+
+Iz slike \ref{fig:1_poskusno_total_times_unordered} ni enostavno razvidno, kakšna je razporeditev časov zahtev.
+Na sliki \ref{fig:1_poskusno_total_times} so celotni časi zahtev ($t_{zahteva}$) prikazani po velikosti urejeni.
+
+\begin{figure}[H]
+	\centering
+	\scriptsize
+	\begin{tikzpicture}[scale=1.1]
+		\begin{axis}[xlabel={Število zahtev}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$t_{zahteva}$ [ms, naraščajoče]}, ytick={0,1000,...,7000}, minor ytick={0,200,...,7000}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_total_times.dat};
 		\end{axis}
 	\end{tikzpicture}
@@ -257,15 +261,17 @@ V povprečju je čas odziva znašal 587 milisekund.
 	\label{fig:1_poskusno_total_times}
 \end{figure}
 
-Časi paketa na mreži ($t_{mreza}$) so po velikosti urejeni prikazani v diagramu \ref{fig:1_poskusno_transfer_times}.
+Iz slike \ref{fig:1_poskusno_total_times} je lažje razvidno, da je večina časov zahtev manj kot 500 milisekund, le peščica jih preseže 3500 milisekund.
+
+Časi paketa na mreži ($t_{mreza}$) so po velikosti urejeni prikazani na sliki \ref{fig:1_poskusno_transfer_times}.
 Najhitrejši čas obhoda je znašal 60 milisekund, najdaljši pa 395 milisekund.
 V povprečju je čas paketa na mreži znašal 64 milisekund, v 499 izmed 500 primerov ni presegel 78 milisekund.
 
 \begin{figure}[H]
 	\centering
 	\scriptsize
-	\begin{tikzpicture}
-		\begin{axis}[xlabel={Število zahtev}, ylabel={$t_{mreza}$ [ms, naraščajoče]}]
+	\begin{tikzpicture}[scale=1.1]
+		\begin{axis}[xlabel={Število zahtev}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$t_{mreza}$ [ms, naraščajoče]}, ytick={0,100,...,400}, minor ytick={0,10,...,400}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_transfer_times.dat};
 		\end{axis}
 	\end{tikzpicture}
@@ -275,14 +281,14 @@ V povprečju je čas paketa na mreži znašal 64 milisekund, v 499 izmed 500 pri
 
 V splošnem nas zanima, koliko časa vzame nalaganje slik z diska v pomnilnik ($t_{baza}$), kolikšen del procesiranja zavzame nalaganje slik ($\frac{t_{baza}}{t_{streznik}}$) in koliko časa v povprečju zavzame nalaganje ene slike v pomnilnik ($\frac{t_{baza}}{N_{nalozenih}}$).
 
-Časi, ki jih storitev porabi za nalaganje slik v pomnilnik, so po velikosti urejeni prikazani v diagramu \ref{fig:1_poskusno_loading_time_absolute}.
-Zavzemajo vrednosti med 1 in 4008 milisekund, v povprečju 201 milisekundo.
+Časi, ki jih storitev porabi za nalaganje slik v pomnilnik, so po velikosti urejeni prikazani na sliki \ref{fig:1_poskusno_loading_time_absolute}.
+Zavzemajo vrednosti med 1 in 4008 milisekund, v povprečju pa 201 milisekundo.
 
 \begin{figure}[H]
 	\centering
 	\scriptsize
-	\begin{tikzpicture}
-		\begin{axis}[xlabel={Število zahtev}, ylabel={$\frac{t_{baza}}{t_{streznik}}$ [ms, naraščajoče]}]
+	\begin{tikzpicture}[scale=1.1]
+		\begin{axis}[xlabel={Število zahtev}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$t_{baza}$ [ms, naraščajoče]}, ytick={0,1000,...,4000}, minor ytick={0,200,...,4000}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_loading_time_absolute.dat};
 		\end{axis}
 	\end{tikzpicture}
@@ -290,14 +296,14 @@ Zavzemajo vrednosti med 1 in 4008 milisekund, v povprečju 201 milisekundo.
 	\label{fig:1_poskusno_loading_time_absolute}
 \end{figure}
 
-Odstotki časa, ki ga storitev porabi za nalaganje slik v pomnilnik, so po velikosti urejeni prikazani v diagramu \ref{fig:1_poskusno_loading_time_percentage}.
-Zavzemajo vrednosti med 16 in 100 odstotkov, v povprečju 36 odstotkov.
+Odstotki časa, ki ga storitev porabi za nalaganje slik v pomnilnik, so po velikosti urejeni prikazani na sliki \ref{fig:1_poskusno_loading_time_percentage}.
+Zavzemajo vrednosti med 16 in 100 odstotkov, v povprečju pa 36 odstotkov.
 
 \begin{figure}[H]
 \centering
 \scriptsize
-	\begin{tikzpicture}
-		\begin{axis}[xlabel={Število zahtev}, ylabel={Delež časa [odstotek]}]
+	\begin{tikzpicture}[scale=1.1]
+		\begin{axis}[xlabel={Število zahtev}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$\frac{t_{baza}}{t_{streznik}}$ [odstotek, naraščajoče]}, ytick={0,20,...,100}, minor ytick={0,2,...,100}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_loading_time_percentage.dat};
 		\end{axis}
 	\end{tikzpicture}
@@ -313,14 +319,35 @@ V 493 izmed 500 primerov ni presegel 7 milisekund.
 \begin{figure}[H]
 \centering
 \scriptsize
-	\begin{tikzpicture}
-		\begin{axis}[xlabel={Zaporedna številka zahteve}, ylabel={Čas nalaganja 1 slike [ms]}]
+	\begin{tikzpicture}[scale=1.1]
+		\begin{axis}[xlabel={Zaporedna številka zahteve}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={Čas nalaganja 1 slike [ms]}, ytick={0,50,...,200}, minor ytick={0,10,...,200}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_pic_loading_time.dat};
 		\end{axis}
 	\end{tikzpicture}
 \caption{Diagram povprečnih časov nalaganja ene slike z diska v pomnilnik, v vrstnem redu zahtev.}
 \label{fig:1_poskusno_pic_loading_time}
 \end{figure}
+
+\subsection{Primerjava odzivov na zahteve iz različnih lokacij}
+
+Zaradi odločitve, da bomo testirali tudi z različnih lokacij, smo se najprej odločili, da preverimo kakšne zakasnitve (ping) ima posamezen član na različnih lokacijah do strežnika. Rezultati po 30 ponovitvah so prikazani v tabeli \ref{1_tab_ping}. Te razlike v časih pripisujemo predvsem temu dejstvu, da ima vsaka od teh lokacij drugega ponudnika omrežnih storitev in zato naši paketi prepotujejo različne poti in opravijo v povprečju 7 skokov, dokler ne pridejo do skupne točke, ki pa je že v lasti podjetja Amazon Technologies Inc.~\cite{1_ip_location}. Te razlike so pomembne samo pri merjenju časa, ko se paket nahaja na mreži, in niso odvisne od zmogljivosti same storitve.
+
+\begin{table}[ht]
+ \caption{Rezultat orodja \texttt{ping}}
+ \label{1_tab_ping}
+ \centering
+\begin{tabular}{ |p{3cm}||p{2cm}|p{2cm}|p{2cm}| }
+ \hline
+ Lokacija&Min [ms]&Max [ms]&Povprečje[ms]\\
+ \hline
+ Ljubljana Vič   & 58    &62&   58\\
+ Postojna &   41  & 41   &41\\
+ Vrtojba &42 & 43&  42\\
+ \hline
+\end{tabular}
+\end{table}
+
+
 
 \section{Plan dela}
 
