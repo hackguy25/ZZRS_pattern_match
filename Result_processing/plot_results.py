@@ -7,6 +7,9 @@ def avg(l):
 with open("../projekt/test.out", "r") as f:
     results = json.loads(f.read())
 
+plt.rc("text", usetex = True)
+plt.rc("font", family = "serif")
+
 # časi zahtev
 times = [i["reqTime"] for i in results]
 times.sort()

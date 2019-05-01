@@ -246,10 +246,15 @@ Najhitrejši odziv je znašal 63 milisekunde, najdaljši pa 6778 milisekund.
 V povprečju je čas odziva znašal 587 milisekund.
 
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.6]{Img/1_poskusno_total_times.pdf}
-\caption{Diagram celotnih časov zahtev, urejenih naraščajoče po velikosti.}
-\label{fig:1_poskusno_total_times}
+	\centering
+	\scriptsize
+	\begin{tikzpicture}
+		\begin{axis}[xlabel={Število zahtev}, ylabel={$t_{zahteva}$ [ms, naraščajoče]}]
+			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_total_times.dat};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Diagram celotnih časov zahtev, urejenih naraščajoče po velikosti.}
+	\label{fig:1_poskusno_total_times}
 \end{figure}
 
 Časi paketa na mreži ($t_{mreza}$) so po velikosti urejeni prikazani v diagramu \ref{fig:1_poskusno_transfer_times}.
@@ -257,10 +262,15 @@ Najhitrejši čas obhoda je znašal 60 milisekund, najdaljši pa 395 milisekund.
 V povprečju je čas paketa na mreži znašal 64 milisekund, v 499 izmed 500 primerov ni presegel 78 milisekund.
 
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.6]{Img/1_poskusno_transfer_times.pdf}
-\caption{Diagram časov obhoda paketa, urejenih naraščajoče po velikosti.}
-\label{fig:1_poskusno_transfer_times}
+	\centering
+	\scriptsize
+	\begin{tikzpicture}
+		\begin{axis}[xlabel={Število zahtev}, ylabel={$t_{mreza}$ [ms, naraščajoče]}]
+			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_transfer_times.dat};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Diagram časov obhoda paketa, urejenih naraščajoče po velikosti.}
+	\label{fig:1_poskusno_transfer_times}
 \end{figure}
 
 V splošnem nas zanima, koliko časa vzame nalaganje slik z diska v pomnilnik ($t_{baza}$), kolikšen del procesiranja zavzame nalaganje slik ($\frac{t_{baza}}{t_{streznik}}$) in koliko časa v povprečju zavzame nalaganje ene slike v pomnilnik ($\frac{t_{baza}}{N_{nalozenih}}$).
@@ -269,10 +279,15 @@ V splošnem nas zanima, koliko časa vzame nalaganje slik z diska v pomnilnik ($
 Zavzemajo vrednosti med 1 in 4008 milisekund, v povprečju 201 milisekundo.
 
 \begin{figure}[H]
-\centering
-\includegraphics[scale=0.6]{Img/1_poskusno_loading_time_absolute.pdf}
-\caption{Diagram časov, porabljenih za nalaganje slik z diska v pomnilnik, urejenih naraščajoče po velikosti.}
-\label{fig:1_poskusno_loading_time_absolute}
+	\centering
+	\scriptsize
+	\begin{tikzpicture}
+		\begin{axis}[xlabel={Število zahtev}, ylabel={$\frac{t_{baza}}{t_{streznik}}$ [ms, naraščajoče]}]
+			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_loading_time_absolute.dat};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Diagram časov, porabljenih za nalaganje slik z diska v pomnilnik, urejenih naraščajoče po velikosti.}
+	\label{fig:1_poskusno_loading_time_absolute}
 \end{figure}
 
 Odstotki časa, ki ga storitev porabi za nalaganje slik v pomnilnik, so po velikosti urejeni prikazani v diagramu \ref{fig:1_poskusno_loading_time_percentage}.
@@ -280,7 +295,12 @@ Zavzemajo vrednosti med 16 in 100 odstotkov, v povprečju 36 odstotkov.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.6]{Img/1_poskusno_loading_time_percentage.pdf}
+\scriptsize
+	\begin{tikzpicture}
+		\begin{axis}[xlabel={Število zahtev}, ylabel={Delež časa [odstotek]}]
+			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_loading_time_percentage.dat};
+		\end{axis}
+	\end{tikzpicture}
 \caption{Diagram odstotkov časa, porabljenega za nalaganje slik z diska v pomnilnik, urejenih naraščajoče po velikosti.}
 \label{fig:1_poskusno_loading_time_percentage}
 \end{figure}
@@ -292,7 +312,12 @@ V 493 izmed 500 primerov ni presegel 7 milisekund.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.6]{Img/1_poskusno_pic_loading_time.pdf}
+\scriptsize
+	\begin{tikzpicture}
+		\begin{axis}[xlabel={Zaporedna številka zahteve}, ylabel={Čas nalaganja 1 slike [ms]}]
+			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_pic_loading_time.dat};
+		\end{axis}
+	\end{tikzpicture}
 \caption{Diagram povprečnih časov nalaganja ene slike z diska v pomnilnik, v vrstnem redu zahtev.}
 \label{fig:1_poskusno_pic_loading_time}
 \end{figure}
