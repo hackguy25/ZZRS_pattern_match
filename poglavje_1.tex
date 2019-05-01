@@ -179,6 +179,23 @@ Zanima nas, kako se storitev odziva na zahteve ob različnih urah. Za potrebe me
 
 \section{Rezultati meritev} % TODO
 
+Zaradi odločitve,  da bomo testirali tudi z različnih lokacij smo se najprej odločili, da preverimo kakšne zakasnitve (ping) ima posamezen član na različnih lokacijah do strežnika. Rezultati po 30 ponovitvah so prikazani v tabeli \ref{1_tab_ping}. Te razlike v časih pripisujemo predvsem temu dejstvu, da ima vsaka od teh lokacij drugega ponudnika omrežnih storitev in zato naši paketi prepotujejo različne poti in opravijo v povprečju 7 skokov, dokler ne pridejo do skupne točke, ki pa je že v lasti podjetja Amazon Technologies Inc.~\cite{1_ip_location}. Te razlike so pomembne, samo pri merjenju časa, ko se paket nahaja na mreži in niso odvisne od zmogljivosti same storitve.
+
+\begin{table}[ht]
+ \caption{Rezultat orodja \texttt{ping}}
+ \label{1_tab_ping}
+ \centering
+\begin{tabular}{ |p{3cm}||p{2cm}|p{2cm}|p{2cm}| }
+ \hline
+ Lokacija&Min [ms]&Max [ms]&Povprečje[ms]\\
+ \hline
+ Ljubljana Vič   & 58    &62&   58\\
+ Postojna &   41  & 41   &41\\
+ Vrtojba &42 & 43&  42\\
+ \hline
+\end{tabular}
+\end{table}
+
 V soboto, 27. aprila 2019 ob 20.37 smo poskusno testirali iskanje piksla v okolici barve.
 Strežniku je bilo zaporedno poslanih 500 zahtev, vsaka je vsebovala naključno izbrano barvo, strežnik pa je iskal piksel z odstopanjem, manjšim ali enakim 50.
 Odstopanje je bilo izbrano tako, da so bili zadetki čim bolj enakomerno razporejeni po slikah v podatkovni bazi.
