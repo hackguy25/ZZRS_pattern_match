@@ -368,15 +368,34 @@ Povprečni časi glede na uro so prikazani na sliki \ref{fig:1_hourly_response_t
 
 V grobem se storitev odziva približno enako skozi dan, dopoldan in zgodaj zvečer nekoliko hitreje kot pozno popoldan in pozno zvečer.
 
+\subsection{Stresni test - primerjava odzivov na zahteve pri zmanjšani količini delovnega pomnilnika}
+
+Kot izvedbo stresnega testa smo umetno zmanjševali količino delovnega pomnilnika, ki ga je storitev imela na voljo.
+To smo storili tako, da smo pred testiranjem zagnali program, ki je alociral poljubno količino delovnega pomnilnika in ga tako odvzel storitvi.
+Začeli smo z vsem pomnilnikom (1 GB), nato pa ga postopoma zmeraj več alocirali v korakih po 100 MB.
+Ustavili smo se pri 600 MB alociranega pomnilnika, pri 700 MB je strežnik po nekaj zahtevah zmrznil in zahteval ponovni zagon programske opreme (vnost \texttt{Ctrl+C} v terminalu).
+Povprečni časi glede na količino umetno odvzetega pomnilnika so prikazani na sliki \ref{fig:1_stress_test_time_averages}.
+
+\begin{figure}[H]
+\centering
+\scriptsize
+	\begin{tikzpicture}[scale=1.1]
+		\begin{axis}[xlabel={Količina umetno odvzetega pomnilnika [MB]}, xtick={0,100,...,600}, ymin = 0, ymax = 1000, ylabel={Povprečen čas odgovora [ms]}, ytick={0,100,...,1000}, minor ytick={0,20,...,1000}, grid=major]
+			\addplot[mark=none] table{Result_processing/02_05_stresni_test/avgs.dat};
+		\end{axis}
+	\end{tikzpicture}
+\caption{Diagram povprečnih časov odziva glede na količino umetno odvzetega pomnilnika.}
+\label{fig:1_stress_test_time_averages}
+\end{figure}
+
+Opazili smo, da se storitev odziva približno enako, ne glede na količino razpoložljivega pomnilnika, v kolikor je na voljo vsaj približno 400 MB delovnega pomnilnika.
+
 \section{Plan dela}
 
 \begin{itemize}
 \item testiranje ostalih dveh iskanj
-\item testiranje iz različnih lokacij
-\item testiranje ob različnih časih
 \item iskanje barve z odstopanjem: testiranje razlik med odstopanji
 \item testiranje z več sočasnimi uporabniki
-\item določitev orodij - avtomatizacija merjenja, zbiranje rezultatov
 \item premislek o skalabilnosti
 \end{itemize}
 
