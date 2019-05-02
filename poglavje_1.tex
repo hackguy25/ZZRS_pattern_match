@@ -311,7 +311,7 @@ Zavzemajo vrednosti med 16 in 100 odstotkov, v povprečju pa 36 odstotkov.
 \label{fig:1_poskusno_loading_time_percentage}
 \end{figure}
 
-Povprečne vrednosti časa nalaganja 1 slike so prikazani v diagramu \ref{fig:1_poskusno_pic_loading_time}.
+Povprečne vrednosti časa nalaganja 1 slike so prikazani na sliki \ref{fig:1_poskusno_pic_loading_time}.
 Vrednosti so izračunane kot količnik časa nalaganja slik s številom preiskanih slik pri posamezni zahtevi.
 Zavzemajo vrednosti med 1 in 200 milisekund, v povprečju 4 milisekunde.
 V 493 izmed 500 primerov ni presegel 7 milisekund.
@@ -347,7 +347,26 @@ Zaradi odločitve, da bomo testirali tudi z različnih lokacij, smo se najprej o
 \end{tabular}
 \end{table}
 
+\subsection{Primerjava odzivov na zahteve ob različnih časih}
 
+Kvaliteta storitve je odvisna tudi od zmožnosti odzivanja ob različnih časih.
+To smo testirali tako, da smo v urnih intervalih pošiljali zaporedno 500 zahtev tipa iskanja piksla, podobnega specifični barvi.
+Vsaka zahteva je vsebovala naključno izbrano barvo, strežnik pa je iskal piksel z odstopanjem, manjšim ali enakim 50.
+Povprečni časi glede na uro so prikazani na sliki \ref{fig:1_hourly_response_time_averages}.
+
+\begin{figure}[H]
+\centering
+\scriptsize
+	\begin{tikzpicture}[scale=1.1]
+		\begin{axis}[xlabel={Ura}, xtick={0,3,...,24}, ymin = 0, ymax = 1000, ylabel={Povprečen čas odgovora [ms]}, ytick={0,100,...,1000}, minor ytick={0,20,...,1000}, grid=major]
+			\addplot[mark=none] table{Result_processing/02_05_razlicne_ure/avgs.dat};
+		\end{axis}
+	\end{tikzpicture}
+\caption{Diagram povprečnih časov odziva glede na čas v dnevu.}
+\label{fig:1_hourly_response_time_averages}
+\end{figure}
+
+V grobem se storitev odziva približno enako skozi dan, dopoldan in zgodaj zvečer nekoliko hitreje kot pozno popoldan in pozno zvečer.
 
 \section{Plan dela}
 

@@ -14,7 +14,7 @@ ref: https://photos.app.goo.gl/95Y4aeHgKFUK6Dv56
 
 - slovnične/tipkarske napake (glej slike)
 - slike/grafi morajo stilsko spadati k tekstu - oznake naj bodo v podobni pisavi, kot je dokument
-- kjer v tekstu piše "listing" / "v listingu"... => "izpis" / "v izpisu" (konsistentno v celem dokumentu)
+- kjer v tekstu piše "listing" / "v listingu"... => "izpis" / "v izpisu" (konsistentno v celem dokumentu) => DONE
 
 ### Za dodat
 
