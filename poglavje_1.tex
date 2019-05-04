@@ -330,7 +330,7 @@ V 493 izmed 500 primerov ni presegel 7 milisekund.
 
 \subsection{Primerjava odzivov na zahteve iz različnih lokacij}
 
-Zaradi odločitve, da bomo testirali tudi z različnih lokacij, smo se najprej odločili, da preverimo kakšne zakasnitve (ping) ima posamezen član na različnih lokacijah do strežnika. Rezultati po 30 ponovitvah so prikazani v tabeli \ref{1_tab_ping}. Te razlike v časih pripisujemo predvsem temu dejstvu, da ima vsaka od teh lokacij drugega ponudnika omrežnih storitev in zato naši paketi prepotujejo različne poti in opravijo v povprečju 7 skokov, dokler ne pridejo do skupne točke, ki pa je že v lasti podjetja Amazon Technologies Inc.~\cite{1_ip_location}. Te razlike so pomembne samo pri merjenju časa, ko se paket nahaja na mreži, in niso odvisne od zmogljivosti same storitve.
+Zaradi odločitve, da bomo testirali tudi z različnih lokacij, smo se najprej odločili, da preverimo kakšne zakasnitve (ping) ima posamezen član na različnih lokacijah do storitve. Rezultati po 30 ponovitvah so prikazani v tabeli \ref{1_tab_ping}. Te razlike v časih pripisujemo predvsem temu dejstvu, da ima vsaka od teh lokacij drugega ponudnika omrežnih storitev in zato naši paketi prepotujejo različne poti. V povprečju opravijo 7 skokov, dokler ne pridejo do skupne točke, ki je v lasti podjetja Amazon Technologies Inc.~\cite{1_ip_location}. Te razlike so pomembne samo pri merjenju časa, ko se paket nahaja na mreži, in niso odvisne od zmogljivosti same storitve.
 
 \begin{table}[ht]
  \caption{Rezultat orodja \texttt{ping}}
@@ -338,14 +338,37 @@ Zaradi odločitve, da bomo testirali tudi z različnih lokacij, smo se najprej o
  \centering
 \begin{tabular}{ |p{3cm}||p{2cm}|p{2cm}|p{2cm}| }
  \hline
- Lokacija&Min [ms]&Max [ms]&Povprečje[ms]\\
+ Lokacija & Min [ms] & Max [ms] & Povprečje [ms] \\
  \hline
- Ljubljana Vič   & 58    &62&   58\\
- Postojna &   41  & 41   &41\\
- Vrtojba &42 & 43&  42\\
+ Ljubljana Vič & 58 & 62 & 58 \\
+ Postojna      & 41 & 41 & 41 \\
+ Vrtojba       & 42 & 43 & 42 \\
  \hline
 \end{tabular}
 \end{table}
+
+Testirali smo iskanje piksla, podobnega specifični barvi.
+Poslali smo 500 zahtev.
+Vsaka je vsebovala naključno barvo, strežnik pa je iskal piksel z odstopanjem, manjšim ali enakim 50.
+Minimalni, maksimalni in povprečni časi zahtev iz vsake lokacije so prikazani v tabeli \ref{1_tab_loc_times}.
+
+\begin{table}[ht]
+ \caption{Časi zahtev, poslanih iz različnih lokacij.}
+ \label{1_tab_loc_times}
+ \centering
+\begin{tabular}{ |p{3cm}||p{2cm}|p{2cm}|p{2cm}| }
+ \hline
+ Lokacija & Min [ms] & Max [ms] & Povprečje [ms] \\
+ \hline
+ Ljubljana Vič & 63 & 6778 & 587 \\
+ Postojna      & 42 & 6850 & 624 \\
+ Vrtojba       & 44 & 6570 & 549 \\
+ \hline
+\end{tabular}
+\end{table}
+
+Minimalni časi zahtev se z zanemarljivim odstopanjem ujemajo z izmerjenimi zakasnitvami do storitve.
+Variacijo pri maksimalnih in povprečnih časih zato pripisujemo nakjučni izbiri barve v zahtevah.
 
 \subsection{Primerjava odzivov na zahteve ob različnih časih}
 
