@@ -129,7 +129,7 @@ Za delo z Amazon Web Services~\cite{1_aws_amazon} si moramo ustvariti račun v n
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{Img/1_AWS_images.png}
+    \includegraphics[scale=0.32]{Img/1_AWS_images.png}
     \caption{Slike navideznih diskov za izdelavo virtualke.}
     \label{fig:1_AWS_images}
 \end{figure}
@@ -396,7 +396,7 @@ V grobem se storitev odziva približno enako skozi dan, dopoldan in zgodaj zveč
 Kot izvedbo stresnega testa smo umetno zmanjševali količino delovnega pomnilnika, ki ga je storitev imela na voljo.
 To smo storili tako, da smo pred testiranjem zagnali program, ki je alociral poljubno količino delovnega pomnilnika in ga tako odvzel storitvi.
 Začeli smo z vsem pomnilnikom (1 GB), nato pa ga postopoma zmeraj več alocirali v korakih po 100 MB.
-Ustavili smo se pri 600 MB alociranega pomnilnika, pri 700 MB je strežnik po nekaj zahtevah zmrznil in zahteval ponovni zagon programske opreme (vnost \texttt{Ctrl+C} v terminalu).
+Ustavili smo se pri 600 MB alociranega pomnilnika, pri 700 MB je strežnik po nekaj zahtevah zmrznil in zahteval ponovni zagon programske opreme (vnos \texttt{Ctrl+C} v terminalu).
 Povprečni časi glede na količino umetno odvzetega pomnilnika so prikazani na sliki \ref{fig:1_stress_test_time_averages}.
 
 \begin{figure}[H]
@@ -413,13 +413,61 @@ Povprečni časi glede na količino umetno odvzetega pomnilnika so prikazani na 
 
 Opazili smo, da se storitev odziva približno enako, ne glede na količino razpoložljivega pomnilnika, v kolikor je na voljo vsaj približno 400 MB delovnega pomnilnika.
 
-\section{Plan dela}
+\subsection{Bremenski test - primerjava odzivov na zahteve pri povečanemu število sočasnih uporabnikov}
 
-\begin{itemize}
-\item testiranje ostalih dveh iskanj
-\item iskanje barve z odstopanjem: testiranje razlik med odstopanji
-\item testiranje z več sočasnimi uporabniki
-\item premislek o skalabilnosti
-\end{itemize}
+Za izvedbo bremenskega testa smo primerjali čase odzivov storitve pri enem uporabniku in čase odzivov pri treh sočasnih uporabnikih.
+Testirali smo iskanje piksla, podobnega specifični barvi.
+Za simulacijo treh sočasnih uporabnikov smo iz treh lokacij (Vič, Postojna in Vrtojba) hkrati zagnali iskanje.
+Časi so bili merjeni na Viču.
+Minimalni, maksimalni in povprečni časi zahtev enega in treh sočasnih uporabnikov so prikazani v tabeli \ref{1_tab_multi_user}.
+
+\begin{table}[ht]
+ \caption{Časi zahtev glede na število sočasnih uporabnikov.}
+ \label{1_tab_multi_user}
+ \centering
+\begin{tabular}{ |p{2.5cm}||p{2cm}|p{2cm}|p{2cm}| }
+ \hline
+ Število uporabnikov & Min [ms] & Max [ms] & Povprečje [ms] \\
+ \hline
+ 1 & 58 &  6551 &  662 \\
+ 3 & 58 & 23072 & 1960 \\
+ \hline
+\end{tabular}
+\end{table}
+
+Minimalni čas je v obeh primerih enak.
+Je le čas, ki ga paket porabi od uporabnika do storitve in nazaj.
+Povprečni čas je v primeru treh uporabnikov približno trikrat daljši kot v primeru enega.
+To si lahko razlagamo na sledeči način:
+Storitev popolnoma zaposli že en uporabnik.
+Če imamo tri hkratne uporabnike, mora potemtakem storitev vsakemu nameniti eno tretjino svoje računske moči.
+Povprečen čas odziva je zato trikrat daljši.
+Maksimalni čas je težje obrazložiti.
+V primeru treh uporabnikov je 3,5-krat daljši kot pri enem.
+Sklepamo, da smo naleteli na neznano ozko grlo, za natančnejšo določitev regresije bi morali natančneje opazovati obnašanje storitve pri več uporabnikih in določiti, kateri del obdelave povzroči to upočasnitev.
+
+%\section{Plan dela}
+%
+%\begin{itemize}
+%\item testiranje ostalih dveh iskanj
+%\item iskanje barve z odstopanjem: testiranje razlik med odstopanji
+%\item testiranje z več sočasnimi uporabniki
+%\item premislek o skalabilnosti
+%\end{itemize}
+
+\section{Zaključek}
+
+Platforma Amazon Elastic Cloud ponuja zanimivo brezplačno možnost za lansiranje enostavne spletne storitve.
+Sloni na razsežni oblačni infrastrukturi podjetja Amazon, kar zagotavlja hitre odzivne čase ne glede na lokacijo uporabnika in čas v dnevu, kar je razvidno iz naših testov.
+Ker so osnovne enote platforme strežniki, na katerih lahko teče odprtokodna programska oprema, osnovana na jedru Linux, je snovanje in izvajanje programske opreme enostavno in dobro podprto.
+
+Največja težava, s katero se mora razvijalec spopasti, je nizka zmogljivost brezplačnih resursov, ki so mu na voljo.
+Že enostavna storitev hitro zasede 1 jedro in 1 GB delovnega pomnilnika, poleg tega pa je treba pametno izkoristiti 30 GB navideznega diskovnega prostora, ki je na voljo brez plačila.
+Amazon nam seveda rade volje ponudi boljše, a ne zastonj.
+Virtualni strežnik z dvemi jedri, 4 GB delovnega pomnilnika in 100 GB navideznega diskovnega prostora stane 23 evrov mesečno za najem~\cite{1_aws_pricing}, torej mora razvijalec šteti tudi profitabilnost med svoje cilje.
+
+Uspeh storitev temelji na več faktorjih.
+Vsekakor je zanesljivost infrastrukture zelo pomemben del.
+Tu Amazon Elastic Cloud zadosti vsaj osnovne potrebe, obljublja pa še veliko več, a ne brez plačila.
 
 \inputencoding{cp1250}
