@@ -111,7 +111,7 @@ Odstopanje je tu potrebno le zato, ker pri shranjevanju izsekov pride do artifak
 
 \subsection{Slikovni material}
 
-Za potrebe zgoraj naštetih metod in njihovega testiranja smo na strežnik naložili 540 slik v JPEG formatu, ki smo jim zmanjšali velikost na 300 slikovnih pik po širini in 400 slikovnih pik po dolžini ali obratno za hitrejše procesiranje.
+Za potrebe zgoraj naštetih metod in njihovega testiranja smo na strežnik naložili 540 slik v JPEG formatu, ki smo jim zmanjšali velikost na 300 pikslov po širini in 400 pikslov po dolžini ali obratno za hitrejše procesiranje.
 Hkrati nam to zagotavlja, da je časovna zahtevnost primerjave približno enaka za ves slikovni material.
 Prav tako je bil cilj zbrati slike s čim večjo vsebinsko raznolikostjo, saj je to pomembno pri iskanju barve piksla in iskanju piksla podobnega specifični barvi.
 Nekaj primerov slik se nahaja na sliki \ref{fig:1_sample_images}.
@@ -185,7 +185,8 @@ Testirali smo hitrost iskanja podobne barve, opazovali smo razlike v hitrosti od
 \subsection{Poskusno testiranje}
 
 V soboto, 27. aprila 2019 ob 20.37 smo poskusno testirali iskanje piksla v okolici barve.
-Strežniku je bilo zaporedno poslanih 500 zahtev, vsaka je vsebovala naključno izbrano barvo, strežnik pa je iskal piksel z odstopanjem, manjšim ali enakim 50.
+Strežniku je bilo poslanih 500 zahtev, vsaka je vsebovala naključno izbrano barvo, strežnik pa je iskal piksel z odstopanjem, manjšim ali enakim 50.
+Zahteve so bile poslane zaporedno, po oddaji zahteve je odjemalec počakal na odgovor strežnika, preden je poslal naslednjo.
 Odstopanje je bilo izbrano tako, da so bili zadetki čim bolj enakomerno razporejeni po slikah v podatkovni bazi.
 
 Zahteve je generiral osebni računalnik, nahajajoč se na Viču v Ljubljani.
@@ -350,10 +351,11 @@ Zaradi odločitve, da bomo testirali tudi z različnih lokacij, smo se najprej o
 Testirali smo iskanje piksla, podobnega specifični barvi.
 Poslali smo 500 zahtev.
 Vsaka je vsebovala naključno barvo, strežnik pa je iskal piksel z odstopanjem, manjšim ali enakim 50.
+Zahteve so bile poslane zaporedno, po oddaji zahteve je odjemalec počakal na odgovor strežnika, preden je poslal naslednjo.
 Minimalni, maksimalni in povprečni časi zahtev iz vsake lokacije so prikazani v tabeli \ref{1_tab_loc_times}.
 
 \begin{table}[ht]
- \caption{Časi zahtev, poslanih iz različnih lokacij.}
+ \caption{Časi zahtev $t_{zahteva}$, poslanih iz različnih lokacij.}
  \label{1_tab_loc_times}
  \centering
 \begin{tabular}{ |p{3cm}||p{2cm}|p{2cm}|p{2cm}| }
@@ -369,23 +371,25 @@ Minimalni, maksimalni in povprečni časi zahtev iz vsake lokacije so prikazani 
 
 Minimalni časi zahtev se z zanemarljivim odstopanjem ujemajo z izmerjenimi zakasnitvami do storitve.
 Variacijo pri maksimalnih in povprečnih časih zato pripisujemo nakjučni izbiri barve v zahtevah.
+Upoštevajoč to sklepamo, da ima lokacija odjemalca zanemarljiv pomen pri zmogljivosti storitve.
 
 \subsection{Primerjava odzivov na zahteve ob različnih časih}
 
 Kvaliteta storitve je odvisna tudi od zmožnosti odzivanja ob različnih časih.
-To smo testirali tako, da smo v urnih intervalih pošiljali zaporedno 500 zahtev tipa iskanja piksla, podobnega specifični barvi.
+To smo testirali tako, da smo v urnih intervalih pošiljali 500 zahtev tipa iskanja piksla, podobnega specifični barvi.
 Vsaka zahteva je vsebovala naključno izbrano barvo, strežnik pa je iskal piksel z odstopanjem, manjšim ali enakim 50.
-Povprečni časi glede na uro so prikazani na sliki \ref{fig:1_hourly_response_time_averages}.
+Zahteve so bile poslane zaporedno, po oddaji zahteve je odjemalec počakal na odgovor strežnika, preden je poslal naslednjo.
+Povprečni časi $t_{zahteva}$ glede na uro so prikazani na sliki \ref{fig:1_hourly_response_time_averages}.
 
 \begin{figure}[H]
 \centering
 \scriptsize
 	\begin{tikzpicture}[scale=1.1]
-		\begin{axis}[xlabel={Ura}, xtick={0,3,...,24}, ymin = 0, ymax = 1000, ylabel={Povprečen čas odgovora [ms]}, ytick={0,100,...,1000}, minor ytick={0,20,...,1000}, grid=major]
+		\begin{axis}[xlabel={Ura}, xtick={0,3,...,24}, ymin = 0, ymax = 1000, ylabel={$t_{zahteva}$ [povprečno, ms]}, ytick={0,100,...,1000}, minor ytick={0,20,...,1000}, grid=major]
 			\addplot[mark=none] table{Result_processing/02_05_razlicne_ure/avgs.dat};
 		\end{axis}
 	\end{tikzpicture}
-\caption{Diagram povprečnih časov odziva glede na čas v dnevu.}
+\caption{Diagram povprečnih časov odziva $t_{zahteva}$ glede na čas v dnevu.}
 \label{fig:1_hourly_response_time_averages}
 \end{figure}
 
@@ -403,11 +407,11 @@ Povprečni časi glede na količino umetno odvzetega pomnilnika so prikazani na 
 \centering
 \scriptsize
 	\begin{tikzpicture}[scale=1.1]
-		\begin{axis}[xlabel={Količina umetno odvzetega pomnilnika [MB]}, xtick={0,100,...,600}, ymin = 0, ymax = 1000, ylabel={Povprečen čas odgovora [ms]}, ytick={0,100,...,1000}, minor ytick={0,20,...,1000}, grid=major]
+		\begin{axis}[xlabel={Količina umetno odvzetega pomnilnika [MB]}, xtick={0,100,...,600}, ymin = 0, ymax = 1000, ylabel={$t_{zahteva}$ [povprečno, ms]}, ytick={0,100,...,1000}, minor ytick={0,20,...,1000}, grid=major]
 			\addplot[mark=none] table{Result_processing/02_05_stresni_test/avgs.dat};
 		\end{axis}
 	\end{tikzpicture}
-\caption{Diagram povprečnih časov odziva glede na količino umetno odvzetega pomnilnika.}
+\caption{Diagram povprečnih časov odziva $t_{zahteva}$ glede na količino umetno odvzetega pomnilnika.}
 \label{fig:1_stress_test_time_averages}
 \end{figure}
 
@@ -422,7 +426,7 @@ Za simulacijo treh sočasnih uporabnikov smo iz treh lokacij (Vič, Postojna in 
 Minimalni, maksimalni in povprečni časi zahtev enega in treh sočasnih uporabnikov so prikazani v tabeli \ref{1_tab_multi_user}.
 
 \begin{table}[ht]
- \caption{Časi zahtev glede na število sočasnih uporabnikov.}
+ \caption{Časi zahtev $t_{zahteva}$ glede na število sočasnih uporabnikov.}
  \label{1_tab_multi_user}
  \centering
 \begin{tabular}{ |p{2.5cm}||p{2cm}|p{2cm}|p{2cm}| }
@@ -466,8 +470,8 @@ Največja težava, s katero se mora razvijalec spopasti, je nizka zmogljivost br
 Amazon nam seveda rade volje ponudi boljše, a ne zastonj.
 Virtualni strežnik z dvemi jedri, 4 GB delovnega pomnilnika in 100 GB navideznega diskovnega prostora stane 23 evrov mesečno za najem~\cite{1_aws_pricing}, torej mora razvijalec šteti tudi profitabilnost med svoje cilje.
 
-Uspeh storitev temelji na več faktorjih.
-Vsekakor je zanesljivost infrastrukture zelo pomemben del.
+Amazon Elastic Cloud priporočamo za storitve, ki so računsko razmeroma nezahtevne.
+Uspeh storitev temelji na več faktorjih, vsekakor je zanesljivost infrastrukture zelo pomemben del.
 Tu Amazon Elastic Cloud zadosti vsaj osnovne potrebe, obljublja pa še veliko več, a ne brez plačila.
 
 \inputencoding{cp1250}

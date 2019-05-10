@@ -23,22 +23,22 @@ Malo večja analiza pri 1.4.4 ali pa da celo ponovite ta test, zakaj je pri 400 
  - Problem pošiljanja naključnih zahtev je, da pride do variacij med testi, na katere ne moremo vplivati. Če bi testirali znova, bi se morda situacija popolnoma obrnila.
 
 Zaključek: ali bi mi proporočili to storitev in za kakšen tip aplikacije (glede na 1.4.5 vidimo, da se časi ogromno povečajo, če želimo imeti več uporabnikov). Kaj pa recimo za hranjenje? 30 GB se mi zdi ogromno razpoložljivega prostora, mogoče za hrambo slik? Zato me zanima, kako bi se baza obnašala pod obremenitvijo.
- - Priporočili bi za storitve, ki so računsko razmeroma nezahtevne. Baza je del večjega "bazena" pomnjenja, je v primerjavi s strežnikom veliko težje preobremeniti, ima določene omejitve prenosa, ki niso natančno opisane na spletni strani.
+ - DONE; Priporočili bi za storitve, ki so računsko razmeroma nezahtevne. Baza je del večjega "bazena" pomnjenja, je v primerjavi s strežnikom veliko težje preobremeniti, ima določene omejitve prenosa, ki niso natančno opisane na spletni strani.
 
 Medzmes kadar je možno razbrati časi iz slike 1.1 bi jih kljub temu spremenil. Odstranil bi puščice časov in bi zapise, na malo večje kakor zdaj, napisal ob točkah nastanka.
  - TODO redesign oznak
 
 V poglavju 1.2.3 se uporablja beseda pika pri čemer se v poglavju 1.2.2 uporablja pixel. Če nisem jaz zgrešil česar in besedi imata različni pomen bi izbral eno in le njo uporabljal.
- - dobra pripomba, to discuss
+ - DONE; povsod "piksel"
 
 Če bi bilo možno bi pri tabeli 1.2 točno navedel kateri čas. Razumem, da je t_zahteva, a bi raje mel konkretno opredeljeno kakor le "časi zahtev", da sem brez dvoma prepičan kaj prikazuje.
- - TODO
+ - DONE
 
 Enako za tabelo 1.3.
- - TODO
+ - DONE
 
 Podobno velja za sliko 1.10 in 1.11. Tukaj bi še dodal, da medzmes v poglavju 1.3 povejo, da želijo videti kako se časi odgovorja razlikujejo glede na število uporabnik, nisem pa zmogel brez dvoma ugotoviti kateri konkretni čas je tale čas odgovorja.
- - TODO t_zahteva v grafe, poglavje 1.3
+ - DONE; t_zahteva v grafe, poglavje 1.3
 
 Razumem preglednost grafa, kadar imaš rezultate prikazane naraščajoče (preglednost nad odstopanjem določenih zahtev), a bi rekel, da bi bilo boljše imet graf z enakim vrstnim redom vsepovsod, najbolje bi bilo kar vrstni red zahtev. Tudi ne vem koliko doprinašajo tele grafi, predstavljam si, da bi npr. sliko 1.6 spremenili na ne razvrščen diagram in bi obdržali opis le tega (v 499 izmed 500 primerov ni presegel 78 ms) obdržal vse trenutne informacije.
  - Ne strinjam se. Iz 1.4 na primer je težko razvidno, kako se storitev obnaša v povprečju. Če so časi razvrščeni, je lažje razbrati, kolikšen del zahtev na primer presega 2 sekundi. Iz neurejenih grafov je potrebno obravnavati vsak vrh posebej.
@@ -50,13 +50,13 @@ Lahko bi predlagal test enake zahteve, kjer se preverja konsistentnost strežnik
  - jup, tko bi mogli že z vsega začetka :D
 
 Pri testiranjih boljši opis na kakšen način se pošilja 500 zahtev (Ali se pošlje ena zahteva in se počaka na odgovor, ter se nato pošlje naslednjo, ali pa se zahteve pošiljajo na določen časovni interval.)
- - TODO
+ - DONE
 
 Pri primerjavi odzivov na zahteve ob različnih časih (1.4.3), bolj točno napisati kateri čas ste gledali (ali je to Tzahteva, Tprocesiranja ali kateri izmed drugih časov, ki na navedete v 1.3)
- - TODO, glej 5 zahtev gor
+ - DONE, glej 5 zahtev gor
 
 Podobno tudi v razdelki 1.4.4 napisati namesto povprečen čas odgovora Tzahteva (oziroma kakšen drugi čas)
- - isto
+ - DONE
 
 ## Za naredit do 6. 5.
 
