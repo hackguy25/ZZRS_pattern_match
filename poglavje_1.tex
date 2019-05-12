@@ -65,7 +65,7 @@ Storitev nudi tri tipe iskanj:
 
 Storitev prejme podatek o iskani barvi piksla.
 Zaporedoma preiskuje slike v oblačni podatkovni bazi.
-Takoj ko najde prvo pojavitev iskanega piksla, iskanje ustavi in vrne podatek o tej pojavitvi - zaporedna številka slike in koordinati $x$ ter $y$ najdenega piksla.
+Takoj ko najde prvo pojavitev iskanega piksla, iskanje ustavi in vrne podatke o tej pojavitvi - zaporedno številko slike in koordinati $x$ ter $y$ najdenega piksla.
 Če ne najde nobene pojavitve, preišče vse slike v podatkovni bazi in vrne sporočilo, da piksel ni bil najden.
 
 \subsubsection{Iskanje piksla, podobnega specifični barvi}
@@ -98,8 +98,8 @@ Tako lahko izračunamo, koliko slik bo v povprečju pregledanih s pomočjo matem
 E(p) = \sum_{i = 1}^{\text{število slik}} i \cdot (1 - p)^{i - 1} \cdot p = \frac{1}{p} .
 \end{equation}
 
-To pomeni, da bomo pri verjetnost 1\% v povprečju pregledali približno 100 slik pri vsaki zahtevi.
-Izkaže se, da je ta ocena kar dobra v primeru te storitve.
+To pomeni, da bomo pri verjetnosti 1\% v povprečju pregledali približno 100 slik pri vsaki zahtevi.
+Izkaže se, da je ta ocena v primeru te storitve kar dobra.
 
 \subsubsection{Iskanje slikovnega izseka}
 
@@ -107,7 +107,7 @@ Storitev prejme slikovni izsek.
 Zaporedoma preiskuje slike v podatkovni bazi, dokler ne najde prvega ujemanja podanega izseka z izsekom na neki sliki.
 Izseka se ujemata, če je barva vsakega piksla danega izseka za največ 7 oddaljena od barve ustreznega piksla na sliki.
 Razlika barv se računa tako kot pri podobni barvi piksla (enačba \ref{1_eq_odstopanje}).
-Odstopanje je tu potrebno le zato, ker pri shranjevanju izsekov pride do artifaktov stiskanja~\cite{1_wiki_compression}.
+Odstopanje je tu potrebno le zato, ker pri shranjevanju izsekov pride do artefaktov stiskanja~\cite{1_wiki_compression}.
 
 \subsection{Slikovni material}
 
@@ -134,7 +134,7 @@ Za delo z Amazon Web Services~\cite{1_aws_amazon} si moramo ustvariti račun v n
     \label{fig:1_AWS_images}
 \end{figure}
 
-V naslednjem koraku izberemo tip instance slike, to je Amazonov način izbire paketov, ki vključujejo različne funkcionalnosti. Ker v našem primeru izbiramo brezplačno različico, nam ponujajo tip t2.micro, ki vsebuje 1 jedro, 1GB pomnilnika, nizko prioriteto hitrosti povezave do same instance strežnika (umetno omejena hitrost s spremenljivo največjo hitrostjo) in hrambo podatkov na platformi Elastic Block Storage, ki nam ponuja zastonjsko hranjenje podatkov na mrežno povezani shrambi~\cite{1_aws_amazon_ebs}. Za tem lahko nadaljujemo z nastavljanjem različnih konfiguracij naše virtualke ali pa preprosto kliknemo Review and Launch, ki nam ponudi še en pregled izbranih nastavitev in zažene virtualko. Po zagonu virtualke nam sistem ponudi opcijo generiranja para ključev za varno SSH povezavo do nje. Ko zaključimo z ustvarjanjem, se premaknemo v EC2 management console kjer kliknemo na \emph{instances}. Od tam lahko opazujemo status naše storitve in pridobimo tudi naslov, na katerem se nahaja. Za povezavo uporabimo javni naslov storitve, uporabnika $ec2-user$, za varnost pa uporabimo $.pem$ datoteko (Privacy Enhanced Mail Security Certificate), ki smo jo v prejšnjem koraku prenesli. Ko se uspešno povežemo na storitev, lahko pričnemo z razvojem naše aplikacije.
+V naslednjem koraku izberemo tip instance slike, to je Amazonov način izbire paketov, ki vključujejo različne funkcionalnosti. Ker v našem primeru izbiramo brezplačno različico, nam ponujajo tip t2.micro, ki vsebuje 1 jedro, 1GB pomnilnika, nizko prioriteto hitrosti povezave do same instance strežnika (umetno omejena hitrost s spremenljivo največjo hitrostjo) in hrambo podatkov na platformi Elastic Block Storage, ki nam ponuja brezplačno hranjenje podatkov na mrežno povezani shrambi~\cite{1_aws_amazon_ebs}. Za tem lahko nadaljujemo z nastavljanjem različnih konfiguracij naše virtualke ali pa preprosto kliknemo Review and Launch, ki nam ponudi še en pregled izbranih nastavitev in zažene virtualko. Po zagonu virtualke nam sistem ponudi opcijo generiranja para ključev za varno SSH povezavo do nje. Ko zaključimo z ustvarjanjem, se premaknemo v EC2 management console kjer kliknemo na \emph{instances}. Od tam lahko opazujemo status naše storitve in pridobimo tudi naslov, na katerem se nahaja. Za povezavo uporabimo javni naslov storitve, uporabnika $ec2-user$, za varnost pa uporabimo $.pem$ datoteko (Privacy Enhanced Mail Security Certificate), ki smo jo v prejšnjem koraku prenesli. Ko se uspešno povežemo na storitev, lahko pričnemo z razvojem naše aplikacije.
 
 \subsection{Aplikacija}
 
@@ -173,7 +173,7 @@ Strežnik ob prejemu podatkov začne z delom na ustrezni zahtevi ter nato pošlj
 
 Kot glavno metriko bomo opazovali skupni čas zahteve in odgovora.
 
-Podrobneje ga bomo razdelili na čas dostopa do datotečnega sistema (zbirke slik v mapi na datotečnem sistemu, recimo ji baza slik) ($t_{baza} = t_4 - t_3$) in celoten čas obdelave na strežniku ($t_{streznik} = t_5 - t_2$). Hkrati merimo celoten čas trajanja zahteve ($t_{zahteva} = t_6 - t_1$) (časi označeni na sliki \ref{fig:1_osnovnaShema}). Z izmerjenimi časi lahko izračunamo tudi druge kot sta čas procesiranja na strežniku ($t_{procesiranje} = t_{streznik} - t_{baza}$) in čas paketa na mreži ($t_{mreza} = t_{zahteva} - t_{streznik}$). S tem smo se znebili problema sinhronizacije ur med odjemalcem in strežnikom. Če bi želeli meriti tudi čas potovanja paketa od odjemalca na strežni in čas potovanja paketa od strežnika na odjemalec, pa bi potrebovali tudi sinhronizacijo ur, ker pa naš cilj ni meriti čase potovanja paketov, saj je to namreč lastnost omrežja in ne same platforme, bomo zadovoljni s skupnim časom paketa na mreži.
+Podrobneje ga bomo razdelili na čas dostopa do datotečnega sistema (zbirke slik v mapi na datotečnem sistemu, recimo ji baza slik) ($t_{baza} = t_4 - t_3$) in celoten čas obdelave na strežniku ($t_{streznik} = t_5 - t_2$). Hkrati merimo celoten čas trajanja zahteve ($t_{zahteva} = t_6 - t_1$) (časi označeni na sliki \ref{fig:1_osnovnaShema}). Z izmerjenimi časi lahko izračunamo tudi druge kot sta čas procesiranja na strežniku ($t_{procesiranje} = t_{streznik} - t_{baza}$) in čas paketa na mreži ($t_{mreza} = t_{zahteva} - t_{streznik}$). S tem smo se znebili problema sinhronizacije ur med odjemalcem in strežnikom. Če bi želeli meriti tudi čas potovanja paketa od odjemalca do strežnika in čas potovanja paketa od strežnika do odjemalca, pa bi potrebovali tudi sinhronizacijo ur, ker pa naš cilj ni meriti čase potovanja paketov, saj je to namreč lastnost omrežja in ne same platforme, bomo zadovoljni s skupnim časom paketa na omrežju.
 
 Zanima nas, kako se storitev odziva na zahteve ob različnih urah. Za potrebe meritev bomo odziv sistema merili ob treh različih časih v dnevu. Želimo izvedeti tudi, kako se časi odgovorov podaljšajo glede na število hkratnih uporabnikov.
 
@@ -186,13 +186,13 @@ Testirali smo hitrost iskanja podobne barve, opazovali smo razlike v hitrosti od
 
 V soboto, 27. aprila 2019 ob 20.37 smo poskusno testirali iskanje piksla v okolici barve.
 Strežniku je bilo poslanih 500 zahtev, vsaka je vsebovala naključno izbrano barvo, strežnik pa je iskal piksel z odstopanjem, manjšim ali enakim 50.
-Zahteve so bile poslane zaporedno, po oddaji zahteve je odjemalec počakal na odgovor strežnika, preden je poslal naslednjo.
+Zahteve so bile poslane zaporedno, kar pomeni, da je po oddaji zahteve odjemalec počakal na odgovor strežnika, preden je poslal naslednjo.
 Odstopanje je bilo izbrano tako, da so bili zadetki čim bolj enakomerno razporejeni po slikah v podatkovni bazi.
 
 Zahteve je generiral osebni računalnik, nahajajoč se na Viču v Ljubljani.
 Prek brezžičnega omrežja je bil priklopljen na kabelski internet ponudnika A1, ki za zakupljen paket \emph{A1 Kombo L} oglašuje hitrost povezave 40 megabitov na sekundo k uporabniku in 10 megabitov na sekundo od uporabnika.
 Test na strani \emph{Speedtest by Ookla} te vrednosti potrdi (rezultat testa: \url{https://www.speedtest.net/result/8218379266}).
-Čas obhoda paketa od odjemalca do storitve in nazaj je povprečju znašal 62 milisekund.
+Čas obhoda paketa od odjemalca do storitve in nazaj ($t_{mreza}$) je povprečju znašal 62 milisekund.
 Rezultat orodja \texttt{tracert} se nahaja v izpisu \ref{1_lst_tracert}.
 
 \begin{lstlisting}[caption={Rezultat orodja \texttt{tracert}.},label={1_lst_tracert}]
@@ -235,7 +235,7 @@ Celotni časi zahtev ($t_{zahteva}$) so prikazani na sliki \ref{fig:1_poskusno_t
 \begin{figure}[H]
 	\centering
 	\scriptsize
-	\begin{tikzpicture}[scale=1.1]
+	\begin{tikzpicture}[scale=1.0]
 		\begin{axis}[xlabel={Zaporedna številka zahteve}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$t_{zahteva}$ [ms]}, ytick={0,1000,...,7000}, minor ytick={0,200,...,7000}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_total_times_unordered.dat};
 		\end{axis}
@@ -244,7 +244,7 @@ Celotni časi zahtev ($t_{zahteva}$) so prikazani na sliki \ref{fig:1_poskusno_t
 	\label{fig:1_poskusno_total_times_unordered}
 \end{figure}
 
-Najhitrejši odziv je znašal 63 milisekunde, najdaljši pa 6778 milisekund.
+Najhitrejši odziv $t_{zahteva}$ je znašal 63 milisekunde, najdaljši pa 6778 milisekund.
 V povprečju je čas odziva znašal 587 milisekund.
 
 Iz slike \ref{fig:1_poskusno_total_times_unordered} ni enostavno razvidno, kakšna je razporeditev časov zahtev.
@@ -253,7 +253,7 @@ Na sliki \ref{fig:1_poskusno_total_times} so celotni časi zahtev ($t_{zahteva}$
 \begin{figure}[H]
 	\centering
 	\scriptsize
-	\begin{tikzpicture}[scale=1.1]
+	\begin{tikzpicture}[scale=1.0]
 		\begin{axis}[xlabel={Število zahtev}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$t_{zahteva}$ [ms, naraščajoče]}, ytick={0,1000,...,7000}, minor ytick={0,200,...,7000}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_total_times.dat};
 		\end{axis}
@@ -262,16 +262,16 @@ Na sliki \ref{fig:1_poskusno_total_times} so celotni časi zahtev ($t_{zahteva}$
 	\label{fig:1_poskusno_total_times}
 \end{figure}
 
-Iz slike \ref{fig:1_poskusno_total_times} je lažje razvidno, da je večina časov zahtev manj kot 500 milisekund, le peščica jih preseže 3500 milisekund.
+Iz slike \ref{fig:1_poskusno_total_times} je lažje razvidno, da je večina časov zahtev manj kot 500 milisekund, le peščica pa jih preseže 3500 milisekund.
 
-Časi paketa na mreži ($t_{mreza}$) so po velikosti urejeni prikazani na sliki \ref{fig:1_poskusno_transfer_times}.
+Časi zahteve na mreži ($t_{mreza}$) so po velikosti urejeni prikazani na sliki \ref{fig:1_poskusno_transfer_times}.
 Najhitrejši čas obhoda je znašal 60 milisekund, najdaljši pa 395 milisekund.
 V povprečju je čas paketa na mreži znašal 64 milisekund, v 499 izmed 500 primerov ni presegel 78 milisekund.
 
 \begin{figure}[H]
 	\centering
 	\scriptsize
-	\begin{tikzpicture}[scale=1.1]
+	\begin{tikzpicture}[scale=1.0]
 		\begin{axis}[xlabel={Število zahtev}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$t_{mreza}$ [ms, naraščajoče]}, ytick={0,100,...,400}, minor ytick={0,10,...,400}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_transfer_times.dat};
 		\end{axis}
@@ -288,7 +288,7 @@ Zavzemajo vrednosti med 1 in 4008 milisekund, v povprečju pa 201 milisekundo.
 \begin{figure}[H]
 	\centering
 	\scriptsize
-	\begin{tikzpicture}[scale=1.1]
+	\begin{tikzpicture}[scale=1.0]
 		\begin{axis}[xlabel={Število zahtev}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$t_{baza}$ [ms, naraščajoče]}, ytick={0,1000,...,4000}, minor ytick={0,200,...,4000}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_loading_time_absolute.dat};
 		\end{axis}
@@ -303,7 +303,7 @@ Zavzemajo vrednosti med 16 in 100 odstotkov, v povprečju pa 36 odstotkov.
 \begin{figure}[H]
 \centering
 \scriptsize
-	\begin{tikzpicture}[scale=1.1]
+	\begin{tikzpicture}[scale=1.0]
 		\begin{axis}[xlabel={Število zahtev}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$\frac{t_{baza}}{t_{streznik}}$ [odstotek, naraščajoče]}, ytick={0,20,...,100}, minor ytick={0,2,...,100}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_loading_time_percentage.dat};
 		\end{axis}
@@ -314,13 +314,13 @@ Zavzemajo vrednosti med 16 in 100 odstotkov, v povprečju pa 36 odstotkov.
 
 Povprečne vrednosti časa nalaganja 1 slike so prikazani na sliki \ref{fig:1_poskusno_pic_loading_time}.
 Vrednosti so izračunane kot količnik časa nalaganja slik s številom preiskanih slik pri posamezni zahtevi.
-Zavzemajo vrednosti med 1 in 200 milisekund, v povprečju 4 milisekunde.
+Zavzemajo vrednosti med 1 in 200 milisekund, v povprečju pa 4 milisekunde.
 V 493 izmed 500 primerov ni presegel 7 milisekund.
 
 \begin{figure}[H]
 \centering
 \scriptsize
-	\begin{tikzpicture}[scale=1.1]
+	\begin{tikzpicture}[scale=1.0]
 		\begin{axis}[xlabel={Zaporedna številka zahteve}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={Čas nalaganja 1 slike [ms]}, ytick={0,50,...,200}, minor ytick={0,10,...,200}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_pic_loading_time.dat};
 		\end{axis}
@@ -378,13 +378,13 @@ Upoštevajoč to sklepamo, da ima lokacija odjemalca zanemarljiv pomen pri zmogl
 Kvaliteta storitve je odvisna tudi od zmožnosti odzivanja ob različnih časih.
 To smo testirali tako, da smo v urnih intervalih pošiljali 500 zahtev tipa iskanja piksla, podobnega specifični barvi.
 Vsaka zahteva je vsebovala naključno izbrano barvo, strežnik pa je iskal piksel z odstopanjem, manjšim ali enakim 50.
-Zahteve so bile poslane zaporedno, po oddaji zahteve je odjemalec počakal na odgovor strežnika, preden je poslal naslednjo.
+Zahteve so bile poslane zaporedno, po oddaji zahteve pa je odjemalec počakal na odgovor strežnika, preden je poslal naslednjo.
 Povprečni časi $t_{zahteva}$ glede na uro so prikazani na sliki \ref{fig:1_hourly_response_time_averages}.
 
 \begin{figure}[H]
 \centering
 \scriptsize
-	\begin{tikzpicture}[scale=1.1]
+	\begin{tikzpicture}[scale=1.0]
 		\begin{axis}[xlabel={Ura}, xtick={0,3,...,24}, ymin = 0, ymax = 1000, ylabel={$t_{zahteva}$ [povprečno, ms]}, ytick={0,100,...,1000}, minor ytick={0,20,...,1000}, grid=major]
 			\addplot[mark=none] table{Result_processing/02_05_razlicne_ure/avgs.dat};
 		\end{axis}
@@ -397,7 +397,7 @@ V grobem se storitev odziva približno enako skozi dan, dopoldan in zgodaj zveč
 
 \subsection{Stresni test - primerjava odzivov na zahteve pri zmanjšani količini delovnega pomnilnika}
 
-Kot izvedbo stresnega testa smo umetno zmanjševali količino delovnega pomnilnika, ki ga je storitev imela na voljo.
+Za izvedbo stresnega testa smo umetno zmanjševali količino delovnega pomnilnika, ki ga je storitev imela na voljo.
 To smo storili tako, da smo pred testiranjem zagnali program, ki je alociral poljubno količino delovnega pomnilnika in ga tako odvzel storitvi.
 Začeli smo z vsem pomnilnikom (1 GB), nato pa ga postopoma zmeraj več alocirali v korakih po 100 MB.
 Ustavili smo se pri 600 MB alociranega pomnilnika, pri 700 MB je strežnik po nekaj zahtevah zmrznil in zahteval ponovni zagon programske opreme (vnos \texttt{Ctrl+C} v terminalu).
@@ -406,7 +406,7 @@ Povprečni časi glede na količino umetno odvzetega pomnilnika so prikazani na 
 \begin{figure}[H]
 \centering
 \scriptsize
-	\begin{tikzpicture}[scale=1.1]
+	\begin{tikzpicture}[scale=1.0]
 		\begin{axis}[xlabel={Količina umetno odvzetega pomnilnika [MB]}, xtick={0,100,...,600}, ymin = 0, ymax = 1000, ylabel={$t_{zahteva}$ [povprečno, ms]}, ytick={0,100,...,1000}, minor ytick={0,20,...,1000}, grid=major]
 			\addplot[mark=none] table{Result_processing/02_05_stresni_test/avgs.dat};
 		\end{axis}
@@ -448,7 +448,7 @@ Storitev popolnoma zaposli že en uporabnik.
 Povprečen čas odziva je zato trikrat daljši.
 Maksimalni čas je težje obrazložiti.
 V primeru treh uporabnikov je 3,5-krat daljši kot pri enem.
-Sklepamo, da smo naleteli na neznano ozko grlo, za natančnejšo določitev regresije bi morali natančneje opazovati obnašanje storitve pri več uporabnikih in določiti, kateri del obdelave povzroči to upočasnitev.
+Sklepamo, da smo naleteli na neznano ozko grlo, za natančnejšo določitev regresije pa bi morali natančneje opazovati obnašanje storitve pri več uporabnikih in določiti, kateri del obdelave povzroči to upočasnitev.
 
 %\section{Plan dela}
 %
@@ -471,7 +471,7 @@ Amazon nam seveda rade volje ponudi boljše, a ne zastonj.
 Virtualni strežnik z dvemi jedri, 4 GB delovnega pomnilnika in 100 GB navideznega diskovnega prostora stane 23 evrov mesečno za najem~\cite{1_aws_pricing}, torej mora razvijalec šteti tudi profitabilnost med svoje cilje.
 
 Amazon Elastic Cloud priporočamo za storitve, ki so računsko razmeroma nezahtevne.
-Uspeh storitev temelji na več faktorjih, vsekakor je zanesljivost infrastrukture zelo pomemben del.
+Uspeh storitev temelji na več faktorjih, vsekakor pa je zanesljivost infrastrukture zelo pomemben del.
 Tu Amazon Elastic Cloud zadosti vsaj osnovne potrebe, obljublja pa še veliko več, a ne brez plačila.
 
 \inputencoding{cp1250}
