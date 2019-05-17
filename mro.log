@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.3.30)  1 MAY 2019 12:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.3.30)  17 MAY 2019 18:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -824,12 +824,12 @@ We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
 [2 <./Img/1_shema.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 81--86
+Underfull \hbox (badness 10000) in paragraph at lines 80--85
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 87--93
+Underfull \hbox (badness 10000) in paragraph at lines 86--92
 
  []
 
@@ -839,15 +839,15 @@ File: Img/1_sample_images.png Graphic file (type png)
 <use Img/1_sample_images.png>
 Package pdftex.def Info: Img/1_sample_images.png  used on input line 121.
 (pdftex.def)             Requested size: 337.26689pt x 64.2413pt.
-<Img/1_AWS_images.png, id=69, 1267.44484pt x 611.63242pt>
+<Img/1_AWS_images.png, id=69, 988.69376pt x 539.01375pt>
 File: Img/1_AWS_images.png Graphic file (type png)
 <use Img/1_AWS_images.png>
 Package pdftex.def Info: Img/1_AWS_images.png  used on input line 132.
-(pdftex.def)             Requested size: 316.86043pt x 152.90773pt.
+(pdftex.def)             Requested size: 316.38847pt x 172.48792pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [4 <./Img/1_sample_images.png>] [5 <./Img/1_AWS_images.png (PNG copy)>]
+ [4 <./Img/1_sample_images.png>] [5 <./Img/1_AWS_images.png>]
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 143.
 
 
@@ -1085,54 +1085,75 @@ Package xcolor Warning: Incompatible color definition on input line 168.
 
 Package xcolor Warning: Incompatible color definition on input line 168.
 
-[6]
-Overfull \hbox (3.30202pt too wide) in paragraph at lines 190--191
-[]\T1/cmr/m/n/10 Povpre£je[ms]| 
- []
-
-[7]
-<Img/1_poskusno_total_times.pdf, id=86, 405.1617pt x 296.65932pt>
-File: Img/1_poskusno_total_times.pdf Graphic file (type pdf)
-<use Img/1_poskusno_total_times.pdf>
-Package pdftex.def Info: Img/1_poskusno_total_times.pdf  used on input line 250
-.
-(pdftex.def)             Requested size: 243.09889pt x 177.99695pt.
+[6] [7]
+PGFPlots: reading {Result_processing/27_04_poskusno/1_test_total_times_unordere
+d.dat}
+ [8]
+PGFPlots: reading {Result_processing/27_04_poskusno/1_test_total_times.dat}
+PGFPlots: reading {Result_processing/27_04_poskusno/1_test_transfer_times.dat}
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8]
-<Img/1_poskusno_transfer_times.pdf, id=90, 398.77583pt x 296.65932pt>
-File: Img/1_poskusno_transfer_times.pdf Graphic file (type pdf)
-<use Img/1_poskusno_transfer_times.pdf>
-Package pdftex.def Info: Img/1_poskusno_transfer_times.pdf  used on input line 
-261.
-(pdftex.def)             Requested size: 239.26733pt x 177.99695pt.
-<Img/1_poskusno_loading_time_absolute.pdf, id=91, 405.1617pt x 296.65932pt>
-File: Img/1_poskusno_loading_time_absolute.pdf Graphic file (type pdf)
-<use Img/1_poskusno_loading_time_absolute.pdf>
-Package pdftex.def Info: Img/1_poskusno_loading_time_absolute.pdf  used on inpu
-t line 273.
-(pdftex.def)             Requested size: 243.09889pt x 177.99695pt.
+ [9]
+PGFPlots: reading {Result_processing/27_04_poskusno/1_test_loading_time_absolut
+e.dat}
 
-[9 <./Img/1_poskusno_total_times.pdf> <./Img/1_poskusno_transfer_times.pdf>]
-<Img/1_poskusno_loading_time_percentage.pdf, id=124, 398.77583pt x 296.65932pt>
+[10]
+PGFPlots: reading {Result_processing/27_04_poskusno/1_test_loading_time_percent
+age.dat}
+PGFPlots: reading {Result_processing/27_04_poskusno/1_test_pic_loading_time.dat
+}
+ [11]
+Underfull \hbox (badness 10000) in paragraph at lines 342--343
+[]\T1/cmr/m/n/10 Povpre£je
+ []
 
-File: Img/1_poskusno_loading_time_percentage.pdf Graphic file (type pdf)
-<use Img/1_poskusno_loading_time_percentage.pdf>
-Package pdftex.def Info: Img/1_poskusno_loading_time_percentage.pdf  used on in
-put line 283.
-(pdftex.def)             Requested size: 239.26733pt x 177.99695pt.
-<Img/1_poskusno_pic_loading_time.pdf, id=125, 400.06465pt x 297.98126pt>
-File: Img/1_poskusno_pic_loading_time.pdf Graphic file (type pdf)
-<use Img/1_poskusno_pic_loading_time.pdf>
-Package pdftex.def Info: Img/1_poskusno_pic_loading_time.pdf  used on input lin
-e 295.
-(pdftex.def)             Requested size: 240.04063pt x 178.79013pt.
 
-[10 <./Img/1_poskusno_loading_time_absolute.pdf> <./Img/1_poskusno_loading_time
-_percentage.pdf>] (/usr/share/texmf-dist/tex/latex/base/cp1250.def
+Underfull \hbox (badness 10000) in paragraph at lines 363--364
+[]\T1/cmr/m/n/10 Povpre£je
+ []
+
+[12]
+PGFPlots: reading {Result_processing/02_05_razlicne_ure/avgs.dat}
+
+Overfull \hbox (9.97984pt too wide) in paragraph at lines 398--398
+[]\T1/cmr/bx/n/12 Stresni test - pri-mer-java od-zi-vov na zah-teve pri zmanj-
+ []
+
+PGFPlots: reading {Result_processing/02_05_stresni_test/avgs.dat}
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [13]
+Underfull \hbox (badness 1275) in paragraph at lines 434--434
+[]\T1/cmr/m/n/10 ’tevilo upo-rab-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 434--435
+[]\T1/cmr/m/n/10 Povpre£je
+ []
+
+[14]
+PGFPlots: reading {Result_processing/caching_test/1_caching_test_total_times_un
+ordered.dat}
+
+Underfull \hbox (badness 10000) in paragraph at lines 470--471
+
+ []
+
+[15]
+PGFPlots: reading {Result_processing/freq_test/1_freq_test_total_times_unordere
+d.dat}
+PGFPlots: reading {Result_processing/freq_test/1_freq_test_delta.dat}
+
+
+LaTeX Warning: Citation `1_aws_pricing' on page 16 undefined on input line 529.
+
+
+[16] (/usr/share/texmf-dist/tex/latex/base/cp1250.def
 File: cp1250.def 2018/08/11 v1.3c Input encoding file
-)) [11 <./Img/1_poskusno_pic_loading_time.pdf>] [12
+)) [17] [18
 
 
 ] (./mro.bbl
@@ -1172,42 +1193,45 @@ Overfull \hbox (8.48434pt too wide) in paragraph at lines 41--44
 
 )
 No file mro.ind.
-[13
+[19
 
-] (./mro.aux (./preface.aux) (./poglavje_1.aux)) ) 
+] (./mro.aux (./preface.aux) (./poglavje_1.aux))
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 25810 strings out of 492616
- 629657 string characters out of 6135177
- 880195 words of memory out of 5000000
- 29191 multiletter control sequences out of 15000+600000
+ 26317 strings out of 492616
+ 643864 string characters out of 6135177
+ 997804 words of memory out of 5000000
+ 29678 multiletter control sequences out of 15000+600000
  23006 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,12n,96p,1344b,1838s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/
-enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
-10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/sh
-are/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
-/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-di
-st/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf-dist/fonts/type1/
-public/cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
-/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb><
-/usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texm
-f-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-s
-uper/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1728.p
-fb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/
-texmf-dist/fonts/type1/public/cm-super/sfsl1000.pfb></usr/share/texmf-dist/font
-s/type1/public/cm-super/sfti1000.pfb></usr/share/texmf-dist/fonts/type1/public/
-cm-super/sftt0900.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt10
-00.pfb>
-Output written on mro.pdf (19 pages, 2621143 bytes).
+ 77i,12n,129p,1697b,2529s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi5.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/s
+hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></us
+r/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-d
+ist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1
+/public/cm-super/sfbx2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-supe
+r/sfbx2488.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb>
+</usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/tex
+mf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/t
+ype1/public/cm-super/sfrm1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-
+super/sfrm2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsl1000.
+pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/share
+/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/share/texmf-dist/fon
+ts/type1/public/cm-super/sftt1000.pfb>
+Output written on mro.pdf (25 pages, 2028454 bytes).
 PDF statistics:
- 254 PDF objects out of 1000 (max. 8388607)
- 165 compressed objects within 2 object streams
+ 199 PDF objects out of 1000 (max. 8388607)
+ 143 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

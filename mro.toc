@@ -12,5 +12,11 @@
 \contentsline {subsection}{\numberline {1.2.4}Amazon Web Services (AWS)}{4}% 
 \contentsline {subsection}{\numberline {1.2.5}Aplikacija}{5}% 
 \contentsline {section}{\numberline {1.3}Uporabljene metrike}{6}% 
-\contentsline {section}{\numberline {1.4}Rezultati meritev}{7}% 
-\contentsline {section}{\numberline {1.5}Plan dela}{11}% 
+\contentsline {section}{\numberline {1.4}Meritve}{7}% 
+\contentsline {subsection}{\numberline {1.4.1}Poskusno testiranje}{7}% 
+\contentsline {subsection}{\numberline {1.4.2}Primerjava odzivov na zahteve iz razli\IeC {\v c}nih lokacij}{12}% 
+\contentsline {subsection}{\numberline {1.4.3}Primerjava odzivov na zahteve ob razli\IeC {\v c}nih \IeC {\v c}asih}{12}% 
+\contentsline {subsection}{\numberline {1.4.4}Stresni test - primerjava odzivov na zahteve pri zmanj\IeC {\v s}ani koli\IeC {\v c}ini delovnega pomnilnika}{13}% 
+\contentsline {subsection}{\numberline {1.4.5}Bremenski test - primerjava odzivov na zahteve pri pove\IeC {\v c}anemu \IeC {\v s}tevilo so\IeC {\v c}asnih uporabnikov}{14}% 
+\contentsline {subsection}{\numberline {1.4.6}Frekven\IeC {\v c}no testiranje}{15}% 
+\contentsline {section}{\numberline {1.5}Zaklju\IeC {\v c}ek}{16}% 

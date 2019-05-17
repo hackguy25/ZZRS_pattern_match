@@ -1,14 +1,23 @@
 import java.io.*;
 import java.net.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.json.*;
 
 public class User extends Thread {
-    protected int server_port = 4434;
-    protected String server_ip = "ec2-52-212-203-50.eu-west-1.compute.amazonaws.com";
+    protected static int server_port = 4434;
+    protected static String server_ip = "ec2-3-17-172-157.us-east-2.compute.amazonaws.com";
 
     private static int nexReqId = 1;
     private static int receivedRequests = 0;
+
+    private static JSONArray freqResults;
+
+    private static final AtomicInteger counter = new AtomicInteger(1);
+    private static final AtomicInteger receivedCounter = new AtomicInteger(0);
+
+    private static AtomicLong currentResponseTime = new AtomicLong(0);
 
     public static void main(String[] args) throws Exception {
 
@@ -17,15 +26,104 @@ public class User extends Thread {
             System.exit(-1);
         }
 
-        new User(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2]);
+        if(Integer.parseInt(args[0]) == 3) {
+            frequencyTest(args[2]);
+        } else {
+            new User(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2]);
+        }
     }
+
+    private static void frequencyTest(String results_f) {
+        try {
+            long deltaTime = 1125;//ms
+            long stepTime = 20000;//ms
+            long stepDelta = 25;//ms
+            long responseTimeMax = 8000;//ms
+
+            long startTime = 0;
+            long deltaChangeTime = 0;
+
+            freqResults = new JSONArray();
+
+            while(currentResponseTime.get() <= responseTimeMax) {
+
+                //poskrbi za hitrejse posiljanje po 1 minuti
+                if(System.currentTimeMillis() - stepTime >= deltaChangeTime) {
+                    deltaTime -= stepDelta;
+                    deltaChangeTime = System.currentTimeMillis();
+                    System.out.println(deltaTime + " " + currentResponseTime.get());
+                }
+
+                //poslje zahtevo ob vsakem intervalu
+                if(System.currentTimeMillis() - deltaTime >= startTime) {
+                    startTime = System.currentTimeMillis();
+                    //Send request
+                    new Thread(new AsyncSender(deltaTime)).start();
+                }
+            }
+
+            System.out.println("Finished with max req time " + currentResponseTime.get() + " at dt " + deltaTime);
+
+            while (receivedCounter.get() < counter.get() - 1);
+            //synchronized
+
+
+            FileWriter results_out = new FileWriter(results_f);
+            // results_out.write(message_receiver.getResults().toString());
+            results_out.write(freqResults.toString());
+            results_out.flush();
+            results_out.close();
+        } catch (IOException e) {
+            System.err.println("[system] could not send message");
+            e.printStackTrace();
+        }
+    }
+
+    private static class AsyncSender extends Thread {
+        long deltaTime;
+        public AsyncSender(long deltaTime) {
+            this.deltaTime = deltaTime;
+        }
+
+        @Override
+        public void run() {
+            try {
+                Socket s = new Socket(server_ip, server_port);
+                DataInputStream in = new DataInputStream(s.getInputStream());
+                DataOutputStream out = new DataOutputStream(s.getOutputStream());
+
+                // create request
+                JSONObject req = RequestHandler.createPixelSearchRequest(0xFF892A14, counter.getAndIncrement());
+                out.writeUTF(req.toString());
+                out.flush();
+
+                // receive result
+                JSONObject response = new JSONObject(in.readUTF());
+                long reqTime = System.currentTimeMillis() - response.getLong("req_start");
+                currentResponseTime.updateAndGet(x -> x < reqTime ? reqTime : x);
+                response.put("reqTime", reqTime);
+                response.put("deltaTime", deltaTime);
+                synchronized (freqResults) {
+                    freqResults.put(response);
+                }
+                receivedCounter.incrementAndGet();
+
+                out.close();
+                in.close();
+                s.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     private void generatePixelSearchRequests(DataInputStream in, DataOutputStream out, JSONArray results, int n) {
         try {
             for(int i = 0; i < n; i++) {
 
                 // create request
-                JSONObject req = RequestHandler.createPixelSearchRequest(0xFFFA3881, nexReqId++);
+                JSONObject req = RequestHandler.createPixelSearchRequest(0xFF892A14, nexReqId++);
                 out.writeUTF(req.toString());
                 out.flush();
 

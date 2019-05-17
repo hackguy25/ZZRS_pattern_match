@@ -450,6 +450,64 @@ Maksimalni čas je težje obrazložiti.
 V primeru treh uporabnikov je 3,5-krat daljši kot pri enem.
 Sklepamo, da smo naleteli na neznano ozko grlo, za natančnejšo določitev regresije pa bi morali natančneje opazovati obnašanje storitve pri več uporabnikih in določiti, kateri del obdelave povzroči to upočasnitev.
 
+\subsection{Frekvenčno testiranje}
+Zanima nas kako se storitev odziva če zahteve pošiljamo konstantno vsakih $\Delta t$ časovnih enot, ta čas pa po določenem času $t_{step}$ zmanjšamo in pri tem opazujemo kako se podaljšuje čas odziva na zahtevo $t_{zahteva}$. 
+
+Za pravilno testiranje takega tipa smo se odločili, da bomo ves čas pošiljali isto zahtevo brez naključnosti na strežnik, kar pa lahko povzroči probleme če imajo strežniki predpomnjenje. To smo stestirali tako, da smo poslali 500 enakih zahtev in opazovali čase $t_{zahteva}$, kar je prikazano na grafu \ref{fig:1_caching_test}.
+
+\begin{figure}[H]
+\centering
+\scriptsize
+	\begin{tikzpicture}[scale=1.0]
+		\begin{axis}[xlabel={Zaporedna št. zahteve}, xtick={0,100,...,600}, ymin = 800, ymax = 1300, ylabel={$t_{zahteva}$ [ms]}, ytick={800,900,...,1300}, minor ytick={800,820,...,1700}, grid=major]
+			\addplot[mark=none] table{Result_processing/caching_test/1_caching_test_total_times_unordered.dat};
+		\end{axis}
+	\end{tikzpicture}
+\caption{Diagram časov odziva $t_{zahteva}$ pri istih zahtevah.}
+\label{fig:1_caching_test}
+\end{figure}
+
+Če pogledamo graf je ta skoraj da ravna premica z razliko nekaj špic. Če se posvetimo času $t_{processing}$, ki ni vrisan v graf pa opazimo da so si med zahtevami zelo podobni in lahko te špice pripišemo zastojem na omrežju, ne pa času procesiranja. Posledično lahko razberemo, da pred našim strežnikom ni nobenega predpomnilnika, saj so naši časi procesiranja ostajali isti, časi zahtev pa so bili v določenih primerih višji, ne pa nižji kot bi bili ob uporabi prepomnilnika. Hkrati ta naš zaključek potrjuje tudi dejstvo, da je vsaka od zahtev malo drugačna od druge, saj vsebuje svoj unikaten identifikator in pa uro kdaj je bila zahteva poslana, kar preprostemu predpomnilniku ne omogoča delovanja. \\
+
+Za frekvenčno testiranje smo kot začetni $\Delta t$ izbrali vrednost $1100ms$, za trajanje koraka $t_{step}$ smo izbrali vrednost $20000ms$ in po vsakem koraku smo $\Delta t$ zmanjšali za $25ms$. Testiranje smo zaključili, ko je izmerjen čas odgovora presegel $8000ms$. Rezultati meritev so vidni na grafu \ref{fig:1_freq_test}
+
+\begin{figure}[H]
+\centering
+\pgfplotsset{compat=1.16}
+\scriptsize
+	\begin{tikzpicture}[scale=1.2]
+		\begin{axis}[
+		axis y line*=left,
+		xlabel={Zaporedna št. zahteve}, 
+		xtick={0,100,...,600},
+		 ymin = 800, 
+		 ymax = 9500, 
+		 ylabel style = {align=center},
+		 ylabel={$t_{zahteva}$ [ms] \ref{plot:1_times}}, 
+		 ytick={500,1000,...,9500}, 
+		 minor ytick={800,900,...,9500}, 
+		 grid=major]
+			\addplot[blue] table{Result_processing/freq_test/1_freq_test_total_times_unordered.dat};
+			\label{plot:1_times}
+		\end{axis}
+		\begin{axis}[
+		axis y line*=right,
+		 ymin = 700, 
+		 ymax = 1150,
+		 ylabel style = {align=center},
+		 ylabel={$\Delta t$ [ms] \ref{plot:1_deltas}}, 
+		 ytick={700,800,...,1150}, 
+		 minor ytick={700,725,...,1150}]
+			\addplot[red] table{Result_processing/freq_test/1_freq_test_delta.dat};
+			\label{plot:1_deltas}
+		\end{axis}
+	\end{tikzpicture}
+\caption{Graf frekvenčnega testiranja.}
+\label{fig:1_freq_test}
+\end{figure}
+
+Iz grafa lahko razberemo, da se sistem zelo dobro odziva, dokler ni čas med dvema zahtevama manjši od $825ms$ to pomeni največ $1,2\ zahteve/s$. Ko presežmo to mejo začne $t_{zahteva}$ silovito naraščati, kar pomeni, da se začne ustvarjati čakalna vrsta za obdelavo, ki pa kot vidimo zelo hitro zraste. Zavajujoče deluje prevoj grafa  $t_{zahteva}$, ki se začne spuščati ko dosežemo mejo $\Delta t = 775ms$, kar pa pojasni dejstvo, da smo mi ravno pred tisto točko presegli zgornjo mejo $t_{zahteva} = 8000ms$ in po tem prenehali pošiljati zahteve na strežnik, vendar je strežnik še vedno moral sprazniti čakalno vrsto, kar je vidno v padcu grafa.
+
 %\section{Plan dela}
 %
 %\begin{itemize}
