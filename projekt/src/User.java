@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -7,7 +8,7 @@ import org.json.*;
 
 public class User extends Thread {
     protected static int server_port = 4434;
-    protected static String server_ip = "ec2-3-17-172-157.us-east-2.compute.amazonaws.com";
+    protected static String server_ip = "ec2-35-158-221-244.eu-central-1.compute.amazonaws.com";
 
     private static int nexReqId = 1;
     private static int receivedRequests = 0;
@@ -19,12 +20,16 @@ public class User extends Thread {
 
     private static AtomicLong currentResponseTime = new AtomicLong(0);
 
+    private static Random rng;
+
     public static void main(String[] args) throws Exception {
 
         if (args.length < 3) {
             System.err.println("Potrebujem 3 argumente: tip zahtev, število zahtev in ime datoteke, kamor naj se rezultati zapisujejo.");
             System.exit(-1);
         }
+
+        rng = new Random();
 
         if(Integer.parseInt(args[0]) == 3) {
             frequencyTest(args[2]);
@@ -33,13 +38,29 @@ public class User extends Thread {
         }
     }
 
+    private static double nextTime(double rate) {
+        return -Math.log(1.0 - (rng.nextDouble())) / rate;
+    }
+
+    private static int getPoissonRandom(double mean) {
+        Random r = new Random();
+        double L = Math.exp(-mean);
+        int k = 0;
+        double p = 1.0;
+        do {
+            p = p * r.nextDouble();
+            k++;
+        } while (p > L);
+        return k - 1;
+    }
+
     private static void frequencyTest(String results_f) {
         try {
-            long deltaTime = 1125;//ms
+            long deltaRate = 1125;//ms
             long stepTime = 20000;//ms
             long stepDelta = 25;//ms
             long responseTimeMax = 8000;//ms
-
+            long deltaTime = 0;
             long startTime = 0;
             long deltaChangeTime = 0;
 
@@ -47,11 +68,13 @@ public class User extends Thread {
 
             while(currentResponseTime.get() <= responseTimeMax) {
 
-                //poskrbi za hitrejse posiljanje po 1 minuti
+                //poskrbi za hitrejse posiljanje po stepTime
                 if(System.currentTimeMillis() - stepTime >= deltaChangeTime) {
-                    deltaTime -= stepDelta;
+                    deltaRate -= stepDelta;
                     deltaChangeTime = System.currentTimeMillis();
-                    System.out.println(deltaTime + " " + currentResponseTime.get());
+                    deltaTime = (long) getPoissonRandom(0.5 * stepDelta);
+                    deltaTime = deltaRate + (2 * stepDelta - deltaTime);
+                    System.out.println(deltaRate + " " + currentResponseTime.get());
                 }
 
                 //poslje zahtevo ob vsakem intervalu
@@ -59,10 +82,12 @@ public class User extends Thread {
                     startTime = System.currentTimeMillis();
                     //Send request
                     new Thread(new AsyncSender(deltaTime)).start();
+                    deltaTime = (long) getPoissonRandom(0.5 * stepDelta);
+                    deltaTime = deltaRate + (2 * stepDelta - deltaTime);
                 }
             }
 
-            System.out.println("Finished with max req time " + currentResponseTime.get() + " at dt " + deltaTime);
+            System.out.println("Finished with max req time " + currentResponseTime.get() + " at dt " + deltaRate);
 
             while (receivedCounter.get() < counter.get() - 1);
             //synchronized
