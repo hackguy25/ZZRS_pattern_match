@@ -473,7 +473,7 @@ Za pravilno testiranje takega tipa smo se odločili, da bomo ves čas pošiljali
 
 Če pogledamo graf, opazimo, da je skoraj ravna premica z izjemo nekaj špic. Če se posvetimo času $t_{processing}$, ki ni vrisan v graf, pa opazimo, da je med zahtevami zelo podoben, zato lahko te špice pripišemo zastojem na omrežju, ne pa času procesiranja. Posledično lahko razberemo, da pred našim strežnikom ni nobenega predpomnilnika, saj so naši časi procesiranja ostajali isti, časi zahtev pa so bili v določenih primerih višji, ne pa nižji, kot bi bili ob uporabi predpomnilnika. Hkrati ta naš zaključek potrjuje tudi dejstvo, da je vsaka od zahtev malo drugačna od druge, saj vsebuje svoj unikaten identifikator in uro pošiljanja, kar preprostemu predpomnilniku ne omogoča delovanja.
 
-Za frekvenčno testiranje smo kot začetni $\Delta t$ izbrali vrednost 1,1 sekunde, za trajanje koraka $t_{step}$ smo izbrali vrednost 20 sekund. Po vsakem koraku smo $\Delta t$ zmanjšali za 25 milisekund. Testiranje smo zaključili, ko je izmerjen čas odgovora presegel 8 sekund. Rezultati meritev so vidni na sliki \ref{fig:1_freq_test}
+Za frekvenčno testiranje smo kot začetni $\Delta t$ izbrali vrednost 1,1 sekunde, za trajanje koraka $t_{step}$ smo izbrali vrednost 20 sekund. Po vsakem koraku smo $\Delta t$ zmanjšali za 25 milisekund. Dodatno smo vrednosti $\Delta t$ dodali še nekaj šuma z uporabo Poissonovega procesa, da smo dosegli boljšo simulacijo prihajanja zahtev v realnem svetu. Testiranje smo zaključili, ko je izmerjen čas odgovora presegel 8 sekund. Rezultati meritev so vidni na sliki \ref{fig:1_freq_test}
 
 \begin{figure}[H]
 \centering
@@ -510,16 +510,8 @@ Za frekvenčno testiranje smo kot začetni $\Delta t$ izbrali vrednost 1,1 sekun
 \label{fig:1_freq_test}
 \end{figure}
 
-Iz grafa lahko razberemo, da se sistem zelo dobro odziva, dokler ni čas med dvema zahtevama manjši od 825 milisekund, to pomeni največ 1,2 zahteve na sekundo. Ko presežmo to mejo, začne $t_{zahteva}$ silovito naraščati, kar pomeni, da se začne ustvarjati čakalna vrsta za obdelavo, ki pa, kot vidimo, zelo hitro zrase. Zavajujoče deluje prevoj grafa $t_{zahteva}$, ki se začne spuščati, ko dosežemo mejo $\Delta t = 775ms$, kar pa pojasni dejstvo, da smo mi ravno pred tisto točko presegli zgornjo mejo $t_{zahteva} = 8000ms$ in po tem prenehali pošiljati zahteve na strežnik, vendar je strežnik še vedno moral sprazniti čakalno vrsto, kar je vidno v padcu grafa.
+Iz grafa lahko razberemo, da se sistem zelo dobro odziva, dokler ni povprečni čas med dvema zahtevama manjši od 775 milisekund, to pomeni največ 1,29 zahteve na sekundo. Ko presežmo to mejo, začne $t_{zahteva}$ silovito naraščati, kar pomeni, da se začne ustvarjati čakalna vrsta za obdelavo, ki pa, kot vidimo, zelo hitro zrase. Zavajujoče deluje prevoj grafa $t_{zahteva}$, ki se začne spuščati, ko dosežemo mejo $\Delta t = 750ms$, kar pa pojasni dejstvo, da smo mi ravno pred tisto točko presegli zgornjo mejo $t_{zahteva} = 8000ms$ in po tem prenehali pošiljati zahteve na strežnik, vendar je strežnik še vedno moral sprazniti čakalno vrsto, kar je vidno v padcu grafa.
 
-%\section{Plan dela}
-%
-%\begin{itemize}
-%\item testiranje ostalih dveh iskanj
-%\item iskanje barve z odstopanjem: testiranje razlik med odstopanji
-%\item testiranje z več sočasnimi uporabniki
-%\item premislek o skalabilnosti
-%\end{itemize}
 
 \section{Zaključek}
 

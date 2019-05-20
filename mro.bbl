@@ -43,7 +43,11 @@
 \newblock [Online; dostopano 20-April-2019].
 
 \bibitem{1_ip_location}
-``Lastnik ip naslove.'' https://db-ip.com/all/52.95.219, 2019.
+``Lastnik ip naslova.'' https://db-ip.com/all/52.95.219, 2019.
 \newblock [Online; dostopano 1-Maj-2019].
+
+\bibitem{1_aws_pricing}
+``Aws pricing calculator.'' https://calculator.aws, 2019.
+\newblock [Online; dostopano 4-Maj-2019].
 
 \end{thebibliography}
