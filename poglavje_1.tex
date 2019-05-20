@@ -22,7 +22,7 @@ Tu nastopi Amazonov Elastic Cloud~\cite{1_aws_amazon_ec2}.
 Obljublja dostopne cene, fleksibilno alokacijo računskih virov in za nadobudnega podjetnika najpomembnejša možnost uporabe določenih storitev brezplačno.
 Med temi storitvami je na voljo tudi najem tako imenovanih ``mikro instanc''~\cite{1_aws_amazon_free}. 
 To so virtualni spletni strežniki z enim procesnim jedrom in 1 GB pomnilnika~\cite{1_aws_amazon_instances}.
-Predstavljajo minimalno konfiguracijo, ki lahko gosti poljubno spletno storitev, hkrati pa predstavlja tudi procesno ozko grlo, katerega omejitve moramo upoštevati pri tvorbi storitve.
+Predstavljajo minimalno konfiguracijo, ki lahko gosti poljubno spletno storitev, hkrati pa predstavljajo tudi procesno ozko grlo, katerih omejitve moramo upoštevati pri postavitvi storitve.
 
 S tem v mislih želimo stestirati platformo Amazon EC2.
 Ustvarili bomo enostavno storitev, ki bo uporabniku omogočala iskanje vzorcev v večjem naboru slik, shranjenih v oblaku.
@@ -78,17 +78,21 @@ Razlika(RGB_{piksel}, RGB_{iskan}) = \\ = |R_{piksel} - R_{iskan}| + |G_{piksel}
 \end{multline}
 
 Če je iskana barva naključno izbrana, potem lahko za dano odstopanje izračunamo približno verjetnost, da bomo dobili ujemanje z naključnim pikslom.
-Za vsako barvo in odstopanje $n$ obstanja največ $\frac{1}{3}(n^3 + 6n^2 + 14n + 3)$ barv, ki se od iskane barve po komponentah razlikujejo za $n$.
+Za vsako barvo in odstopanje $n$ obstaja največ $\frac{1}{3}(n^3 + 6n^2 + 14n + 3)$ barv, ki se od iskane barve po komponentah razlikujejo za $n$.
 Vsak barvni kanal lahko zavzema vrednosti od 0 do 255, torej je za izbiro barve na voljo $2^{24} = 16777216$ vrednosti.
 Verjetnost aproksimiramo kot $\frac{n^3 + 6n^2 + 14n + 3}{3 \cdot 16777216}$.
-Nekaj verjetnosti zadetka in ustreznih odstopanj: \\ % fix za preveč nabito postavitev
+Nekaj verjetnosti zadetka in ustreznih odstopanj je prikazanih v tabeli \ref{1_tab_probabilites}. \\ % fix za preveč nabito postavitev
 
-\begin{tabular}{c|c c c c c c c c}
+\begin{table}[ht]
+\centering
+\begin{tabular}{c|c c c c c c c c} 
 verjetnost & 0.05\% & 0.1\% & 0.2\% & 0.5\% & 1\% & 2\% & 5\% & 10\% \\
 \hline
 odstopanje & 18 & 23 & 29 & 39 & 50 & 63 & 85 & 107
 \end{tabular}
-\\
+\caption{Verjetnosti zadetka in njihova odstopanja}
+\label{1_tab_probabilites}
+\end{table}
 
 Ampak piksli v slikah niso naključni.
 Boljšo oceno dobimo, če privzamemo, da je barva cele slike \emph{približno} enaka - če ne najdemo ustreznega piksla na začetku slike, potem je velika verjetnost, da ga tudi v preostanku slike ne bomo.
@@ -140,7 +144,7 @@ V naslednjem koraku izberemo tip instance slike, to je Amazonov način izbire pa
 
 Aplikacija je napisana v programskem jeziku Java, ki je interpretirana preko sprotnega prevajalnika, kar se lahko potencialno izkaže kot ozko grlo. Sestavljata jo odjemalska in strežniška komponenta, ki uporabljata skupne enumeratorje za določanje tipa zahteve. Zahteve sestavlja odjemalec in jih pošlja strežniku, ki te zahteve obdela - začne iskanje v slikah in pripravi prvi najden rezultat. Povezava med strežnikom in odjemalcem je trajna, dokler je eden od njiju ne prekine, kar nam omogoči, da pri meritvah ne upoštevamo časa vzpostavitve povezave. Podatki se prenašajo v obliki JSON, ki vsebuje sekvenčno številko zahteve, tip zahteve in morebitne dodatne podatke, ki so potrebni za obdelavo. V izpisu \ref{lst:JSON_req} je predstavljen primer zahteve v obliki dokumenta JSON, ki jo odjemalec pošlje strežniku.
 
-\begin{lstlisting}[caption={Primer JSON zahteve.},label={lst:JSON_req}]
+\begin{lstlisting}[caption={Primer JSON zahteve.},label={lst:JSON_req},captionpos=b]
 {
 	"reqId": 1,
 	"reqType": "PIXEL_NEAR",
@@ -154,7 +158,7 @@ Aplikacija je napisana v programskem jeziku Java, ki je interpretirana preko spr
 
 Strežnik ob prejemu podatkov začne z delom na ustrezni zahtevi ter nato pošlje odgovor klientu s številko zahteve in rezultatom. Odgovor vsebuje tudi čas proceiranja in branja slik. Strežniški del je napisan tako, da lahko paralelno obdeluje več zahtev. V izpisu  \ref{lst:JSON_res} je predstavljen primer odgovora na zahtevo, ki ga strežnik vrne odjemalcu.
 
-\begin{lstlisting}[caption={Primer JSON odgovora.},label={lst:JSON_res}]
+\begin{lstlisting}[caption={Primer JSON odgovora.},label={lst:JSON_res},captionpos=b]
 {
 	"reqId": 1,
 	"imageId": 4,
@@ -195,7 +199,7 @@ Test na strani \emph{Speedtest by Ookla} te vrednosti potrdi (rezultat testa: \u
 Čas obhoda paketa od odjemalca do storitve in nazaj ($t_{mreza}$) je povprečju znašal 62 milisekund.
 Rezultat orodja \texttt{tracert} se nahaja v izpisu \ref{1_lst_tracert}.
 
-\begin{lstlisting}[caption={Rezultat orodja \texttt{tracert}.},label={1_lst_tracert}]
+\begin{lstlisting}[caption={Rezultat orodja \texttt{tracert}.},label={1_lst_tracert},captionpos=b]
 Tracing route to ec2-52-212-203-50.eu-west-1.compute.amazonaws.com [52.212.203.50]
 over a maximum of 30 hops:
 
@@ -248,13 +252,13 @@ Najhitrejši odziv $t_{zahteva}$ je znašal 63 milisekunde, najdaljši pa 6778 m
 V povprečju je čas odziva znašal 587 milisekund.
 
 Iz slike \ref{fig:1_poskusno_total_times_unordered} ni enostavno razvidno, kakšna je razporeditev časov zahtev.
-Na sliki \ref{fig:1_poskusno_total_times} so celotni časi zahtev ($t_{zahteva}$) prikazani po velikosti urejeni.
+Na sliki \ref{fig:1_poskusno_total_times} so celotni časi zahtev ($t_{zahteva}$) prikazani urejeni po velikosti.
 
 \begin{figure}[H]
 	\centering
 	\scriptsize
 	\begin{tikzpicture}[scale=1.0]
-		\begin{axis}[xlabel={Število zahtev}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$t_{zahteva}$ [ms, naraščajoče]}, ytick={0,1000,...,7000}, minor ytick={0,200,...,7000}, grid=major]
+		\begin{axis}[xlabel={Zaporedna številka zahteve}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$t_{zahteva}$ [ms, naraščajoče]}, ytick={0,1000,...,7000}, minor ytick={0,200,...,7000}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_total_times.dat};
 		\end{axis}
 	\end{tikzpicture}
@@ -272,7 +276,7 @@ V povprečju je čas paketa na mreži znašal 64 milisekund, v 499 izmed 500 pri
 	\centering
 	\scriptsize
 	\begin{tikzpicture}[scale=1.0]
-		\begin{axis}[xlabel={Število zahtev}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$t_{mreza}$ [ms, naraščajoče]}, ytick={0,100,...,400}, minor ytick={0,10,...,400}, grid=major]
+		\begin{axis}[xlabel={Zaporedna številka zahteve}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$t_{mreza}$ [ms, naraščajoče]}, ytick={0,100,...,400}, minor ytick={0,10,...,400}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_transfer_times.dat};
 		\end{axis}
 	\end{tikzpicture}
@@ -289,7 +293,7 @@ Zavzemajo vrednosti med 1 in 4008 milisekund, v povprečju pa 201 milisekundo.
 	\centering
 	\scriptsize
 	\begin{tikzpicture}[scale=1.0]
-		\begin{axis}[xlabel={Število zahtev}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$t_{baza}$ [ms, naraščajoče]}, ytick={0,1000,...,4000}, minor ytick={0,200,...,4000}, grid=major]
+		\begin{axis}[xlabel={Zaporedna številka zahteve}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$t_{baza}$ [ms, naraščajoče]}, ytick={0,1000,...,4000}, minor ytick={0,200,...,4000}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_loading_time_absolute.dat};
 		\end{axis}
 	\end{tikzpicture}
@@ -304,7 +308,7 @@ Zavzemajo vrednosti med 16 in 100 odstotkov, v povprečju pa 36 odstotkov.
 \centering
 \scriptsize
 	\begin{tikzpicture}[scale=1.0]
-		\begin{axis}[xlabel={Število zahtev}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$\frac{t_{baza}}{t_{streznik}}$ [odstotek, naraščajoče]}, ytick={0,20,...,100}, minor ytick={0,2,...,100}, grid=major]
+		\begin{axis}[xlabel={Zaporedna številka zahteve}, xtick={0,100,...,500}, minor xtick={0,20,...,500}, ylabel={$\frac{t_{baza}}{t_{streznik}}$ [odstotek, naraščajoče]}, ytick={0,20,...,100}, minor ytick={0,2,...,100}, grid=major]
 			\addplot[mark=none] table{Result_processing/27_04_poskusno/1_test_loading_time_percentage.dat};
 		\end{axis}
 	\end{tikzpicture}
@@ -312,7 +316,7 @@ Zavzemajo vrednosti med 16 in 100 odstotkov, v povprečju pa 36 odstotkov.
 \label{fig:1_poskusno_loading_time_percentage}
 \end{figure}
 
-Povprečne vrednosti časa nalaganja 1 slike so prikazani na sliki \ref{fig:1_poskusno_pic_loading_time}.
+Povprečne vrednosti časa nalaganja 1 slike so prikazane na sliki \ref{fig:1_poskusno_pic_loading_time}.
 Vrednosti so izračunane kot količnik časa nalaganja slik s številom preiskanih slik pri posamezni zahtevi.
 Zavzemajo vrednosti med 1 in 200 milisekund, v povprečju pa 4 milisekunde.
 V 493 izmed 500 primerov ni presegel 7 milisekund.
@@ -351,7 +355,7 @@ Zaradi odločitve, da bomo testirali tudi z različnih lokacij, smo se najprej o
 Testirali smo iskanje piksla, podobnega specifični barvi.
 Poslali smo 500 zahtev.
 Vsaka je vsebovala naključno barvo, strežnik pa je iskal piksel z odstopanjem, manjšim ali enakim 50.
-Zahteve so bile poslane zaporedno, po oddaji zahteve je odjemalec počakal na odgovor strežnika, preden je poslal naslednjo.
+Zahteve so bile poslane zaporedno. Po oddaji zahteve je odjemalec počakal na odgovor strežnika, preden je poslal naslednjo.
 Minimalni, maksimalni in povprečni časi zahtev iz vsake lokacije so prikazani v tabeli \ref{1_tab_loc_times}.
 
 \begin{table}[ht]
@@ -399,7 +403,7 @@ V grobem se storitev odziva približno enako skozi dan, dopoldan in zgodaj zveč
 
 Za izvedbo stresnega testa smo umetno zmanjševali količino delovnega pomnilnika, ki ga je storitev imela na voljo.
 To smo storili tako, da smo pred testiranjem zagnali program, ki je alociral poljubno količino delovnega pomnilnika in ga tako odvzel storitvi.
-Začeli smo z vsem pomnilnikom (1 GB), nato pa ga postopoma zmeraj več alocirali v korakih po 100 MB.
+Začeli smo s popolnoma prostim pomnilnikom (1 GB), nato pa ga postopoma alocirali v korakih po 100 MB.
 Ustavili smo se pri 600 MB alociranega pomnilnika, pri 700 MB je strežnik po nekaj zahtevah zmrznil in zahteval ponovni zagon programske opreme (vnos \texttt{Ctrl+C} v terminalu).
 Povprečni časi glede na količino umetno odvzetega pomnilnika so prikazani na sliki \ref{fig:1_stress_test_time_averages}.
 
@@ -484,8 +488,8 @@ Za frekvenčno testiranje smo kot začetni $\Delta t$ izbrali vrednost 1,1 sekun
 		 ymax = 9000, 
 		 ylabel style = {align=center},
 		 ylabel={$t_{zahteva}$ [ms] \ref{plot:1_times}}, 
-		 ytick={500,1000,...,9500}, 
-		 minor ytick={800,900,...,9500}, 
+		 ytick={0,1000,...,9000}, 
+		 minor ytick={500,750,...,9000}, 
 		 grid=major]
 			\addplot[blue] table{Result_processing/freq_test/1_freq_test_total_times_unordered.dat};
 			\label{plot:1_times}
