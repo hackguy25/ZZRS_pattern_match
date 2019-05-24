@@ -516,16 +516,33 @@ Iz grafa lahko razberemo, da se sistem zelo dobro odziva, dokler ni povprečni �
 \section{Zaključek}
 
 Platforma Amazon Elastic Cloud ponuja zanimivo brezplačno možnost za lansiranje enostavne spletne storitve.
-Sloni na razsežni oblačni infrastrukturi podjetja Amazon, kar zagotavlja hitre odzivne čase ne glede na lokacijo uporabnika in čas v dnevu, kar je razvidno iz naših testov.
-Ker so osnovne enote platforme strežniki, na katerih lahko teče odprtokodna programska oprema, osnovana na jedru Linux, je snovanje in izvajanje programske opreme enostavno in dobro podprto.
+Sloni na razsežni oblačni infrastrukturi podjetja Amazon, kar zagotavlja hitre odzivne čase ne glede na lokacijo uporabnika in čas v dnevu, kar je razvidno iz naših testov. Ker so osnovne enote platforme strežniki, na katerih lahko teče odprtokodna programska oprema, osnovana na jedru Linux, je snovanje in izvajanje programske opreme enostavno in dobro podprto. V sklopu merjenja brezplačne različice t2.micro z 1 jedrom in 1GB pomnilnika smo prišli do naslednjih rezultatov.
 
-Največja težava, s katero se mora razvijalec spopasti, je nizka zmogljivost brezplačnih resursov, ki so mu na voljo.
-Že enostavna storitev hitro zasede 1 jedro in 1 GB delovnega pomnilnika, poleg tega pa je treba pametno izkoristiti 30 GB navideznega diskovnega prostora, ki je na voljo brez plačila.
-Amazon nam seveda rade volje ponudi boljše, a ne zastonj.
+\begin{table}[ht]
+ \caption{Povzetek časov iz sheme opazovane storitve.}
+ \label{1_tab_multi_user}
+ \centering
+\begin{tabular}{ |p{4.0cm}||p{2.0cm}|p{2.0cm}|p{2.0cm}| }
+ \hline
+ Tip metrike (1 uporabnik) & Min [ms] & Max [ms] & Povprečje [ms] \\
+ \hline
+ $t_{zahteva}$ & 63 & 6778 & 587 \\
+ $t_{mreza}$ & 60 & 395 & 64 \\
+ $t_{baza}$ & 1 & 4008 & 201 \\
+ $t_{streznik}$ & 3 & 6383 & 523 \\
+ $t_{procesiranje}$ & 2 & 2375 & 322 \\
+ \hline
+\end{tabular}
+\end{table}
+
+Kot lahko vidimo je največja težava, s katero se mora razvijalec spopasti, nizka zmogljivost brezplačnih resursov, ki so mu na voljo. Najbolj časovno zahtevno operacijo predstavlja procesiranje in nalaganje slikovnega materiala ($t_{streznik}$, ki združuje $t_{baza}$ in $t_{procesiranje}$), medtem ko je strošek komunikacije s strežnikom ($t_{mreza}$) karseda zanemarljiv.
+Že enostavna storitev lahko hitro zasede 1 jedro in 1 GB delovnega pomnilnika, poleg tega pa je treba pametno izkoristiti 30 GB navideznega diskovnega prostora, ki je na voljo brez plačila.
+
+V kolikor nam omejena zmogljivost predstavlja težave, ima Amaozon na voljo zmogljivejše produkte, ki pa so seveda plačljivi.
 Virtualni strežnik z dvemi jedri, 4 GB delovnega pomnilnika in 100 GB navideznega diskovnega prostora stane 23 evrov mesečno za najem~\cite{1_aws_pricing}, torej mora razvijalec šteti tudi profitabilnost med svoje cilje.
 
 Amazon Elastic Cloud priporočamo za storitve, ki so računsko razmeroma nezahtevne.
-Uspeh storitev temelji na več faktorjih, vsekakor pa je zanesljivost infrastrukture zelo pomemben del.
+Uspeh storitev temelji na več faktorjih, vsekakor je zanesljivost infrastrukture zelo pomemben del.
 Tu Amazon Elastic Cloud zadosti vsaj osnovne potrebe, obljublja pa še veliko več, a ne brez plačila.
 
 \inputencoding{cp1250}
