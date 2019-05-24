@@ -455,7 +455,7 @@ V primeru treh uporabnikov je 3,5-krat daljši kot pri enem.
 Sklepamo, da smo naleteli na neznano ozko grlo, za natančnejšo določitev regresije pa bi morali natančneje opazovati obnašanje storitve pri več uporabnikih in določiti, kateri del obdelave povzroči to upočasnitev.
 
 \subsection{Frekvenčno testiranje}
-Zanima nas, kako se storitev odziva, če zahteve pošiljamo konstantno vsakih $\Delta t$ časovnih enot, ta čas pa po določenem času $t_{step}$ zmanjšamo in pri tem opazujemo, kako se podaljšuje čas odziva na zahtevo $t_{zahteva}$.
+Zanima nas, kako se storitev odziva, če zahteve pošiljamo konstantno vsakih $\Delta t$ časovnih enot, $\Delta t$ pa po določenem času $t_{step}$ zmanjšamo in pri tem opazujemo, kako se podaljšuje čas odziva na zahtevo $t_{zahteva}$.
 
 Za pravilno testiranje takega tipa smo se odločili, da bomo ves čas pošiljali isto zahtevo brez naključnosti na strežnik, kar pa lahko povzroči probleme, če imajo strežniki predpomnjenje. To smo stestirali tako, da smo poslali 500 enakih zahtev in opazovali čase $t_{zahteva}$, kar je prikazano na sliki \ref{fig:1_caching_test}.
 
@@ -510,13 +510,12 @@ Za frekvenčno testiranje smo kot začetni $\Delta t$ izbrali vrednost 1,1 sekun
 \label{fig:1_freq_test}
 \end{figure}
 
-Iz grafa lahko razberemo, da se sistem zelo dobro odziva, dokler ni povprečni čas med dvema zahtevama manjši od 775 milisekund, to pomeni največ 1,29 zahteve na sekundo. Ko presežmo to mejo, začne $t_{zahteva}$ silovito naraščati, kar pomeni, da se začne ustvarjati čakalna vrsta za obdelavo, ki pa, kot vidimo, zelo hitro zrase. Zavajujoče deluje prevoj grafa $t_{zahteva}$, ki se začne spuščati, ko dosežemo mejo $\Delta t = 750ms$, kar pa pojasni dejstvo, da smo mi ravno pred tisto točko presegli zgornjo mejo $t_{zahteva} = 8000ms$ in po tem prenehali pošiljati zahteve na strežnik, vendar je strežnik še vedno moral sprazniti čakalno vrsto, kar je vidno v padcu grafa.
-
+Iz grafa lahko razberemo, da se sistem zelo dobro odziva, dokler ni povprečni čas med dvema zahtevama manjši od 775 milisekund, to pomeni največ 1,29 zahteve na sekundo. Ko presežemo to mejo, začne $t_{zahteva}$ silovito naraščati, kar pomeni, da se začne ustvarjati čakalna vrsta za obdelavo, ki pa, kot vidimo, zelo hitro zrase. Zavajujoče deluje prevoj grafa $t_{zahteva}$, ki se začne spuščati, ko dosežemo mejo $\Delta t = 750ms$, kar pa pojasni dejstvo, da smo mi ravno pred tisto točko presegli zgornjo mejo $t_{zahteva} = 8000ms$ in po tem prenehali pošiljati zahteve na strežnik, vendar je strežnik še vedno moral sprazniti čakalno vrsto, kar je vidno v padcu grafa.
 
 \section{Zaključek}
 
 Platforma Amazon Elastic Cloud ponuja zanimivo brezplačno možnost za lansiranje enostavne spletne storitve.
-Sloni na razsežni oblačni infrastrukturi podjetja Amazon, kar zagotavlja hitre odzivne čase ne glede na lokacijo uporabnika in čas v dnevu, kar je razvidno iz naših testov. Ker so osnovne enote platforme strežniki, na katerih lahko teče odprtokodna programska oprema, osnovana na jedru Linux, je snovanje in izvajanje programske opreme enostavno in dobro podprto. V sklopu merjenja brezplačne različice t2.micro z 1 jedrom in 1GB pomnilnika smo prišli do naslednjih rezultatov.
+Sloni na razsežni oblačni infrastrukturi podjetja Amazon, kar zagotavlja hitre odzivne čase ne glede na lokacijo uporabnika in čas v dnevu, kar je razvidno iz naših testov. Ker so osnovne enote platforme strežniki, na katerih lahko teče odprtokodna programska oprema, osnovana na jedru Linux, je snovanje in izvajanje programske opreme enostavno in dobro podprto. V sklopu merjenja brezplačne različice t2.micro z 1 jedrom in 1GB pomnilnika smo prišli do rezultatov, prikazanih v tabeli \ref{1_tab_summary}.
 
 \begin{table}[ht]
  \caption{Povzetek časov iz sheme opazovane storitve.}
@@ -526,19 +525,19 @@ Sloni na razsežni oblačni infrastrukturi podjetja Amazon, kar zagotavlja hitre
  \hline
  Tip metrike (1 uporabnik) & Min [ms] & Max [ms] & Povprečje [ms] \\
  \hline
- $t_{zahteva}$ & 63 & 6778 & 587 \\
- $t_{mreza}$ & 60 & 395 & 64 \\
- $t_{baza}$ & 1 & 4008 & 201 \\
- $t_{streznik}$ & 3 & 6383 & 523 \\
- $t_{procesiranje}$ & 2 & 2375 & 322 \\
+ $t_{zahteva}$                   & 63 & 6778 & 587 \\
+ \hspace{2mm}$t_{mreza}$         & 60 &  395 &  64 \\
+ \hspace{2mm}$t_{streznik}$      &  3 & 6383 & 523 \\
+ \hspace{4mm}$t_{baza}$          &  1 & 4008 & 201 \\
+ \hspace{4mm}$t_{procesiranje}$  &  2 & 2375 & 322 \\
  \hline
 \end{tabular}
 \end{table}
 
-Kot lahko vidimo je največja težava, s katero se mora razvijalec spopasti, nizka zmogljivost brezplačnih resursov, ki so mu na voljo. Najbolj časovno zahtevno operacijo predstavlja procesiranje in nalaganje slikovnega materiala ($t_{streznik}$, ki združuje $t_{baza}$ in $t_{procesiranje}$), medtem ko je strošek komunikacije s strežnikom ($t_{mreza}$) karseda zanemarljiv.
+Kot lahko vidimo, je največja težava, s katero se mora razvijalec spopasti, nizka zmogljivost brezplačnih resursov, ki so mu na voljo. Najbolj časovno zahtevno operacijo predstavlja procesiranje in nalaganje slikovnega materiala ($t_{streznik}$, ki združuje $t_{baza}$ in $t_{procesiranje}$), medtem ko je strošek komunikacije s strežnikom ($t_{mreza}$) karseda zanemarljiv.
 Že enostavna storitev lahko hitro zasede 1 jedro in 1 GB delovnega pomnilnika, poleg tega pa je treba pametno izkoristiti 30 GB navideznega diskovnega prostora, ki je na voljo brez plačila.
 
-V kolikor nam omejena zmogljivost predstavlja težave, ima Amaozon na voljo zmogljivejše produkte, ki pa so seveda plačljivi.
+V kolikor nam omejena zmogljivost predstavlja težave, ima Amazon na voljo zmogljivejše produkte, ki pa so seveda plačljivi.
 Virtualni strežnik z dvemi jedri, 4 GB delovnega pomnilnika in 100 GB navideznega diskovnega prostora stane 23 evrov mesečno za najem~\cite{1_aws_pricing}, torej mora razvijalec šteti tudi profitabilnost med svoje cilje.
 
 Amazon Elastic Cloud priporočamo za storitve, ki so računsko razmeroma nezahtevne.
